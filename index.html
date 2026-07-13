@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>ETERA · 过境设施合规系统 / TF Compliance System</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#A2124C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ETERA TF">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --bg:#EDEFEC; --panel:#FFFFFF; --ink:#1A211D; --ink-soft:#5B6560; --hair:#D8DAD3;
+  --magenta:#A2124C; --magenta-ink:#5E0A2C; --magenta-bg:#FBE7EE;
+  --amber:#B87310; --amber-ink:#5C3A08; --amber-bg:#FBEEDA;
+  --green:#2D6B47; --green-ink:#173D28; --green-bg:#E4F0E6;
+  --blue:#1E5FA8; --blue-bg:#E4EEF8;
+  --red:#B23A2E; --red-bg:#FBEAE6;
+  --radius:10px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{ background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; font-size:14px; line-height:1.5; }
+.mono{font-family:'IBM Plex Mono',monospace;}
+.disp{font-family:'Archivo Expanded',sans-serif; font-weight:700;}
+
+.bi{ display:flex; flex-direction:column; gap:1px; }
+.bi-zh{ font-weight:inherit; }
+.bi-en{ font-size:0.76em; color:var(--ink-soft); font-weight:400; letter-spacing:.2px; }
+th .bi-en{ text-transform:uppercase; letter-spacing:.4px; }
+.bi-inline{ display:inline; }
+.bi-inline .bi-en{ display:block; }
+
+.app{ display:grid; grid-template-columns:230px 1fr; min-height:100vh; }
+
+.side{ background:var(--ink); color:#EDEFEC; padding:20px 14px; display:flex; flex-direction:column; gap:2px; }
+.brand{ display:flex; align-items:center; gap:10px; margin-bottom:20px; }
+.brand-mark{ width:30px; height:30px; background:var(--magenta); border-radius:6px; display:flex; align-items:center; justify-content:center; font-family:'Archivo Expanded'; font-weight:700; font-size:13px; color:#fff; flex-shrink:0; }
+.brand-text .t1{ font-family:'Archivo Expanded'; font-weight:700; font-size:15px; letter-spacing:.5px; }
+.brand-text .t2{ font-size:10px; color:#9BA39D; letter-spacing:.3px; }
+.nav-item{ padding:8px 10px; border-radius:8px; cursor:pointer; font-size:13px; color:#C7CCC7; display:flex; align-items:flex-start; gap:9px; }
+.nav-item .n{ font-family:'IBM Plex Mono'; font-size:10.5px; color:#6E766F; width:16px; padding-top:2px; }
+.nav-item .bi-en{ color:#8A928C; }
+.nav-item:hover{ background:#28312B; color:#fff; }
+.nav-item.active{ background:var(--magenta); color:#fff; }
+.nav-item.active .n, .nav-item.active .bi-en{ color:#F3C4D6; }
+.side-foot{ margin-top:auto; font-size:10.5px; color:#7A827C; padding:10px; border-top:1px solid #2C352F; line-height:1.6; }
+
+.main{ padding:26px 34px 60px; max-width:1040px; }
+.topbar{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:22px; border-bottom:1px solid var(--hair); padding-bottom:16px; }
+.topbar h1{ font-family:'Archivo Expanded'; font-size:20px; font-weight:700; }
+.topbar .h1en{ font-size:12px; color:var(--ink-soft); font-weight:500; margin-top:2px; }
+.topbar .sub{ color:var(--ink-soft); font-size:12px; margin-top:4px; }
+.atf-chip{ font-family:'IBM Plex Mono'; font-size:11px; background:var(--panel); border:1px solid var(--hair); padding:6px 11px; border-radius:20px; display:flex; align-items:center; gap:7px; }
+.atf-chip .dot{ width:7px; height:7px; border-radius:50%; background:var(--green); }
+
+section{ display:none; }
+section.show{ display:block; }
+
+.stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:22px; }
+.stat{ background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); padding:14px 16px; }
+.stat .lbl{ font-size:10.5px; color:var(--ink-soft); }
+.stat .lbl .bi-en{ font-size:1em; }
+.stat .val{ font-family:'Archivo Expanded'; font-size:23px; font-weight:700; margin-top:6px; }
+.stat .val small{ font-family:'Inter'; font-size:11.5px; color:var(--ink-soft); font-weight:400; }
+
+.stamp{ display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono'; font-size:10.5px; font-weight:500; padding:4px 10px 4px 8px; border-radius:20px; border:1.5px dashed; letter-spacing:.3px; }
+.stamp.ok{ color:var(--green-ink); border-color:var(--green); background:var(--green-bg); }
+.stamp.warn{ color:var(--amber-ink); border-color:var(--amber); background:var(--amber-bg); }
+.stamp.bad{ color:var(--red); border-color:var(--red); background:var(--red-bg); }
+.stamp .ring{ width:7px; height:7px; border-radius:50%; border:1.5px solid currentColor; flex-shrink:0; }
+
+.card{ background:var(--panel); border:1px solid var(--hair); border-radius:12px; padding:18px 20px; margin-bottom:16px; }
+.card h2{ font-family:'Archivo Expanded'; font-size:14px; font-weight:700; margin-bottom:3px; display:flex; align-items:baseline; justify-content:space-between; }
+.card .h2en{ font-size:11px; color:var(--ink-soft); font-weight:500; margin-bottom:12px; }
+.card h2 span.tag{ font-family:'Inter'; font-size:11px; color:var(--ink-soft); font-weight:500; }
+
+table{ width:100%; border-collapse:collapse; font-size:12.5px; }
+th{ text-align:left; padding:0 10px 8px 0; border-bottom:1px solid var(--hair); font-weight:600; font-size:11px; color:var(--ink-soft); }
+td{ padding:8px 10px 8px 0; border-bottom:1px solid #EFEFEA; vertical-align:middle; }
+tr:last-child td{ border-bottom:none; }
+
+.btn{ font-family:'Inter'; font-weight:500; font-size:12px; padding:8px 14px; border-radius:8px; border:1px solid var(--hair); background:var(--panel); cursor:pointer; color:var(--ink); }
+.btn:hover{ border-color:var(--ink); }
+.btn.primary{ background:var(--magenta); color:#fff; border-color:var(--magenta); }
+.btn.primary:hover{ background:var(--magenta-ink); }
+
+.formgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:12px; }
+input,select{ font-family:'Inter'; font-size:12px; padding:8px 10px; border:1px solid var(--hair); border-radius:8px; width:100%; background:#FBFBF9; }
+label{ font-size:10px; color:var(--ink-soft); display:block; margin-bottom:4px; line-height:1.3; }
+label .bi-en{ font-size:1em; }
+
+.pill{ font-size:10.5px; padding:3px 9px; border-radius:12px; font-weight:500; white-space:nowrap; }
+.pill.g{ background:var(--green-bg); color:var(--green-ink); }
+.pill.a{ background:var(--amber-bg); color:var(--amber-ink); }
+.pill.r{ background:var(--red-bg); color:var(--red); }
+.pill.b{ background:var(--blue-bg); color:var(--blue); }
+.pill.n{ background:#EEEEEA; color:var(--ink-soft); }
+
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.small{ font-size:12px; color:var(--ink-soft); }
+.divider{ height:1px; background:var(--hair); margin:14px 0; }
+.contact-line{ display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #F0F0EB; font-size:12px; }
+.contact-line:last-child{ border-bottom:none; }
+.doclist li{ list-style:none; padding:7px 0; border-bottom:1px solid #F0F0EB; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; }
+
+.hdrblock{ display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--hair); border-radius:8px; overflow:hidden; margin-bottom:14px; font-size:12.5px; }
+.hdrblock > div{ padding:8px 12px; border-bottom:1px solid var(--hair); }
+.hdrblock > div:nth-child(odd){ border-right:1px solid var(--hair); }
+.hdrblock .k{ font-size:10px; color:var(--ink-soft); }
+.checks{ display:flex; gap:16px; margin-bottom:14px; flex-wrap:wrap; }
+.check{ display:flex; align-items:center; gap:6px; font-size:12.5px; }
+.check input{ width:auto; }
+
+.privacy-note{ margin-top:10px; font-size:11px; color:var(--ink-soft); background:#F5F5F0; border-left:3px solid var(--amber); padding:8px 12px; border-radius:0 6px 6px 0; }
+
+.legend{ display:flex; flex-direction:column; gap:8px; font-size:11.5px; }
+.legend-row{ display:flex; align-items:center; gap:8px; }
+
+/* ---- mobile hamburger + drawer ---- */
+.hamburger{ display:none; width:38px; height:38px; border-radius:8px; border:1px solid var(--hair); background:var(--panel); align-items:center; justify-content:center; flex-direction:column; gap:4px; cursor:pointer; flex-shrink:0; }
+.hamburger span{ width:18px; height:2px; background:var(--ink); border-radius:2px; }
+.scrim{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.4); z-index:40; }
+.scrim.show{ display:block; }
+
+@media (max-width: 860px){
+  .app{ grid-template-columns:1fr; }
+  .side{
+    position:fixed; top:0; left:0; bottom:0; width:250px; z-index:50;
+    transform:translateX(-100%); transition:transform .22s ease; box-shadow:2px 0 16px rgba(0,0,0,.25);
+    overflow-y:auto;
+  }
+  .side.open{ transform:translateX(0); }
+  .main{ padding:16px 16px 90px; max-width:100%; }
+  .hamburger{ display:flex; position:fixed; top:14px; left:14px; z-index:30; background:var(--panel); box-shadow:0 2px 10px rgba(0,0,0,.12); }
+  .main{ padding-top:64px; }
+  .topbar{ align-items:center; gap:10px; }
+  .topbar-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+  .topbar-left .titles{ min-width:0; }
+  .topbar h1{ font-size:17px; }
+  .stats{ grid-template-columns:repeat(2,1fr); }
+  .grid2{ grid-template-columns:1fr; }
+  .formgrid{ grid-template-columns:repeat(2,1fr) !important; }
+  table{ font-size:11.5px; }
+  th, td{ padding:7px 6px 7px 0; }
+  .card{ padding:14px; }
+  .main{ overflow-x:hidden; }
+  .card > table, .card{ max-width:100%; }
+  section table{ display:block; overflow-x:auto; white-space:nowrap; }
+}
+@media (max-width: 480px){
+  .formgrid{ grid-template-columns:1fr !important; }
+  .stats{ grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="side">
+    <div class="brand">
+      <div class="brand-mark">TF</div>
+      <div class="brand-text"><div class="t1">ETERA</div><div class="t2">合规系统 · ATF 33359</div></div>
+    </div>
+    <div class="nav-item active" data-target="dash"><span class="n">01</span><span class="bi"><span class="bi-zh">总览仪表盘</span><span class="bi-en">Dashboard</span></span></div>
+    <div class="nav-item" data-target="dailyops"><span class="n">02</span><span class="bi"><span class="bi-zh">日常作业日志</span><span class="bi-en">TF Daily Operations Log</span></span></div>
+    <div class="nav-item" data-target="goods"><span class="n">03</span><span class="bi"><span class="bi-zh">货物接收记录</span><span class="bi-en">Goods Receipt Record</span></span></div>
+    <div class="nav-item" data-target="access"><span class="n">04</span><span class="bi"><span class="bi-zh">出入登记</span><span class="bi-en">TF Access Log</span></span></div>
+    <div class="nav-item" data-target="people"><span class="n">05</span><span class="bi"><span class="bi-zh">人员资质与培训</span><span class="bi-en">Training register</span></span></div>
+    <div class="nav-item" data-target="pest"><span class="n">06</span><span class="bi"><span class="bi-zh">虫害/杂草/鼠患控制</span><span class="bi-en">Pest, Weed &amp; Vermin Control</span></span></div>
+    <div class="nav-item" data-target="incident"><span class="n">07</span><span class="bi"><span class="bi-zh">生物安全事件与废弃物</span><span class="bi-en">Biosecurity Incident / Waste</span></span></div>
+    <div class="nav-item" data-target="hygiene"><span class="n">08</span><span class="bi"><span class="bi-zh">卫生管理记录</span><span class="bi-en">TF Hygiene Management</span></span></div>
+    <div class="nav-item" data-target="siteplan"><span class="n">09</span><span class="bi"><span class="bi-zh">现场平面图</span><span class="bi-en">Site plan</span></span></div>
+    <div class="nav-item" data-target="providers"><span class="n">10</span><span class="bi"><span class="bi-zh">处理服务商</span><span class="bi-en">Treatment providers</span></span></div>
+    <div class="nav-item" data-target="contingency"><span class="n">11</span><span class="bi"><span class="bi-zh">应急预案</span><span class="bi-en">Contingency plans</span></span></div>
+    <div class="nav-item" data-target="docs"><span class="n">12</span><span class="bi"><span class="bi-zh">审计文档库</span><span class="bi-en">Audit document library</span></span></div>
+    <div class="side-foot">Biosecurity Act 1993 · s.39/s.40<br>TFGEN Standard · Approved 10 Feb 2026</div>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+
+  <div class="main">
+    <button class="hamburger" id="hamburger" aria-label="打开菜单 Open menu"><span></span><span></span><span></span></button>
+
+    <!-- 01 DASHBOARD -->
+    <section id="dash" class="show">
+      <div class="topbar">
+        <div>
+          <h1>总览仪表盘</h1><div class="h1en">Dashboard overview</div>
+          <div class="sub">Etera Group Limited · 8 Norman Spencer Drive, Papatoetoe, Auckland</div>
+        </div>
+        <div class="atf-chip"><span class="dot"></span> <span class="bi"><span class="bi-zh">设施状态：正常运营</span><span class="bi-en">Facility status: operating</span></span></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="lbl bi"><span class="bi-zh">本年度集装箱</span><span class="bi-en">Containers YTD</span></div><div class="val">47 <small>/ 60–80 目标 target</small></div></div>
+        <div class="stat"><div class="lbl bi"><span class="bi-zh">待处理污染上报</span><span class="bi-en">Open contamination cases</span></div><div class="val">0 <small>项 items</small></div></div>
+        <div class="stat"><div class="lbl bi"><span class="bi-zh">48小时报告合规率</span><span class="bi-en">48h portal report compliance</span></div><div class="val">100 <small>%</small></div></div>
+        <div class="stat"><div class="lbl bi"><span class="bi-zh">下次内部审计</span><span class="bi-en">Next internal audit</span></div><div class="val">3.5 <small>个月后 mo.</small></div></div>
+      </div>
+
+      <div class="card">
+        <h2>资质到期预警</h2><div class="h2en">Certification expiry alerts</div>
+        <table>
+          <tr><th><div class="bi"><span class="bi-zh">持证人 / 角色</span><span class="bi-en">Holder / role</span></div></th><th><div class="bi"><span class="bi-zh">证书编号</span><span class="bi-en">Cert no.</span></div></th><th><div class="bi"><span class="bi-zh">到期日</span><span class="bi-en">Expiry</span></div></th><th><div class="bi"><span class="bi-zh">状态</span><span class="bi-en">Status</span></div></th></tr>
+          <tr><td>Xueye Liu · Accredited Person</td><td class="mono">IVS145811</td><td>2026-10-29</td><td><span class="stamp warn"><span class="ring"></span>108天/days内到期</span></td></tr>
+          <tr><td>Xueye Liu · TF Operator</td><td class="mono">SPS-AS210126-1-5</td><td>2028-01-20</td><td><span class="stamp ok"><span class="ring"></span>有效 Valid</span></td></tr>
+          <tr><td>内部生物安全意识培训 Internal awareness training</td><td class="mono">—</td><td>2027-01-30 前复训 by</td><td><span class="stamp ok"><span class="ring"></span>有效 Valid</span></td></tr>
+        </table>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h2>最近作业日志</h2><div class="h2en">Recent daily operations</div>
+          <table>
+            <tr><th>集装箱号 Container</th><th>日期 Date</th><th>状态 Status</th></tr>
+            <tr><td class="mono">TCLU4471820</td><td>07-11</td><td><span class="pill g">Unload · 无污染</span></td></tr>
+            <tr><td class="mono">MSKU7729140</td><td>07-08</td><td><span class="pill g">Unload · 无污染</span></td></tr>
+            <tr><td class="mono">CAIU2205671</td><td>07-03</td><td><span class="pill a">Hold · 需MPI督导</span></td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h2>今日在场人员</h2><div class="h2en">On-site headcount today</div>
+          <table>
+            <tr><td>员工 Staff</td><td style="text-align:right"><span class="pill n">4 人</span></td></tr>
+            <tr><td>外来访客/送货 Visitors on-site</td><td style="text-align:right"><span class="pill b">1 人</span></td></tr>
+            <tr><td>MPI检查员 MPI Inspector</td><td style="text-align:right"><span class="pill n">0 人</span></td></tr>
+          </table>
+          <div class="small" style="margin-top:8px;">用于紧急疏散清点，见"应急预案"模块 · For emergency evacuation headcount, see Contingency module</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 TF DAILY OPERATIONS LOG -->
+    <section id="dailyops">
+      <div class="topbar"><div><h1>日常作业日志</h1><div class="h1en">TF Daily Operations Log</div><div class="sub">字段与公司现行Excel台账逐列对齐 / Column set matches the company's working Excel log exactly</div></div></div>
+      <div class="card">
+        <h2>新增日志条目</h2><div class="h2en">New log entry</div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">日期</span><span class="bi-en">Date</span></label><input type="date" id="d-date"></div>
+          <div><label class="bi"><span class="bi-zh">TF Operator / AP</span><span class="bi-en">operator or AP name</span></label><input id="d-op" placeholder="Xueye Liu"></div>
+          <div><label class="bi"><span class="bi-zh">集装箱号</span><span class="bi-en">Container no.</span></label><input id="d-container" placeholder="TCLU4471820"></div>
+          <div><label class="bi"><span class="bi-zh">BACC编号</span><span class="bi-en">BACC no.</span></label><input id="d-bacc" placeholder="BACC12345"></div>
+        </div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">作业类型</span><span class="bi-en">Activity</span></label><select id="d-activity"><option>Unload 卸货</option><option>Hold 持有</option><option>Inspect 查验</option></select></div>
+          <div><label class="bi"><span class="bi-zh">场地是否清洁</span><span class="bi-en">TF area clean (Y/N)</span></label><select id="d-clean"><option>Y</option><option>N</option></select></div>
+          <div style="grid-column:span 2;"><label class="bi"><span class="bi-zh">发现问题</span><span class="bi-en">Issues observed</span></label><input id="d-issue" placeholder="无 / 具体描述"></div>
+        </div>
+        <div class="formgrid">
+          <div style="grid-column:span 2;"><label class="bi"><span class="bi-zh">处理措施</span><span class="bi-en">Action taken</span></label><input id="d-action" placeholder="无需处理 / 具体措施"></div>
+          <div style="grid-column:span 2;"><label class="bi"><span class="bi-zh">签名</span><span class="bi-en">Signature</span></label><input id="d-sig" placeholder="现场签名"></div>
+        </div>
+        <button class="btn primary" onclick="addDailyOps()">保存条目 Save entry</button>
+      </div>
+      <div class="card">
+        <h2>作业日志台账</h2><div class="h2en">Operations ledger <span class="tag">共 <span id="d-count">6</span> 条 records</span></div>
+        <table id="d-table">
+          <tr><th>Date<br><span class="small">日期</span></th><th>TF Operator/AP</th><th>Container No.</th><th>BACC No.</th><th>Activity</th><th>Area Clean</th><th>Issues Observed</th><th>Action Taken</th><th>Signature</th></tr>
+          <tr><td>2026-07-11</td><td>Xueye Liu</td><td class="mono">TCLU4471820</td><td class="mono">BACC88213</td><td><span class="pill n">Unload</span></td><td>Y</td><td>无 None</td><td>—</td><td class="small">✓</td></tr>
+          <tr><td>2026-07-08</td><td>Xueye Liu</td><td class="mono">MSKU7729140</td><td class="mono">BACC88190</td><td><span class="pill n">Unload</span></td><td>Y</td><td>无 None</td><td>—</td><td class="small">✓</td></tr>
+          <tr><td>2026-07-03</td><td>Xueye Liu</td><td class="mono">CAIU2205671</td><td class="mono">BACC88155</td><td><span class="pill a">Hold</span></td><td>Y</td><td>需MPI督导拆箱</td><td>已预约MPI Inspector</td><td class="small">✓</td></tr>
+          <tr><td>2026-06-28</td><td>Xueye Liu</td><td class="mono">FCIU9981034</td><td class="mono">BACC88070</td><td><span class="pill n">Inspect</span></td><td>Y</td><td>木托盘轻微虫蛀</td><td>隔离，联系MPI 0800 80 99 66</td><td class="small">✓</td></tr>
+          <tr><td>2026-06-20</td><td>Xueye Liu</td><td class="mono">HLXU3350092</td><td class="mono">BACC87991</td><td><span class="pill n">Unload</span></td><td>Y</td><td>无 None</td><td>—</td><td class="small">✓</td></tr>
+          <tr><td>2026-06-14</td><td>Xueye Liu</td><td class="mono">TGHU6612287</td><td class="mono">BACC87940</td><td><span class="pill n">Unload</span></td><td>Y</td><td>无 None</td><td>—</td><td class="small">✓</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 03 GOODS RECEIPT RECORD -->
+    <section id="goods">
+      <div class="topbar"><div><h1>货物接收记录</h1><div class="h1en">Imported / Uncleared Goods Receipt Record</div><div class="sub">每票到货货物的BACC核验、ISPM15检查与污染判定 / Per-shipment BACC, ISPM15 and contamination check</div></div></div>
+      <div class="card">
+        <h2>新增接收记录</h2><div class="h2en">New receipt record</div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">日期</span><span class="bi-en">Date</span></label><input type="date" id="g-date"></div>
+          <div><label class="bi"><span class="bi-zh">集装箱号</span><span class="bi-en">Container no.</span></label><input id="g-container" placeholder="TCLU4471820"></div>
+          <div><label class="bi"><span class="bi-zh">供应商/产地</span><span class="bi-en">Supplier / origin</span></label><input id="g-supplier" placeholder="例 Fujian, China"></div>
+          <div><label class="bi"><span class="bi-zh">AP姓名</span><span class="bi-en">AP name</span></label><select id="g-ap"><option>Xueye Liu</option></select></div>
+        </div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">BACC已核验</span><span class="bi-en">BACC verified (Y/N)</span></label><select id="g-bacc"><option>Y</option><option>N</option></select></div>
+          <div><label class="bi"><span class="bi-zh">ISPM15已检查</span><span class="bi-en">ISPM15 checked</span></label><select id="g-ispm"><option>Y</option><option>N</option><option>N/A</option></select></div>
+          <div><label class="bi"><span class="bi-zh">是否有污染</span><span class="bi-en">Contamination (Y/N)</span></label><select id="g-contam"><option>N</option><option>Y</option></select></div>
+          <div><label class="bi"><span class="bi-zh">是否留在TF持有区</span><span class="bi-en">Held in TF area</span></label><select id="g-held"><option>N</option><option>Y</option></select></div>
+        </div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">破损情况</span><span class="bi-en">Damage</span></label><input id="g-damage" placeholder="无 None"></div>
+          <div style="grid-column:span 3;"><label class="bi"><span class="bi-zh">备注</span><span class="bi-en">Notes</span></label><input id="g-notes" placeholder="其他说明"></div>
+        </div>
+        <button class="btn primary" onclick="addGoods()">保存记录 Save</button>
+      </div>
+      <div class="card">
+        <h2>货物接收台账</h2><div class="h2en">Receipt ledger</div>
+        <table id="g-table">
+          <tr><th>Date</th><th>Container No.</th><th>Supplier/Origin</th><th>BACC</th><th>ISPM15</th><th>Damage</th><th>Contam.</th><th>Held</th><th>AP</th><th>Notes</th></tr>
+          <tr><td>2026-07-11</td><td class="mono">TCLU4471820</td><td>Fujian, China</td><td><span class="pill g">Y</span></td><td><span class="pill g">Y</span></td><td>无</td><td><span class="pill g">N</span></td><td>N</td><td>Xueye Liu</td><td class="small">—</td></tr>
+          <tr><td>2026-06-28</td><td class="mono">FCIU9981034</td><td>Guangdong, China</td><td><span class="pill g">Y</span></td><td><span class="pill a">Y — 轻微虫蛀</span></td><td>木托盘边角</td><td><span class="pill a">Y</span></td><td>Y</td><td>Xueye Liu</td><td class="small">已隔离，等待MPI指示</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 03 PEOPLE / APPENDIX A -->
+    <section id="people">
+      <div class="topbar"><div><h1>人员资质与培训</h1><div class="h1en">Training &amp; certification</div><div class="sub">TFGEN 3.12 · 外部资质每两年复训，内部意识培训每年复训 / External certs renew 2-yearly, internal awareness annually</div></div></div>
+
+      <div class="card">
+        <h2>外部资质（TFO / AP）</h2><div class="h2en">External certification</div>
+        <table>
+          <tr><th>姓名 Name</th><th>角色 Role</th><th>证书编号 Cert no.</th><th>到期 Expiry</th><th>状态 Status</th></tr>
+          <tr><td>Xueye Liu</td><td>TF Operator</td><td class="mono">SPS-AS210126-1-5</td><td>2028-01-20</td><td><span class="stamp ok"><span class="ring"></span>有效 Valid</span></td></tr>
+          <tr><td>Xueye Liu</td><td>Accredited Person</td><td class="mono">IVS145811</td><td>2026-10-29</td><td><span class="stamp warn"><span class="ring"></span>即将到期 Expiring</span></td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>内部生物安全意识培训登记（附录A）</h2><div class="h2en">Biosecurity Awareness Training Register — Appendix A (原件格式 original format, p.24)</div>
+        <div class="formgrid" style="grid-template-columns:1fr 2fr 2fr;">
+          <div><label class="bi"><span class="bi-zh">培训日期</span><span class="bi-en">Date of training</span></label><input type="date" id="t-date" value="2026-07-13"></div>
+          <div><label class="bi"><span class="bi-zh">培训内容/主题</span><span class="bi-en">Content, topics of training</span></label><input id="t-topic" placeholder="例：STOP-CONTAIN-REPORT 流程复训"></div>
+          <div><label class="bi"><span class="bi-zh">参加人姓名（逗号分隔）</span><span class="bi-en">Attendee names, comma separated</span></label><input id="t-names" placeholder="例：Carrie, Paul"></div>
+        </div>
+        <button class="btn primary" onclick="addTraining()">记录出席 Record attendance</button>
+        <div class="divider"></div>
+        <table id="t-table">
+          <tr><th>Date of Training<br><span class="small">培训日期</span></th><th>Content, Topics of Training<br><span class="small">培训内容</span></th><th>Attendee Name<br><span class="small">参加人姓名</span></th><th>Attendee Signature<br><span class="small">签名</span></th></tr>
+          <tr><td>30/01/2026</td><td>Introduction for TF（过境设施入职培训）</td><td>Carrie, Paul, Fiona, Stepenie</td><td class="small">—</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 06 PEST WEED VERMIN CONTROL -->
+    <section id="pest">
+      <div class="topbar"><div><h1>虫害 / 杂草 / 鼠患控制记录</h1><div class="h1en">Pest, Weed &amp; Vermin Control Record</div><div class="sub">常规预防性处理 — 与Carrie的Excel台账字段一致 / Routine preventive treatment, matches working Excel log</div></div></div>
+      <div class="card">
+        <h2>新增处理记录</h2><div class="h2en">New treatment record</div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">日期</span><span class="bi-en">Date</span></label><input type="date" id="p-date"></div>
+          <div><label class="bi"><span class="bi-zh">区域</span><span class="bi-en">Area</span></label><input id="p-area" placeholder="例：拆箱区 / 围栏边界"></div>
+          <div><label class="bi"><span class="bi-zh">类型</span><span class="bi-en">Type</span></label><select id="p-type"><option>Weed 杂草</option><option>Rodent 鼠患</option><option>Insect 昆虫</option></select></div>
+          <div><label class="bi"><span class="bi-zh">采取的处理</span><span class="bi-en">Treatment applied</span></label><input id="p-treat" placeholder="例：喷洒杀虫剂"></div>
+        </div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">服务商/方式</span><span class="bi-en">Provider / method</span></label><input id="p-provider" placeholder="例：In-house / SPS"></div>
+          <div><label class="bi"><span class="bi-zh">是否需跟进</span><span class="bi-en">Follow-up required (Y/N)</span></label><select id="p-followup"><option>N</option><option>Y</option></select></div>
+          <div><label class="bi"><span class="bi-zh">下次到期日</span><span class="bi-en">Next due date</span></label><input type="date" id="p-next"></div>
+          <div><label class="bi"><span class="bi-zh">记录人</span><span class="bi-en">Recorded by</span></label><input id="p-by" placeholder="姓名"></div>
+        </div>
+        <button class="btn primary" onclick="addPest()">保存记录 Save</button>
+      </div>
+      <div class="card">
+        <h2>处理台账</h2><div class="h2en">Treatment ledger</div>
+        <table id="p-table">
+          <tr><th>Date</th><th>Area</th><th>Type</th><th>Treatment Applied</th><th>Provider/Method</th><th>Follow-up</th><th>Next Due</th><th>By</th></tr>
+          <tr><td>2026-07-05</td><td>仓库内外 Warehouse</td><td><span class="pill a">Insect</span></td><td>双效杀虫剂喷洒</td><td>In-house</td><td>N</td><td>2026-08-05</td><td>Xueye Liu</td></tr>
+          <tr><td>2026-07-05</td><td>拆箱区边界 Devan boundary</td><td><span class="pill g">Weed</span></td><td>人工除草</td><td>In-house</td><td>N</td><td>2026-08-05</td><td>Xueye Liu</td></tr>
+          <tr><td>2026-06-06</td><td>仓库 Warehouse</td><td><span class="pill a">Insect</span></td><td>陷阱检查，无异常</td><td>In-house</td><td>N</td><td>2026-07-06</td><td>Xueye Liu</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 07 BIOSECURITY INCIDENT & WASTE DISPOSAL -->
+    <section id="incident">
+      <div class="topbar"><div><h1>生物安全事件与废弃物处置记录</h1><div class="h1en">Biosecurity Incident &amp; Waste Disposal Record</div><div class="sub">异常/污染事件上报台账，含MPI通报时间与编号 / Exception reporting incl. MPI notification time &amp; reference</div></div></div>
+      <div class="card">
+        <h2>新增事件记录</h2><div class="h2en">New incident record</div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">日期</span><span class="bi-en">Date</span></label><input type="date" id="i-date"></div>
+          <div><label class="bi"><span class="bi-zh">事件类型</span><span class="bi-en">Incident type</span></label><select id="i-type"><option>污染 Contamination</option><option>活虫/活体 Live pest</option><option>废弃物处置 Waste disposal</option><option>其他 Other</option></select></div>
+          <div style="grid-column:span 2;"><label class="bi"><span class="bi-zh">情况描述</span><span class="bi-en">Description</span></label><input id="i-desc" placeholder="例：木托盘发现虫蛀痕迹"></div>
+        </div>
+        <div class="formgrid">
+          <div style="grid-column:span 2;"><label class="bi"><span class="bi-zh">MPI通报（时间与编号）</span><span class="bi-en">MPI notified (time &amp; ref)</span></label><input id="i-mpi" placeholder="例：14:20，参考号 MPI-XXXX"></div>
+          <div style="grid-column:span 2;"><label class="bi"><span class="bi-zh">即时处理措施</span><span class="bi-en">Immediate action</span></label><input id="i-immediate" placeholder="例：隔离集装箱，封闭现场"></div>
+        </div>
+        <div class="formgrid">
+          <div style="grid-column:span 2;"><label class="bi"><span class="bi-zh">后续处理</span><span class="bi-en">Follow-up action</span></label><input id="i-followup" placeholder="例：按MPI指示熏蒸处理"></div>
+          <div><label class="bi"><span class="bi-zh">结案人</span><span class="bi-en">Closed out by</span></label><input id="i-closedby" placeholder="姓名"></div>
+          <div><label class="bi"><span class="bi-zh">结案日期</span><span class="bi-en">Date closed</span></label><input type="date" id="i-closeddate"></div>
+        </div>
+        <button class="btn primary" onclick="addIncident()">保存记录 Save</button>
+      </div>
+      <div class="card">
+        <h2>事件台账</h2><div class="h2en">Incident ledger</div>
+        <table id="i-table">
+          <tr><th>Date</th><th>Type</th><th>Description</th><th>MPI Notified</th><th>Immediate Action</th><th>Follow-up</th><th>Closed By</th><th>Date Closed</th></tr>
+          <tr><td>2026-06-28</td><td><span class="pill a">活虫 Live pest</span></td><td>木托盘发现活体昆虫</td><td>13:45 · Ref MPI-4471</td><td>隔离，封闭集装箱</td><td>熏蒸处理，已完成</td><td>Xueye Liu</td><td>2026-07-01</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 08 HYGIENE MANAGEMENT -->
+    <section id="hygiene">
+      <div class="topbar"><div><h1>卫生管理记录</h1><div class="h1en">TF Hygiene Management Record</div><div class="sub">TFGEN 3.7 · 到货前后区域清洁、消毒台记录 / Pre/post-arrival cleaning per TFGEN 3.7</div></div></div>
+      <div class="card">
+        <h2>新增清洁检查</h2><div class="h2en">New hygiene check</div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">日期</span><span class="bi-en">Date</span></label><input type="date" id="h-date"></div>
+          <div><label class="bi"><span class="bi-zh">检查区域</span><span class="bi-en">Area checked</span></label><select id="h-area"><option>拆箱区1 Devan Area 1</option><option>拆箱区2 Devan Area 2</option><option>持有区 Holding Area</option><option>查验区 Inspection Area</option><option>堆场 Storage Yard</option></select></div>
+          <div><label class="bi"><span class="bi-zh">清洁已完成</span><span class="bi-en">Cleaning completed (Y/N)</span></label><select id="h-clean"><option>Y</option><option>N</option></select></div>
+          <div><label class="bi"><span class="bi-zh">杂物已清除</span><span class="bi-en">Debris removed</span></label><select id="h-debris"><option>Y</option><option>N</option><option>N/A</option></select></div>
+        </div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">设备已清洁</span><span class="bi-en">Equipment cleaned</span></label><select id="h-equip"><option>Y</option><option>N</option></select></div>
+          <div style="grid-column:span 2;"><label class="bi"><span class="bi-zh">发现问题</span><span class="bi-en">Issues found</span></label><input id="h-issue" placeholder="无 None"></div>
+          <div><label class="bi"><span class="bi-zh">检查人</span><span class="bi-en">Checked by</span></label><input id="h-by" placeholder="姓名"></div>
+        </div>
+        <div class="formgrid">
+          <div style="grid-column:span 4;"><label class="bi"><span class="bi-zh">处理措施</span><span class="bi-en">Action taken</span></label><input id="h-action" placeholder="无需处理 / 具体措施"></div>
+        </div>
+        <button class="btn primary" onclick="addHygiene()">保存记录 Save</button>
+      </div>
+      <div class="card">
+        <h2>卫生检查台账</h2><div class="h2en">Hygiene ledger</div>
+        <table id="h-table">
+          <tr><th>Date</th><th>Area Checked</th><th>Cleaning</th><th>Debris Removed</th><th>Equipment Cleaned</th><th>Issues Found</th><th>Action Taken</th><th>Checked By</th></tr>
+          <tr><td>2026-07-11</td><td>拆箱区1 Devan Area 1</td><td>Y</td><td>Y</td><td>Y</td><td>无 None</td><td>—</td><td>Xueye Liu</td></tr>
+          <tr><td>2026-07-08</td><td>拆箱区2 Devan Area 2</td><td>Y</td><td>Y</td><td>Y</td><td>无 None</td><td>—</td><td>Xueye Liu</td></tr>
+          <tr><td>2026-07-03</td><td>持有区 Holding Area</td><td>Y</td><td>N/A</td><td>Y</td><td>无 None</td><td>—</td><td>Xueye Liu</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 04 TF ACCESS LOG -->
+    <section id="access">
+      <div class="topbar"><div><h1>出入登记</h1><div class="h1en">TF Access Log</div><div class="sub">字段与公司现行Excel台账一致 · 8栏 / Matches the working Excel log's 8 columns exactly · TFGEN 2.1/3.4 场地准入</div></div></div>
+
+      <div class="card">
+        <h2>新增出入记录</h2><div class="h2en">New sign-in entry</div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">日期</span><span class="bi-en">Date</span></label><input type="date" id="v-date"></div>
+          <div><label class="bi"><span class="bi-zh">姓名</span><span class="bi-en">Name</span></label><input id="v-name" placeholder="例 John Smith"></div>
+          <div><label class="bi"><span class="bi-zh">所属公司</span><span class="bi-en">Company</span></label><input id="v-org" placeholder="例 XYZ Transport Ltd"></div>
+          <div><label class="bi"><span class="bi-zh">来访目的</span><span class="bi-en">Purpose</span></label><input id="v-purpose" placeholder="例：送货司机，40尺集装箱一柜 / MPI例行核查"></div>
+        </div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">进入时间</span><span class="bi-en">Time in</span></label><input type="time" id="v-in"></div>
+          <div><label class="bi"><span class="bi-zh">离开时间</span><span class="bi-en">Time out</span></label><input type="time" id="v-out"></div>
+          <div><label class="bi"><span class="bi-zh">陪同人</span><span class="bi-en">Escorted by</span></label><input id="v-escort" placeholder="员工姓名"></div>
+          <div><label class="bi"><span class="bi-zh">签名</span><span class="bi-en">Signature</span></label><input id="v-sig" placeholder="现场纸质/电子签名"></div>
+        </div>
+        <button class="btn primary" onclick="addVisitor()">保存登记 Save</button>
+        <div class="privacy-note">隐私提示 Privacy note：以上信息仅用于生物安全准入管控及现场安全人员清点目的，访问权限限于设施管理人员，请遵循《2020年隐私法》最小化收集原则。<br>Collected solely for biosecurity access control and H&amp;S headcount purposes under the Privacy Act 2020 — access restricted to facility management. 建议在"目的 Purpose"栏注明来访者身份/所送货物，以覆盖原Excel未单列的角色字段。</div>
+      </div>
+
+      <div class="card">
+        <h2>出入台账</h2><div class="h2en">Access ledger</div>
+        <table id="v-table">
+          <tr><th>Date</th><th>Name</th><th>Company</th><th>Purpose</th><th>Time In</th><th>Time Out</th><th>Escorted By</th><th>Signature</th></tr>
+          <tr><td>2026-07-11</td><td>Mark Taylor</td><td>Freight Lines NZ</td><td>送货司机，交付40尺集装箱一柜</td><td>08:20</td><td>09:05</td><td>Xueye Liu</td><td class="small">✓</td></tr>
+          <tr><td>2026-07-10</td><td>Sarah Chen</td><td>MPI Biosecurity NZ</td><td>MPI检查员，例行核查审计</td><td>10:00</td><td>11:15</td><td>Xueye Liu</td><td class="small">✓</td></tr>
+          <tr><td>2026-07-08</td><td>Tane Wiremu</td><td>NZ Global Biosecurity</td><td>承包商，集装箱熏蒸处理</td><td>13:30</td><td>14:10</td><td>Xueye Liu</td><td class="small">✓</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 06 SITE PLAN -->
+    <section id="siteplan">
+      <div class="topbar"><div><h1>现场平面图</h1><div class="h1en">Site plan (per Operating Manual p.14)</div><div class="sub">全场为硬化地面（hardstand）· Whole storage yard is hardstand</div></div></div>
+      <div class="card">
+        <h2>Etera Group Limited — 8 Norman Spencer Drive</h2><div class="h2en">Facility layout</div>
+        <div style="display:grid; grid-template-columns:1fr 200px; gap:16px; align-items:start;">
+          <svg viewBox="0 0 640 520" style="width:100%; border:1px solid var(--hair); border-radius:8px; background:#FBFBF9;">
+            <!-- road label -->
+            <text x="14" y="260" font-size="11" fill="#5B6560" transform="rotate(-90 14,260)" text-anchor="middle">Norman Spencer Drive</text>
+
+            <!-- building outline (office/cafe/warehouse) -->
+            <rect x="60" y="40" width="230" height="230" fill="none" stroke="#1A211D" stroke-width="2"/>
+            <!-- office -->
+            <rect x="150" y="40" width="140" height="70" fill="none" stroke="#B0B4AC" stroke-width="1"/>
+            <text x="220" y="80" font-size="11" text-anchor="middle" fill="#1A211D">Office 办公室</text>
+            <!-- cafe -->
+            <rect x="150" y="110" width="70" height="55" fill="none" stroke="#B0B4AC" stroke-width="1"/>
+            <text x="185" y="140" font-size="10" text-anchor="middle" fill="#1A211D">Cafe</text>
+            <!-- warehouse -->
+            <rect x="60" y="165" width="230" height="105" fill="none" stroke="#B0B4AC" stroke-width="1"/>
+            <text x="245" y="230" font-size="11" text-anchor="middle" fill="#1A211D">Warehouse 仓库</text>
+            <!-- holding area -->
+            <rect x="80" y="200" width="70" height="45" fill="#FBE7EE" stroke="#A2124C" stroke-width="1"/>
+            <text x="115" y="220" font-size="9.5" text-anchor="middle" fill="#5E0A2C">Holding</text>
+            <text x="115" y="232" font-size="9.5" text-anchor="middle" fill="#5E0A2C">Area 持有区</text>
+            <!-- biosecurity equipment marker (magenta diamond) -->
+            <rect x="165" y="205" width="14" height="14" fill="#A2124C" transform="rotate(45 172,212)"/>
+            <!-- biosecurity record marker (blue triangle) -->
+            <polygon points="175,55 190,63 175,71" fill="#1E5FA8"/>
+            <text x="150" y="30" font-size="9.5" fill="#5B6560">TF Sign</text>
+
+            <!-- entry doors -->
+            <rect x="52" y="120" width="10" height="30" fill="#1A211D"/>
+            <text x="20" y="138" font-size="9.5" fill="#5B6560">Entry入口</text>
+            <text x="35" y="105" font-size="9" fill="#5B6560">TF Sign</text>
+
+            <!-- storage yard -->
+            <rect x="300" y="40" width="300" height="400" fill="none" stroke="#1A211D" stroke-width="2"/>
+            <text x="450" y="270" font-size="11" text-anchor="middle" fill="#1A211D">Storage Yard 堆场</text>
+
+            <!-- devan area 1 -->
+            <rect x="360" y="70" width="70" height="150" fill="#E4EEF8" stroke="#1E5FA8" stroke-width="1"/>
+            <text x="395" y="145" font-size="10" text-anchor="middle" fill="#1E5FA8">Devan</text>
+            <text x="395" y="158" font-size="10" text-anchor="middle" fill="#1E5FA8">Area 1</text>
+            <circle cx="450" cy="110" r="6" fill="none" stroke="#5B6560" stroke-width="1.3"/>
+            <line x1="445" y1="105" x2="455" y2="115" stroke="#5B6560" stroke-width="1.3"/>
+            <line x1="455" y1="105" x2="445" y2="115" stroke="#5B6560" stroke-width="1.3"/>
+
+            <!-- devan area 2 -->
+            <rect x="360" y="290" width="90" height="80" fill="#E4EEF8" stroke="#1E5FA8" stroke-width="1"/>
+            <text x="405" y="325" font-size="10" text-anchor="middle" fill="#1E5FA8">Devan</text>
+            <text x="405" y="338" font-size="10" text-anchor="middle" fill="#1E5FA8">Area 2</text>
+            <circle cx="470" cy="380" r="6" fill="none" stroke="#5B6560" stroke-width="1.3"/>
+            <line x1="465" y1="375" x2="475" y2="385" stroke="#5B6560" stroke-width="1.3"/>
+            <line x1="475" y1="375" x2="465" y2="385" stroke="#5B6560" stroke-width="1.3"/>
+
+            <!-- yard entry -->
+            <rect x="560" y="410" width="34" height="10" fill="#1A211D"/>
+            <text x="577" y="440" font-size="9.5" text-anchor="middle" fill="#5B6560">Entry</text>
+            <text x="577" y="452" font-size="9" text-anchor="middle" fill="#5B6560">TF Sign</text>
+          </svg>
+
+          <div class="legend">
+            <div style="font-size:11px; font-weight:600; margin-bottom:4px;">图例 Legend</div>
+            <div class="legend-row"><rect width="12" height="12" fill="#A2124C" style="transform:rotate(45deg)"></rect><svg width="14" height="14"><rect x="1" y="1" width="10" height="10" fill="#A2124C" transform="rotate(45 6,6)"/></svg> 生物安全设备 Biosecurity equipment</div>
+            <div class="legend-row"><svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="#5B6560" stroke-width="1.3"/><line x1="4" y1="4" x2="10" y2="10" stroke="#5B6560" stroke-width="1.3"/><line x1="10" y1="4" x2="4" y2="10" stroke="#5B6560" stroke-width="1.3"/></svg> 排水口 Drain</div>
+            <div class="legend-row"><svg width="14" height="14"><polygon points="2,2 12,7 2,12" fill="#1E5FA8"/></svg> 生物安全记录点 Biosecurity record</div>
+            <div class="legend-row"><svg width="20" height="10"><line x1="0" y1="3" x2="20" y2="3" stroke="#1A211D" stroke-width="1.5"/><line x1="0" y1="7" x2="20" y2="7" stroke="#1A211D" stroke-width="1.5"/></svg> 过境设施边界 TF boundary</div>
+            <div class="small" style="margin-top:8px; line-height:1.6;">*Entry = 入口门<br>*TF Sign = 过境设施标识<br>*全场堆场均为硬化地面 whole yard is hardstand</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 PROVIDERS -->
+    <section id="providers">
+      <div class="topbar"><div><h1>处理服务商目录</h1><div class="h1en">Approved treatment providers</div></div></div>
+      <div class="grid2">
+        <div class="card">
+          <h2>New Zealand Global Biosecurity</h2>
+          <div class="contact-line"><span class="small">服务 Service</span><span>集装箱内/场外熏蒸、热处理</span></div>
+          <div class="contact-line"><span class="small">联系 Contact</span><span class="mono">021 386 279 / 022 190 5566</span></div>
+        </div>
+        <div class="card">
+          <h2>Container Co (NZL) Limited</h2>
+          <div class="contact-line"><span class="small">服务 Service</span><span>集装箱清洗、去污</span></div>
+          <div class="contact-line"><span class="small">联系 Contact</span><span class="mono">09 263 4800</span></div>
+        </div>
+        <div class="card">
+          <h2>Hi Tech Security Disposals</h2>
+          <div class="contact-line"><span class="small">服务 Service</span><span>生物安全废弃物年度清运</span></div>
+          <div class="contact-line"><span class="small">联系 Contact</span><span class="mono">09 263 8782</span></div>
+        </div>
+        <div class="card">
+          <h2>SPS Biosecurity Limited</h2>
+          <div class="contact-line"><span class="small">服务 Service</span><span>TFO / AP 外部培训认证机构</span></div>
+          <div class="contact-line"><span class="small">备注 Note</span><span class="small">MPI Approved Training Provider</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 CONTINGENCY -->
+    <section id="contingency">
+      <div class="topbar"><div><h1>应急预案速查</h1><div class="h1en">Contingency plans (TFGEN 3.11)</div></div></div>
+      <div class="card" style="border-color:var(--red); background:var(--red-bg);">
+        <h2 style="color:var(--red)">发现活体动物/昆虫/污染 — 立即执行</h2><div class="h2en" style="color:var(--red)">Live pest or contamination found — act now</div>
+        <table>
+          <tr><td style="width:26px">1</td><td>停止作业，就地封闭集装箱 Stop work, close container</td></tr>
+          <tr><td>2</td><td>隔离并固定现场，拍照留证 Isolate scene, photograph</td></tr>
+          <tr><td>3</td><td>立即致电 <span class="mono">0800 80 99 66</span> Call the Pest &amp; Disease Hotline</td></tr>
+          <tr><td>4</td><td>按MPI/BACC指示行动，未获授权不得放行货物 Act on MPI direction only</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h2>MPI 关键联系方式</h2><div class="h2en">Key MPI contacts</div>
+        <table>
+          <tr><td>病虫害热线 Pest &amp; Disease Hotline</td><td class="mono" style="text-align:right">0800 80 99 66</td></tr>
+          <tr><td>货物查验预约 Cargo inspection booking</td><td class="mono" style="text-align:right">09 909 3030 (Opt.2)</td></tr>
+          <tr><td>设施业务咨询 Facility enquiries</td><td class="mono" style="text-align:right">0800 222 018 (Opt.5)</td></tr>
+          <tr><td>货物咨询邮箱 Cargo enquiries</td><td class="mono" style="text-align:right">MPIAUCKLAND.CARGO@MPI.GOVT.NZ</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h2>其他应急场景</h2><div class="h2en">Other contingency scenarios</div>
+        <table>
+          <tr><th>风险 Risk</th><th>预案要点 Response</th></tr>
+          <tr><td>关键人员缺席 Loss of TFO/AP</td><td>提名DTFO并报MPI批准；缺席超1个月须通知 Nominate DTFO, notify MPI if absence &gt;1 month</td></tr>
+          <tr><td>安保/围栏失效 Security breach</td><td>临时加固+人工看守，恢复前限制未清关货物进出 Temporary guard, restrict access until restored</td></tr>
+          <tr><td>未预期未清关货物 Unexpected uncleared goods</td><td>置于持有区，喷洒杀虫剂，联系MPI等待指示 Hold, spray if needed, contact MPI</td></tr>
+          <tr><td>现场人员紧急疏散 Emergency evacuation</td><td>依据"05 出入登记"清点在场访客+员工人数 Use visitor log for headcount</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 09 DOCS -->
+    <section id="docs">
+      <div class="topbar"><div><h1>审计文档库</h1><div class="h1en">Audit-ready document library</div><div class="sub">须保证MPI检查员随时可现场调阅（含离线/纸质打印）/ Must be accessible to MPI Inspector at any reasonable time, incl. offline</div></div></div>
+      <div class="card">
+        <h2>核心文件</h2><div class="h2en">Core documents</div>
+        <ul class="doclist">
+          <li>MPI 过境设施批准通知书 Approval notice (ATF 33359)<span class="pill g">已归档 Filed</span></li>
+          <li>Transitional Facility Operating Manual v1.0<span class="pill g">已归档 Filed</span></li>
+          <li>现场平面图 Site plan<span class="pill g">已归档 Filed</span></li>
+          <li>内部生物安全意识培训大纲 Internal training syllabus<span class="pill g">已归档 Filed</span></li>
+          <li>年度内部审计报告 Annual internal audit（下次约 due ~2026-10）<span class="pill a">待更新 Due</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>手册版本记录</h2><div class="h2en">Manual revision history</div>
+        <table>
+          <tr><th>版本 Ver.</th><th>日期 Date</th><th>修订内容 Amendment</th></tr>
+          <tr><td>1.0</td><td>2026-01-22</td><td>初版，随批准申请一并提交 Initial version submitted with application</td></tr>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+const sideEl = document.querySelector('.side');
+const scrimEl = document.getElementById('scrim');
+const hamburgerEl = document.getElementById('hamburger');
+function openMenu(){ sideEl.classList.add('open'); scrimEl.classList.add('show'); }
+function closeMenu(){ sideEl.classList.remove('open'); scrimEl.classList.remove('show'); }
+hamburgerEl.addEventListener('click', openMenu);
+scrimEl.addEventListener('click', closeMenu);
+
+const items = document.querySelectorAll('.nav-item');
+items.forEach(it=>{
+  it.addEventListener('click', ()=>{
+    items.forEach(x=>x.classList.remove('active'));
+    it.classList.add('active');
+    document.querySelectorAll('section').forEach(s=>s.classList.remove('show'));
+    document.getElementById(it.dataset.target).classList.add('show');
+    closeMenu();
+    window.scrollTo(0,0);
+  });
+});
+
+function addDailyOps(){
+  const date = document.getElementById('d-date').value || '—';
+  const op = document.getElementById('d-op').value.trim() || '—';
+  const container = document.getElementById('d-container').value.trim().toUpperCase() || '—';
+  const bacc = document.getElementById('d-bacc').value.trim() || '—';
+  const activity = document.getElementById('d-activity').value.split(' ')[0];
+  const clean = document.getElementById('d-clean').value;
+  const issue = document.getElementById('d-issue').value.trim() || '无 None';
+  const action = document.getElementById('d-action').value.trim() || '—';
+  const sig = document.getElementById('d-sig').value.trim() ? '✓' : '待签 pending';
+  if(!op){ return; }
+  const tbl = document.getElementById('d-table');
+  const row = tbl.insertRow(1);
+  row.innerHTML = `<td>${date}</td><td>${op}</td><td class="mono">${container}</td><td class="mono">${bacc}</td><td><span class="pill n">${activity}</span></td><td>${clean}</td><td>${issue}</td><td>${action}</td><td class="small">${sig}</td>`;
+  ['d-op','d-container','d-bacc','d-issue','d-action','d-sig'].forEach(id=>document.getElementById(id).value='');
+  const el=document.getElementById('d-count'); el.textContent=parseInt(el.textContent)+1;
+}
+
+function addGoods(){
+  const date = document.getElementById('g-date').value || '—';
+  const container = document.getElementById('g-container').value.trim().toUpperCase();
+  const supplier = document.getElementById('g-supplier').value.trim() || '—';
+  const ap = document.getElementById('g-ap').value;
+  const bacc = document.getElementById('g-bacc').value;
+  const ispm = document.getElementById('g-ispm').value;
+  const contam = document.getElementById('g-contam').value;
+  const held = document.getElementById('g-held').value;
+  const damage = document.getElementById('g-damage').value.trim() || '无';
+  const notes = document.getElementById('g-notes').value.trim() || '—';
+  if(!container){ return; }
+  const tbl = document.getElementById('g-table');
+  const row = tbl.insertRow(1);
+  const baccPill = bacc==='Y' ? '<span class="pill g">Y</span>' : '<span class="pill r">N</span>';
+  const contamPill = contam==='Y' ? '<span class="pill a">Y</span>' : '<span class="pill g">N</span>';
+  row.innerHTML = `<td>${date}</td><td class="mono">${container}</td><td>${supplier}</td><td>${baccPill}</td><td>${ispm}</td><td>${damage}</td><td>${contamPill}</td><td>${held}</td><td>${ap}</td><td class="small">${notes}</td>`;
+  ['g-container','g-supplier','g-damage','g-notes'].forEach(id=>document.getElementById(id).value='');
+}
+
+function addPest(){
+  const date = document.getElementById('p-date').value || '—';
+  const area = document.getElementById('p-area').value.trim() || '—';
+  const type = document.getElementById('p-type').value.split(' ')[0];
+  const treat = document.getElementById('p-treat').value.trim();
+  const provider = document.getElementById('p-provider').value.trim() || '—';
+  const followup = document.getElementById('p-followup').value;
+  const next = document.getElementById('p-next').value || '—';
+  const by = document.getElementById('p-by').value.trim() || '—';
+  if(!treat){ return; }
+  const tbl = document.getElementById('p-table');
+  const row = tbl.insertRow(1);
+  row.innerHTML = `<td>${date}</td><td>${area}</td><td><span class="pill n">${type}</span></td><td>${treat}</td><td>${provider}</td><td>${followup}</td><td>${next}</td><td>${by}</td>`;
+  ['p-area','p-treat','p-provider','p-next','p-by'].forEach(id=>document.getElementById(id).value='');
+}
+
+function addIncident(){
+  const date = document.getElementById('i-date').value || '—';
+  const type = document.getElementById('i-type').value.split(' ')[0];
+  const desc = document.getElementById('i-desc').value.trim();
+  const mpi = document.getElementById('i-mpi').value.trim() || '—';
+  const immediate = document.getElementById('i-immediate').value.trim() || '—';
+  const followup = document.getElementById('i-followup').value.trim() || '—';
+  const closedby = document.getElementById('i-closedby').value.trim() || '—';
+  const closeddate = document.getElementById('i-closeddate').value || '未结案 Open';
+  if(!desc){ return; }
+  const tbl = document.getElementById('i-table');
+  const row = tbl.insertRow(1);
+  row.innerHTML = `<td>${date}</td><td><span class="pill a">${type}</span></td><td>${desc}</td><td>${mpi}</td><td>${immediate}</td><td>${followup}</td><td>${closedby}</td><td>${closeddate}</td>`;
+  ['i-desc','i-mpi','i-immediate','i-followup','i-closedby','i-closeddate'].forEach(id=>document.getElementById(id).value='');
+}
+
+function addHygiene(){
+  const date = document.getElementById('h-date').value || '—';
+  const area = document.getElementById('h-area').value;
+  const clean = document.getElementById('h-clean').value;
+  const debris = document.getElementById('h-debris').value;
+  const equip = document.getElementById('h-equip').value;
+  const issue = document.getElementById('h-issue').value.trim() || '无 None';
+  const by = document.getElementById('h-by').value.trim() || '—';
+  const action = document.getElementById('h-action').value.trim() || '—';
+  if(!by){ return; }
+  const tbl = document.getElementById('h-table');
+  const row = tbl.insertRow(1);
+  row.innerHTML = `<td>${date}</td><td>${area}</td><td>${clean}</td><td>${debris}</td><td>${equip}</td><td>${issue}</td><td>${action}</td><td>${by}</td>`;
+  ['h-issue','h-by','h-action'].forEach(id=>document.getElementById(id).value='');
+}
+
+function addTraining(){
+  const date = document.getElementById('t-date').value || '—';
+  const topic = document.getElementById('t-topic').value.trim() || '—';
+  const names = document.getElementById('t-names').value.trim();
+  if(!names){ return; }
+  const tbl = document.getElementById('t-table');
+  const row = tbl.insertRow(1);
+  row.innerHTML = `<td>${date}</td><td>${topic}</td><td>${names}</td><td class="small">待签名 pending</td>`;
+  document.getElementById('t-topic').value=''; document.getElementById('t-names').value='';
+}
+
+function addVisitor(){
+  const date = document.getElementById('v-date').value || '—';
+  const name = document.getElementById('v-name').value.trim();
+  const org = document.getElementById('v-org').value.trim() || '—';
+  const purpose = document.getElementById('v-purpose').value.trim() || '—';
+  const tin = document.getElementById('v-in').value || '—';
+  const tout = document.getElementById('v-out').value || '—';
+  const escort = document.getElementById('v-escort').value.trim() || '—';
+  const sig = document.getElementById('v-sig').value.trim() ? '✓' : '待签 pending';
+  if(!name){ return; }
+  const tbl = document.getElementById('v-table');
+  const row = tbl.insertRow(1);
+  row.innerHTML = `<td>${date}</td><td>${name}</td><td>${org}</td><td>${purpose}</td><td>${tin}</td><td>${tout}</td><td>${escort}</td><td class="small">${sig}</td>`;
+  ['v-name','v-org','v-purpose','v-in','v-out','v-escort','v-sig'].forEach(id=>document.getElementById(id).value='');
+}
+</script>
+</body>
+</html>
