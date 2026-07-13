@@ -123,21 +123,21 @@ label .bi-en{ font-size:1em; }
 .legend-row{ display:flex; align-items:center; gap:8px; }
 
 /* ---- mobile hamburger + drawer ---- */
-.hamburger{ display:none; width:38px; height:38px; border-radius:8px; border:1px solid var(--hair); background:var(--panel); align-items:center; justify-content:center; flex-direction:column; gap:4px; cursor:pointer; flex-shrink:0; }
-.hamburger span{ width:18px; height:2px; background:var(--ink); border-radius:2px; }
+.hamburger{ display:none; width:40px; height:40px; border-radius:8px; border:none; background:var(--magenta); align-items:center; justify-content:center; flex-direction:column; gap:4px; cursor:pointer; flex-shrink:0; }
+.hamburger span{ width:18px; height:2px; background:#fff; border-radius:2px; }
 .scrim{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.4); z-index:40; }
 .scrim.show{ display:block; }
 
 @media (max-width: 860px){
   .app{ grid-template-columns:1fr; }
   .side{
-    position:fixed; top:0; left:0; bottom:0; width:250px; z-index:50;
-    transform:translateX(-100%); transition:transform .22s ease; box-shadow:2px 0 16px rgba(0,0,0,.25);
+    position:fixed; top:0; right:0; bottom:0; left:auto; width:250px; z-index:50;
+    transform:translateX(100%); transition:transform .22s ease; box-shadow:-2px 0 16px rgba(0,0,0,.25);
     overflow-y:auto;
   }
   .side.open{ transform:translateX(0); }
   .main{ padding:16px 16px 90px; max-width:100%; }
-  .hamburger{ display:flex; position:fixed; top:14px; left:14px; z-index:30; background:var(--panel); box-shadow:0 2px 10px rgba(0,0,0,.12); }
+  .hamburger{ display:flex; position:fixed; top:14px; right:14px; z-index:30; box-shadow:0 2px 10px rgba(162,18,76,.35); }
   .main{ padding-top:64px; }
   .topbar{ align-items:center; gap:10px; }
   .topbar-left{ display:flex; align-items:center; gap:10px; min-width:0; }
@@ -378,7 +378,7 @@ label .bi-en{ font-size:1em; }
 
     <!-- 04 TF ACCESS LOG -->
     <section id="access">
-      <div class="topbar"><div><h1>出入登记</h1><div class="h1en">TF Access Log</div><div class="sub">字段与公司现行Excel台账一致 · 8栏 / Matches the working Excel log's 8 columns exactly · TFGEN 2.1/3.4 场地准入</div></div></div>
+      <div class="topbar"><div><h1>出入登记</h1><div class="h1en">TF Access Log</div><div class="sub">TFGEN 2.1/3.4 场地准入 / Site access control</div></div></div>
 
       <div class="card">
         <h2>新增出入记录</h2><div class="h2en">New sign-in entry</div>
@@ -392,16 +392,17 @@ label .bi-en{ font-size:1em; }
           <div><label class="bi"><span class="bi-zh">进入时间</span><span class="bi-en">Time in</span></label><input type="time" id="v-in"></div>
           <div><label class="bi"><span class="bi-zh">离开时间</span><span class="bi-en">Time out</span></label><input type="time" id="v-out"></div>
           <div><label class="bi"><span class="bi-zh">陪同人</span><span class="bi-en">Escorted by</span></label><input id="v-escort" placeholder="员工姓名"></div>
-          <div><label class="bi"><span class="bi-zh">签名</span><span class="bi-en">Signature</span></label><input id="v-sig" placeholder="现场纸质/电子签名"></div>
+          <div><label class="bi"><span class="bi-zh">备注</span><span class="bi-en">Remarks</span></label><input id="v-orderno" placeholder="记录员填写 · 例 派送单号AK8004431 / 其他标记"></div>
         </div>
+        <label class="check" style="margin:4px 0 14px;"><input type="checkbox" id="v-confirm"> <span class="bi"><span class="bi-zh">确认</span><span class="bi-en">Confirm</span></span></label>
         <button class="btn primary" onclick="addVisitor()">保存登记 Save</button>
-        <div class="privacy-note">隐私提示 Privacy note：以上信息仅用于生物安全准入管控及现场安全人员清点目的，访问权限限于设施管理人员，请遵循《2020年隐私法》最小化收集原则。<br>Collected solely for biosecurity access control and H&amp;S headcount purposes under the Privacy Act 2020 — access restricted to facility management. 建议在"目的 Purpose"栏注明来访者身份/所送货物，以覆盖原Excel未单列的角色字段。</div>
+        <div class="privacy-note">隐私提示 Privacy note：以上信息仅用于生物安全准入管控及现场安全人员清点目的，访问权限限于设施管理人员，请遵循《2020年隐私法》最小化收集原则。<br>Collected solely for biosecurity access control and H&amp;S headcount purposes under the Privacy Act 2020 — access restricted to facility management.</div>
       </div>
 
       <div class="card">
         <h2>出入台账</h2><div class="h2en">Access ledger</div>
         <table id="v-table">
-          <tr><th>Date</th><th>Name</th><th>Company</th><th>Purpose</th><th>Time In</th><th>Time Out</th><th>Escorted By</th><th>Signature</th></tr>
+          <tr><th>Date</th><th>Name</th><th>Company</th><th>Purpose</th><th>Time In</th><th>Time Out</th><th>Escorted By</th><th>Remarks</th><th>Confirm</th></tr>
         </table>
         <div class="small" style="padding:10px 0;">暂无记录 · No records yet</div>
       </div>
@@ -551,7 +552,13 @@ const SUPABASE_KEY = 'sb_publishable_lcz0yE_dbC4VDzMzWNlQLQ_g2XAZMpa';
 let sb;
 try{
   if(typeof supabase === 'undefined'){ throw new Error('Supabase JS库未加载成功，可能是CDN被拦截 / Supabase JS library failed to load'); }
-  sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false
+    }
+  });
 }catch(e){
   document.addEventListener('DOMContentLoaded', ()=>{ showErr('初始化失败 Init error: '+e.message); });
 }
@@ -773,7 +780,8 @@ async function loadAccess(){
   if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
   data.forEach(r=>{
     const row = tbl.insertRow(-1);
-    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.visitor_name||'—'}</td><td>${r.company||'—'}</td><td>${r.purpose||'—'}</td><td>${r.time_in||'—'}</td><td>${r.time_out||'—'}</td><td>${r.escorted_by||'—'}</td><td class="small">${r.signature||'—'}</td>`;
+    const confirmBadge = r.confirmed==='Y' ? '<span class="pill g">已确认 ✓</span>' : '<span class="pill n">未确认</span>';
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.visitor_name||'—'}</td><td>${r.company||'—'}</td><td>${r.purpose||'—'}</td><td>${r.time_in||'—'}</td><td>${r.time_out||'—'}</td><td>${r.escorted_by||'—'}</td><td class="mono">${r.order_no||'—'}</td><td>${confirmBadge}</td>`;
   });
 }
 async function addVisitor(){
@@ -785,12 +793,14 @@ async function addVisitor(){
     time_in: document.getElementById('v-in').value || null,
     time_out: document.getElementById('v-out').value || null,
     escorted_by: document.getElementById('v-escort').value.trim() || null,
-    signature: document.getElementById('v-sig').value.trim() || null
+    order_no: document.getElementById('v-orderno').value.trim() || null,
+    confirmed: document.getElementById('v-confirm').checked ? 'Y' : 'N'
   };
   if(!record.visitor_name){ return; }
   const { error } = await sb.from('access_log').insert([record]);
   if(error){ alert('保存失败 Save failed: '+error.message); return; }
-  ['v-name','v-org','v-purpose','v-in','v-out','v-escort','v-sig'].forEach(id=>document.getElementById(id).value='');
+  ['v-name','v-org','v-purpose','v-in','v-out','v-escort','v-orderno'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('v-confirm').checked = false;
   loadAccess();
 }
 
