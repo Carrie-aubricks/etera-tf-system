@@ -176,14 +176,15 @@ label .bi-en{ font-size:1em; }
     <div class="nav-item active" data-target="siteplan"><span class="n">01</span><span class="bi"><span class="bi-zh">现场平面图</span><span class="bi-en">Site plan</span></span></div>
     <div class="nav-item" data-target="dailyops"><span class="n">02</span><span class="bi"><span class="bi-zh">日常作业日志</span><span class="bi-en">TF Daily Operations Log</span></span></div>
     <div class="nav-item" data-target="goods"><span class="n">03</span><span class="bi"><span class="bi-zh">货物接收记录</span><span class="bi-en">Goods Receipt Record</span></span></div>
-    <div class="nav-item" data-target="access"><span class="n">04</span><span class="bi"><span class="bi-zh">出入登记</span><span class="bi-en">TF Access Log</span></span></div>
-    <div class="nav-item" data-target="training"><span class="n">05</span><span class="bi"><span class="bi-zh">内部培训登记</span><span class="bi-en">Training register</span></span></div>
-    <div class="nav-item" data-target="pest"><span class="n">06</span><span class="bi"><span class="bi-zh">虫害/杂草/鼠患控制</span><span class="bi-en">Pest, Weed &amp; Vermin Control</span></span></div>
-    <div class="nav-item" data-target="incident"><span class="n">07</span><span class="bi"><span class="bi-zh">生物安全事件与废弃物</span><span class="bi-en">Biosecurity Incident / Waste</span></span></div>
-    <div class="nav-item" data-target="hygiene"><span class="n">08</span><span class="bi"><span class="bi-zh">卫生管理记录</span><span class="bi-en">TF Hygiene Management</span></span></div>
-    <div class="nav-item" data-target="providers"><span class="n">09</span><span class="bi"><span class="bi-zh">处理服务商</span><span class="bi-en">Treatment providers</span></span></div>
-    <div class="nav-item" data-target="contingency"><span class="n">10</span><span class="bi"><span class="bi-zh">应急预案</span><span class="bi-en">Contingency plans</span></span></div>
-    <div class="nav-item" data-target="download"><span class="n">11</span><span class="bi"><span class="bi-zh">资料下载专区</span><span class="bi-en">Download centre</span></span></div>
+    <div class="nav-item" data-target="material"><span class="n">04</span><span class="bi"><span class="bi-zh">原料到货记录</span><span class="bi-en">Raw Material Receipt</span></span></div>
+    <div class="nav-item" data-target="access"><span class="n">05</span><span class="bi"><span class="bi-zh">出入登记</span><span class="bi-en">TF Access Log</span></span></div>
+    <div class="nav-item" data-target="training"><span class="n">06</span><span class="bi"><span class="bi-zh">内部培训登记</span><span class="bi-en">Training register</span></span></div>
+    <div class="nav-item" data-target="pest"><span class="n">07</span><span class="bi"><span class="bi-zh">虫害/杂草/鼠患控制</span><span class="bi-en">Pest, Weed &amp; Vermin Control</span></span></div>
+    <div class="nav-item" data-target="incident"><span class="n">08</span><span class="bi"><span class="bi-zh">生物安全事件与废弃物</span><span class="bi-en">Biosecurity Incident / Waste</span></span></div>
+    <div class="nav-item" data-target="hygiene"><span class="n">09</span><span class="bi"><span class="bi-zh">卫生管理记录</span><span class="bi-en">TF Hygiene Management</span></span></div>
+    <div class="nav-item" data-target="providers"><span class="n">10</span><span class="bi"><span class="bi-zh">处理服务商</span><span class="bi-en">Treatment providers</span></span></div>
+    <div class="nav-item" data-target="contingency"><span class="n">11</span><span class="bi"><span class="bi-zh">应急预案</span><span class="bi-en">Contingency plans</span></span></div>
+    <div class="nav-item" data-target="download"><span class="n">12</span><span class="bi"><span class="bi-zh">资料下载专区</span><span class="bi-en">Download centre</span></span></div>
     <div class="side-foot">Biosecurity Act 1993 · s.39/s.40<br>TFGEN Standard · Approved 10 Feb 2026</div>
   </div>
 
@@ -255,7 +256,41 @@ label .bi-en{ font-size:1em; }
       </div>
     </section>
 
-    <!-- 05 TRAINING REGISTER -->
+    <!-- 04 RAW MATERIAL RECEIPT -->
+    <section id="material">
+      <div class="topbar"><div><h1>原料到货记录</h1><div class="h1en">Raw Material Receipt (Sand / Aggregate / Cement)</div><div class="sub">本地供应商送货单登记 — 非集装箱进口货物，无需BACC/ISPM15检查 / Domestic supplier delivery dockets — not import/container goods, no BACC or ISPM15 checks required</div></div></div>
+      <div class="card">
+        <h2>新增到货记录</h2><div class="h2en">New delivery record</div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">日期</span><span class="bi-en">Date</span></label><input type="date" id="m-date"></div>
+          <div><label class="bi"><span class="bi-zh">供应商/承运商</span><span class="bi-en">Supplier / Transport Co.</span></label><input id="m-supplier" placeholder="例：Gleeson &amp; Cox Transport Ltd"></div>
+          <div><label class="bi"><span class="bi-zh">送货单号</span><span class="bi-en">Docket No.</span></label><input id="m-docket" placeholder="例：3050907"></div>
+          <div><label class="bi"><span class="bi-zh">采购订单号</span><span class="bi-en">PO No.</span></label><input id="m-po" placeholder="例：PO-0249"></div>
+        </div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">场地/采石场</span><span class="bi-en">Site or Quarry</span></label><input id="m-site" placeholder="例：Yard / Surf Yard"></div>
+          <div><label class="bi"><span class="bi-zh">材料</span><span class="bi-en">Material</span></label><input id="m-material" placeholder="例：No.3 Sand / 6W General All Passing"></div>
+          <div><label class="bi"><span class="bi-zh">重量或方量</span><span class="bi-en">Weight or Cubic</span></label><input id="m-weight" placeholder="例：10100kg 或 20m³"></div>
+          <div><label class="bi"><span class="bi-zh">净重</span><span class="bi-en">Net Weight (if weighed)</span></label><input id="m-netweight" placeholder="例：11050kg"></div>
+        </div>
+        <div class="formgrid">
+          <div><label class="bi"><span class="bi-zh">车牌/车号</span><span class="bi-en">Truck No. / Rego</span></label><input id="m-truck" placeholder="例：GC115"></div>
+          <div><label class="bi"><span class="bi-zh">司机</span><span class="bi-en">Driver</span></label><input id="m-driver" placeholder="姓名"></div>
+          <div><label class="bi"><span class="bi-zh">签收人</span><span class="bi-en">Received by</span></label><input id="m-receivedby" placeholder="现场签收人姓名"></div>
+          <div><label class="bi"><span class="bi-zh">备注</span><span class="bi-en">Notes</span></label><input id="m-notes" placeholder="其他说明"></div>
+        </div>
+        <button class="btn primary" onclick="addMaterial()">保存记录 Save</button>
+      </div>
+      <div class="card">
+        <h2>原料到货台账</h2><div class="h2en">Material receipt ledger</div>
+        <table id="m-table">
+          <tr><th>Date</th><th>Supplier</th><th>Docket No.</th><th>PO No.</th><th>Site/Quarry</th><th>Material</th><th>Weight/Cubic</th><th>Net Weight</th><th>Truck No.</th><th>Driver</th><th>Received By</th><th>Notes</th></tr>
+        </table>
+        <div class="small" style="padding:10px 0;">暂无记录 · No records yet</div>
+      </div>
+    </section>
+
+    <!-- 06 TRAINING REGISTER -->
     <section id="training">
       <div class="topbar"><div><h1>内部培训登记</h1><div class="h1en">Biosecurity Awareness Training Register — Appendix A</div><div class="sub">TFGEN 3.12 · 内部意识培训每年复训，原件格式 p.24 / Internal awareness training, renews annually, matches original p.24 format</div></div></div>
 
@@ -536,7 +571,7 @@ label .bi-en{ font-size:1em; }
 
       <div class="card" style="border-color:var(--magenta); background:var(--magenta-bg);">
         <h2 style="color:var(--magenta-ink)">一键下载全部资料</h2><div class="h2en" style="color:var(--magenta-ink)">Download everything (single Excel workbook)</div>
-        <div class="small" style="margin-bottom:12px;">将本系统内全部台账（作业日志、货物接收、出入登记、内部培训、虫害控制、生物安全事件、卫生管理）及处理服务商、应急预案速查资料合并为一个 Excel 文件，每类各占一个工作表 / Combines every ledger plus the providers directory and contingency reference into one workbook, one sheet per category</div>
+        <div class="small" style="margin-bottom:12px;">将本系统内全部台账（作业日志、货物接收[集装箱]、原料到货、出入登记、内部培训、虫害控制、生物安全事件、卫生管理）及处理服务商、应急预案速查资料合并为一个 Excel 文件，每类各占一个工作表 / Combines every ledger plus the providers directory and contingency reference into one workbook, one sheet per category</div>
         <button class="btn primary" id="btn-download-all" onclick="downloadAllData()">下载全部资料（.xlsx） Download all (.xlsx)</button>
         <span id="download-all-status" class="small" style="margin-left:10px;"></span>
       </div>
@@ -546,7 +581,8 @@ label .bi-en{ font-size:1em; }
         <table>
           <tr><th>资料类别 Category</th><th style="text-align:right">操作 Action</th></tr>
           <tr><td><span class="bi bi-inline"><span class="bi-zh">日常作业日志</span> <span class="bi-en">TF Daily Operations Log</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('daily_ops','log_date',DAILY_OPS_COLS,'作业日志_Daily_Operations_Log')">下载CSV Download</button></td></tr>
-          <tr><td><span class="bi bi-inline"><span class="bi-zh">货物接收记录</span> <span class="bi-en">Goods Receipt Record</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('goods_receipt','receipt_date',GOODS_COLS,'货物接收_Goods_Receipt')">下载CSV Download</button></td></tr>
+          <tr><td><span class="bi bi-inline"><span class="bi-zh">货物接收记录（集装箱）</span> <span class="bi-en">Goods Receipt Record</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('goods_receipt','receipt_date',GOODS_COLS,'货物接收_Goods_Receipt')">下载CSV Download</button></td></tr>
+          <tr><td><span class="bi bi-inline"><span class="bi-zh">原料到货记录</span> <span class="bi-en">Raw Material Receipt</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('raw_material_receipt','receipt_date',MATERIAL_COLS,'原料到货_Material_Receipt')">下载CSV Download</button></td></tr>
           <tr><td><span class="bi bi-inline"><span class="bi-zh">出入登记</span> <span class="bi-en">TF Access Log</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('access_log','log_date',ACCESS_COLS,'出入登记_Access_Log')">下载CSV Download</button></td></tr>
           <tr><td><span class="bi bi-inline"><span class="bi-zh">内部培训登记</span> <span class="bi-en">Training register</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('training_register','log_date',TRAINING_COLS,'培训登记_Training_Register')">下载CSV Download</button></td></tr>
           <tr><td><span class="bi bi-inline"><span class="bi-zh">虫害/杂草/鼠患控制</span> <span class="bi-en">Pest, Weed &amp; Vermin Control</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('pest_control','log_date',PEST_COLS,'虫害控制_Pest_Control')">下载CSV Download</button></td></tr>
@@ -630,6 +666,12 @@ const GOODS_COLS = [
   ['bacc_verified','BACC已核验 BACC Verified'],['ispm15_checked','ISPM15已检查 ISPM15 Checked'],['damage','破损情况 Damage'],
   ['contamination','是否污染 Contamination'],['held_in_tf','留在TF Held in TF'],['ap_name','AP姓名 AP Name'],['notes','备注 Notes']
 ];
+const MATERIAL_COLS = [
+  ['receipt_date','日期 Date'],['supplier','供应商/承运商 Supplier'],['docket_no','送货单号 Docket No.'],['po_no','采购订单号 PO No.'],
+  ['site_quarry','场地/采石场 Site or Quarry'],['material','材料 Material'],['weight_cubic','重量或方量 Weight/Cubic'],
+  ['net_weight','净重 Net Weight'],['truck_no','车牌/车号 Truck No.'],['driver','司机 Driver'],
+  ['received_by','签收人 Received By'],['notes','备注 Notes']
+];
 const ACCESS_COLS = [
   ['log_date','日期 Date'],['visitor_name','姓名 Name'],['company','所属公司 Company'],['purpose','来访目的 Purpose'],
   ['time_in','进入时间 Time In'],['time_out','离开时间 Time Out'],['escorted_by','陪同人 Escorted By'],
@@ -690,12 +732,13 @@ async function downloadAllData(){
   try{
     const tasks = [
       ['daily_ops','log_date',DAILY_OPS_COLS,'01_作业日志 Daily Ops'],
-      ['goods_receipt','receipt_date',GOODS_COLS,'02_货物接收 Goods Receipt'],
-      ['access_log','log_date',ACCESS_COLS,'03_出入登记 Access Log'],
-      ['training_register','log_date',TRAINING_COLS,'04_培训登记 Training'],
-      ['pest_control','log_date',PEST_COLS,'05_虫害控制 Pest Control'],
-      ['incidents','log_date',INCIDENT_COLS,'06_生物安全事件 Incidents'],
-      ['hygiene','log_date',HYGIENE_COLS,'07_卫生管理 Hygiene']
+      ['goods_receipt','receipt_date',GOODS_COLS,'02_货物接收(集装箱) Goods Receipt'],
+      ['raw_material_receipt','receipt_date',MATERIAL_COLS,'03_原料到货 Material Receipt'],
+      ['access_log','log_date',ACCESS_COLS,'04_出入登记 Access Log'],
+      ['training_register','log_date',TRAINING_COLS,'05_培训登记 Training'],
+      ['pest_control','log_date',PEST_COLS,'06_虫害控制 Pest Control'],
+      ['incidents','log_date',INCIDENT_COLS,'07_生物安全事件 Incidents'],
+      ['hygiene','log_date',HYGIENE_COLS,'08_卫生管理 Hygiene']
     ];
     const wb = XLSX.utils.book_new();
     for(const [table, orderCol, cols, sheetName] of tasks){
@@ -713,7 +756,7 @@ async function downloadAllData(){
       ['Hi Tech Security Disposals','生物安全废弃物年度清运','09 263 8782'],
       ['SPS Biosecurity Limited','TFO / AP 外部培训认证机构','MPI Approved Training Provider']
     ];
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(providersAOA), '08_处理服务商 Providers');
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(providersAOA), '09_处理服务商 Providers');
 
     const contingencyAOA = [
       ['场景 Scenario','应对措施 Response'],
@@ -727,7 +770,7 @@ async function downloadAllData(){
       ['未预期未清关货物 Unexpected uncleared goods','置于持有区，喷洒杀虫剂，联系MPI等待指示'],
       ['现场人员紧急疏散 Emergency evacuation','依据出入登记清点在场访客+员工人数']
     ];
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(contingencyAOA), '09_应急预案 Contingency');
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(contingencyAOA), '10_应急预案 Contingency');
 
     const dateStr = new Date().toISOString().slice(0,10);
     XLSX.writeFile(wb, `ETERA_TF合规资料_全部导出_${dateStr}.xlsx`);
@@ -801,6 +844,38 @@ async function addGoods(){
   if(error){ alert('保存失败 Save failed: '+error.message); return; }
   ['g-container','g-supplier','g-damage','g-notes'].forEach(id=>document.getElementById(id).value='');
   loadGoods();
+}
+
+// ---------- RAW MATERIAL RECEIPT ----------
+async function loadMaterial(){
+  const tbl = emptyRow('m-table');
+  const { data, error } = await sb.from('raw_material_receipt').select('*').order('receipt_date', {ascending:false});
+  if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
+  data.forEach(r=>{
+    const row = tbl.insertRow(-1);
+    row.innerHTML = `<td>${r.receipt_date||'—'}</td><td>${r.supplier||'—'}</td><td class="mono">${r.docket_no||'—'}</td><td class="mono">${r.po_no||'—'}</td><td>${r.site_quarry||'—'}</td><td>${r.material||'—'}</td><td>${r.weight_cubic||'—'}</td><td>${r.net_weight||'—'}</td><td class="mono">${r.truck_no||'—'}</td><td>${r.driver||'—'}</td><td>${r.received_by||'—'}</td><td class="small">${r.notes||'—'}</td>`;
+  });
+}
+async function addMaterial(){
+  const record = {
+    receipt_date: document.getElementById('m-date').value || null,
+    supplier: document.getElementById('m-supplier').value.trim() || null,
+    docket_no: document.getElementById('m-docket').value.trim() || null,
+    po_no: document.getElementById('m-po').value.trim() || null,
+    site_quarry: document.getElementById('m-site').value.trim() || null,
+    material: document.getElementById('m-material').value.trim() || null,
+    weight_cubic: document.getElementById('m-weight').value.trim() || null,
+    net_weight: document.getElementById('m-netweight').value.trim() || null,
+    truck_no: document.getElementById('m-truck').value.trim().toUpperCase() || null,
+    driver: document.getElementById('m-driver').value.trim() || null,
+    received_by: document.getElementById('m-receivedby').value.trim() || null,
+    notes: document.getElementById('m-notes').value.trim() || null
+  };
+  if(!record.supplier || !record.material){ return; }
+  const { error } = await sb.from('raw_material_receipt').insert([record]);
+  if(error){ alert('保存失败 Save failed: '+error.message); return; }
+  ['m-supplier','m-docket','m-po','m-site','m-material','m-weight','m-netweight','m-truck','m-driver','m-receivedby','m-notes'].forEach(id=>document.getElementById(id).value='');
+  loadMaterial();
 }
 
 // ---------- PEST / WEED / VERMIN ----------
@@ -946,6 +1021,7 @@ async function addVisitor(){
 window.addEventListener('DOMContentLoaded', ()=>{
   loadDailyOps();
   loadGoods();
+  loadMaterial();
   loadPest();
   loadIncidents();
   loadHygiene();
