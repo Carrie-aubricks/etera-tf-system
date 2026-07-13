@@ -25,13 +25,13 @@
   --radius:10px;
 }
 *{box-sizing:border-box; margin:0; padding:0;}
-body{ background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; font-size:14px; line-height:1.5; }
+body{ background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; font-size:15.5px; line-height:1.55; }
 .mono{font-family:'IBM Plex Mono',monospace;}
 .disp{font-family:'Archivo Expanded',sans-serif; font-weight:700;}
 
 .bi{ display:flex; flex-direction:column; gap:1px; }
 .bi-zh{ font-weight:inherit; }
-.bi-en{ font-size:0.76em; color:var(--ink-soft); font-weight:400; letter-spacing:.2px; }
+.bi-en{ font-size:0.82em; color:var(--ink-soft); font-weight:400; letter-spacing:.2px; }
 th .bi-en{ text-transform:uppercase; letter-spacing:.4px; }
 .bi-inline{ display:inline; }
 .bi-inline .bi-en{ display:block; }
@@ -53,7 +53,7 @@ th .bi-en{ text-transform:uppercase; letter-spacing:.4px; }
 
 .main{ padding:26px 34px 60px; max-width:1040px; }
 .topbar{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:22px; border-bottom:1px solid var(--hair); padding-bottom:16px; }
-.topbar h1{ font-family:'Archivo Expanded'; font-size:20px; font-weight:700; }
+.topbar h1{ font-family:'Archivo Expanded'; font-size:23px; font-weight:700; }
 .topbar .h1en{ font-size:12px; color:var(--ink-soft); font-weight:500; margin-top:2px; }
 .topbar .sub{ color:var(--ink-soft); font-size:12px; margin-top:4px; }
 .atf-chip{ font-family:'IBM Plex Mono'; font-size:11px; background:var(--panel); border:1px solid var(--hair); padding:6px 11px; border-radius:20px; display:flex; align-items:center; gap:7px; }
@@ -66,7 +66,7 @@ section.show{ display:block; }
 .stat{ background:var(--panel); border:1px solid var(--hair); border-radius:var(--radius); padding:14px 16px; }
 .stat .lbl{ font-size:10.5px; color:var(--ink-soft); }
 .stat .lbl .bi-en{ font-size:1em; }
-.stat .val{ font-family:'Archivo Expanded'; font-size:23px; font-weight:700; margin-top:6px; }
+.stat .val{ font-family:'Archivo Expanded'; font-size:27px; font-weight:700; margin-top:6px; }
 .stat .val small{ font-family:'Inter'; font-size:11.5px; color:var(--ink-soft); font-weight:400; }
 
 .stamp{ display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono'; font-size:10.5px; font-weight:500; padding:4px 10px 4px 8px; border-radius:20px; border:1.5px dashed; letter-spacing:.3px; }
@@ -76,13 +76,13 @@ section.show{ display:block; }
 .stamp .ring{ width:7px; height:7px; border-radius:50%; border:1.5px solid currentColor; flex-shrink:0; }
 
 .card{ background:var(--panel); border:1px solid var(--hair); border-radius:12px; padding:18px 20px; margin-bottom:16px; }
-.card h2{ font-family:'Archivo Expanded'; font-size:14px; font-weight:700; margin-bottom:3px; display:flex; align-items:baseline; justify-content:space-between; }
+.card h2{ font-family:'Archivo Expanded'; font-size:16px; font-weight:700; margin-bottom:3px; display:flex; align-items:baseline; justify-content:space-between; }
 .card .h2en{ font-size:11px; color:var(--ink-soft); font-weight:500; margin-bottom:12px; }
 .card h2 span.tag{ font-family:'Inter'; font-size:11px; color:var(--ink-soft); font-weight:500; }
 
-table{ width:100%; border-collapse:collapse; font-size:12.5px; }
-th{ text-align:left; padding:0 10px 8px 0; border-bottom:1px solid var(--hair); font-weight:600; font-size:11px; color:var(--ink-soft); }
-td{ padding:8px 10px 8px 0; border-bottom:1px solid #EFEFEA; vertical-align:middle; }
+table{ width:100%; border-collapse:collapse; font-size:14px; }
+th{ text-align:left; padding:0 10px 9px 0; border-bottom:1px solid var(--hair); font-weight:600; font-size:12px; color:var(--ink-soft); }
+td{ padding:10px 10px 10px 0; border-bottom:1px solid #EFEFEA; vertical-align:middle; }
 tr:last-child td{ border-bottom:none; }
 
 .btn{ font-family:'Inter'; font-weight:500; font-size:12px; padding:8px 14px; border-radius:8px; border:1px solid var(--hair); background:var(--panel); cursor:pointer; color:var(--ink); }
@@ -91,8 +91,8 @@ tr:last-child td{ border-bottom:none; }
 .btn.primary:hover{ background:var(--magenta-ink); }
 
 .formgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:12px; }
-input,select{ font-family:'Inter'; font-size:12px; padding:8px 10px; border:1px solid var(--hair); border-radius:8px; width:100%; background:#FBFBF9; }
-label{ font-size:10px; color:var(--ink-soft); display:block; margin-bottom:4px; line-height:1.3; }
+input,select{ font-family:'Inter'; font-size:14px; padding:9px 10px; border:1px solid var(--hair); border-radius:8px; width:100%; background:#FBFBF9; }
+label{ font-size:11.5px; color:var(--ink-soft); display:block; margin-bottom:4px; line-height:1.3; }
 label .bi-en{ font-size:1em; }
 
 .pill{ font-size:10.5px; padding:3px 9px; border-radius:12px; font-weight:500; white-space:nowrap; }
@@ -103,7 +103,7 @@ label .bi-en{ font-size:1em; }
 .pill.n{ background:#EEEEEA; color:var(--ink-soft); }
 
 .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.small{ font-size:12px; color:var(--ink-soft); }
+.small{ font-size:13px; color:var(--ink-soft); }
 .divider{ height:1px; background:var(--hair); margin:14px 0; }
 .contact-line{ display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #F0F0EB; font-size:12px; }
 .contact-line:last-child{ border-bottom:none; }
@@ -167,18 +167,17 @@ label .bi-en{ font-size:1em; }
       <div class="brand-mark">TF</div>
       <div class="brand-text"><div class="t1">ETERA</div><div class="t2">合规系统 · ATF 33359</div></div>
     </div>
-    <div class="nav-item active" data-target="dash"><span class="n">01</span><span class="bi"><span class="bi-zh">总览仪表盘</span><span class="bi-en">Dashboard</span></span></div>
+    <div class="nav-item active" data-target="siteplan"><span class="n">01</span><span class="bi"><span class="bi-zh">现场平面图</span><span class="bi-en">Site plan</span></span></div>
     <div class="nav-item" data-target="dailyops"><span class="n">02</span><span class="bi"><span class="bi-zh">日常作业日志</span><span class="bi-en">TF Daily Operations Log</span></span></div>
     <div class="nav-item" data-target="goods"><span class="n">03</span><span class="bi"><span class="bi-zh">货物接收记录</span><span class="bi-en">Goods Receipt Record</span></span></div>
     <div class="nav-item" data-target="access"><span class="n">04</span><span class="bi"><span class="bi-zh">出入登记</span><span class="bi-en">TF Access Log</span></span></div>
-    <div class="nav-item" data-target="people"><span class="n">05</span><span class="bi"><span class="bi-zh">人员资质与培训</span><span class="bi-en">Training register</span></span></div>
-    <div class="nav-item" data-target="pest"><span class="n">06</span><span class="bi"><span class="bi-zh">虫害/杂草/鼠患控制</span><span class="bi-en">Pest, Weed &amp; Vermin Control</span></span></div>
-    <div class="nav-item" data-target="incident"><span class="n">07</span><span class="bi"><span class="bi-zh">生物安全事件与废弃物</span><span class="bi-en">Biosecurity Incident / Waste</span></span></div>
-    <div class="nav-item" data-target="hygiene"><span class="n">08</span><span class="bi"><span class="bi-zh">卫生管理记录</span><span class="bi-en">TF Hygiene Management</span></span></div>
-    <div class="nav-item" data-target="siteplan"><span class="n">09</span><span class="bi"><span class="bi-zh">现场平面图</span><span class="bi-en">Site plan</span></span></div>
+    <div class="nav-item" data-target="certs"><span class="n">05</span><span class="bi"><span class="bi-zh">人员资质证书</span><span class="bi-en">Personnel Certifications</span></span></div>
+    <div class="nav-item" data-target="training"><span class="n">06</span><span class="bi"><span class="bi-zh">内部培训登记</span><span class="bi-en">Training register</span></span></div>
+    <div class="nav-item" data-target="pest"><span class="n">07</span><span class="bi"><span class="bi-zh">虫害/杂草/鼠患控制</span><span class="bi-en">Pest, Weed &amp; Vermin Control</span></span></div>
+    <div class="nav-item" data-target="incident"><span class="n">08</span><span class="bi"><span class="bi-zh">生物安全事件与废弃物</span><span class="bi-en">Biosecurity Incident / Waste</span></span></div>
+    <div class="nav-item" data-target="hygiene"><span class="n">09</span><span class="bi"><span class="bi-zh">卫生管理记录</span><span class="bi-en">TF Hygiene Management</span></span></div>
     <div class="nav-item" data-target="providers"><span class="n">10</span><span class="bi"><span class="bi-zh">处理服务商</span><span class="bi-en">Treatment providers</span></span></div>
     <div class="nav-item" data-target="contingency"><span class="n">11</span><span class="bi"><span class="bi-zh">应急预案</span><span class="bi-en">Contingency plans</span></span></div>
-    <div class="nav-item" data-target="docs"><span class="n">12</span><span class="bi"><span class="bi-zh">审计文档库</span><span class="bi-en">Audit document library</span></span></div>
     <div class="side-foot">Biosecurity Act 1993 · s.39/s.40<br>TFGEN Standard · Approved 10 Feb 2026</div>
   </div>
 
@@ -186,54 +185,6 @@ label .bi-en{ font-size:1em; }
 
   <div class="main">
     <button class="hamburger" id="hamburger" aria-label="打开菜单 Open menu"><span></span><span></span><span></span></button>
-
-    <!-- 01 DASHBOARD -->
-    <section id="dash" class="show">
-      <div class="topbar">
-        <div>
-          <h1>总览仪表盘</h1><div class="h1en">Dashboard overview</div>
-          <div class="sub">Etera Group Limited · 8 Norman Spencer Drive, Papatoetoe, Auckland</div>
-        </div>
-        <div class="atf-chip"><span class="dot"></span> <span class="bi"><span class="bi-zh">设施状态：正常运营</span><span class="bi-en">Facility status: operating</span></span></div>
-      </div>
-
-      <div class="stats">
-        <div class="stat"><div class="lbl bi"><span class="bi-zh">本年度集装箱</span><span class="bi-en">Containers YTD</span></div><div class="val">— <small>/ 60–80 目标 target</small></div></div>
-        <div class="stat"><div class="lbl bi"><span class="bi-zh">待处理污染上报</span><span class="bi-en">Open contamination cases</span></div><div class="val">— <small>项 items</small></div></div>
-        <div class="stat"><div class="lbl bi"><span class="bi-zh">48小时报告合规率</span><span class="bi-en">48h portal report compliance</span></div><div class="val">— <small>%</small></div></div>
-        <div class="stat"><div class="lbl bi"><span class="bi-zh">下次内部审计</span><span class="bi-en">Next internal audit</span></div><div class="val">— <small>待安排 TBC</small></div></div>
-      </div>
-
-      <div class="card">
-        <h2>资质到期预警</h2><div class="h2en">Certification expiry alerts</div>
-        <table>
-          <tr><th><div class="bi"><span class="bi-zh">持证人 / 角色</span><span class="bi-en">Holder / role</span></div></th><th><div class="bi"><span class="bi-zh">证书编号</span><span class="bi-en">Cert no.</span></div></th><th><div class="bi"><span class="bi-zh">到期日</span><span class="bi-en">Expiry</span></div></th><th><div class="bi"><span class="bi-zh">状态</span><span class="bi-en">Status</span></div></th></tr>
-          <tr><td>Xueye Liu · Accredited Person</td><td class="mono">IVS145811</td><td>2026-10-29</td><td><span class="stamp warn"><span class="ring"></span>108天/days内到期</span></td></tr>
-          <tr><td>Xueye Liu · TF Operator</td><td class="mono">SPS-AS210126-1-5</td><td>2028-01-20</td><td><span class="stamp ok"><span class="ring"></span>有效 Valid</span></td></tr>
-          <tr><td>Fiona · Accredited Person</td><td class="mono">待补充 TBC</td><td>待补充 TBC</td><td><span class="stamp warn"><span class="ring"></span>待补充 Info needed</span></td></tr>
-          <tr><td>内部生物安全意识培训 Internal awareness training</td><td class="mono">—</td><td>2027-01-30 前复训 by</td><td><span class="stamp ok"><span class="ring"></span>有效 Valid</span></td></tr>
-        </table>
-      </div>
-
-      <div class="grid2">
-        <div class="card">
-          <h2>最近作业日志</h2><div class="h2en">Recent daily operations</div>
-          <table>
-            <tr><th>集装箱号 Container</th><th>日期 Date</th><th>状态 Status</th></tr>
-          </table>
-          <div class="small" style="padding:10px 0;">暂无记录，前往"日常作业日志"模块新增 · No records yet — add entries in the Daily Operations Log module</div>
-        </div>
-        <div class="card">
-          <h2>今日在场人员</h2><div class="h2en">On-site headcount today</div>
-          <table>
-            <tr><td>员工 Staff</td><td style="text-align:right"><span class="pill n">— 人</span></td></tr>
-            <tr><td>外来访客/送货 Visitors on-site</td><td style="text-align:right"><span class="pill n">— 人</span></td></tr>
-            <tr><td>MPI检查员 MPI Inspector</td><td style="text-align:right"><span class="pill n">— 人</span></td></tr>
-          </table>
-          <div class="small" style="margin-top:8px;">数字将根据"出入登记"模块当日记录自动统计（此原型未接后端，暂为占位）· Populates from today's Access Log entries once a backend is connected — placeholder for now</div>
-        </div>
-      </div>
-    </section>
 
     <!-- 02 TF DAILY OPERATIONS LOG -->
     <section id="dailyops">
@@ -299,11 +250,12 @@ label .bi-en{ font-size:1em; }
     </section>
 
     <!-- 03 PEOPLE / APPENDIX A -->
-    <section id="people">
-      <div class="topbar"><div><h1>人员资质与培训</h1><div class="h1en">Training &amp; certification</div><div class="sub">TFGEN 3.12 · 外部资质每两年复训，内部意识培训每年复训 / External certs renew 2-yearly, internal awareness annually</div></div></div>
+    <!-- 05 CERTIFICATIONS -->
+    <section id="certs">
+      <div class="topbar"><div><h1>人员资质证书</h1><div class="h1en">Personnel Certifications</div><div class="sub">TFGEN 3.12 · TFO/AP外部资质每两年复训 / External TFO/AP certs renew every 2 years</div></div></div>
 
       <div class="card">
-        <h2>外部资质（TFO / AP）</h2><div class="h2en">External certification</div>
+        <h2>TFO / AP 证书台账</h2><div class="h2en">TFO / AP certification register</div>
         <table>
           <tr><th>姓名 Name</th><th>角色 Role</th><th>证书编号 Cert no.</th><th>到期 Expiry</th><th>状态 Status</th></tr>
           <tr><td>Xueye Liu</td><td>TF Operator</td><td class="mono">SPS-AS210126-1-5</td><td>2028-01-20</td><td><span class="stamp ok"><span class="ring"></span>有效 Valid</span></td></tr>
@@ -312,16 +264,23 @@ label .bi-en{ font-size:1em; }
         </table>
         <div class="small" style="padding:8px 0 0;">Fiona的AP证书编号和到期日待补充 — 请提供后我会更新 · Fiona's AP certificate number and expiry date pending — let me know and I'll fill this in</div>
       </div>
+    </section>
+
+    <!-- 06 TRAINING REGISTER -->
+    <section id="training">
+      <div class="topbar"><div><h1>内部培训登记</h1><div class="h1en">Biosecurity Awareness Training Register — Appendix A</div><div class="sub">TFGEN 3.12 · 内部意识培训每年复训，原件格式 p.24 / Internal awareness training, renews annually, matches original p.24 format</div></div></div>
 
       <div class="card">
-        <h2>内部生物安全意识培训登记（附录A）</h2><div class="h2en">Biosecurity Awareness Training Register — Appendix A (原件格式 original format, p.24)</div>
+        <h2>新增培训记录</h2><div class="h2en">New training record</div>
         <div class="formgrid" style="grid-template-columns:1fr 2fr 2fr;">
           <div><label class="bi"><span class="bi-zh">培训日期</span><span class="bi-en">Date of training</span></label><input type="date" id="t-date" value="2026-07-13"></div>
           <div><label class="bi"><span class="bi-zh">培训内容/主题</span><span class="bi-en">Content, topics of training</span></label><input id="t-topic" placeholder="例：STOP-CONTAIN-REPORT 流程复训"></div>
           <div><label class="bi"><span class="bi-zh">参加人姓名（逗号分隔）</span><span class="bi-en">Attendee names, comma separated</span></label><input id="t-names" placeholder="例：Carrie, Paul"></div>
         </div>
         <button class="btn primary" onclick="addTraining()">记录出席 Record attendance</button>
-        <div class="divider"></div>
+      </div>
+      <div class="card">
+        <h2>培训台账</h2><div class="h2en">Training ledger</div>
         <table id="t-table">
           <tr><th>Date of Training<br><span class="small">培训日期</span></th><th>Content, Topics of Training<br><span class="small">培训内容</span></th><th>Attendee Name<br><span class="small">参加人姓名</span></th><th>Attendee Signature<br><span class="small">签名</span></th></tr>
           <tr><td>30/01/2026</td><td>Introduction for TF（过境设施入职培训）</td><td>Carrie, Paul, Fiona, Stepenie</td><td class="small">—</td></tr>
@@ -449,12 +408,12 @@ label .bi-en{ font-size:1em; }
     </section>
 
     <!-- 06 SITE PLAN -->
-    <section id="siteplan">
+    <section id="siteplan" class="show">
       <div class="topbar"><div><h1>现场平面图</h1><div class="h1en">Site plan (per Operating Manual p.14)</div><div class="sub">全场为硬化地面（hardstand）· Whole storage yard is hardstand</div></div></div>
       <div class="card">
         <h2>Etera Group Limited — 8 Norman Spencer Drive</h2><div class="h2en">Facility layout</div>
-        <div style="display:grid; grid-template-columns:1fr 200px; gap:16px; align-items:start;">
-          <svg viewBox="0 0 640 520" style="width:100%; border:1px solid var(--hair); border-radius:8px; background:#FBFBF9;">
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <svg viewBox="0 0 640 520" style="width:100%; height:640px; border:1px solid var(--hair); border-radius:8px; background:#FBFBF9;">
             <!-- road label -->
             <text x="14" y="260" font-size="11" fill="#5B6560" transform="rotate(-90 14,260)" text-anchor="middle">Norman Spencer Drive</text>
 
@@ -510,13 +469,12 @@ label .bi-en{ font-size:1em; }
             <text x="577" y="452" font-size="9" text-anchor="middle" fill="#5B6560">TF Sign</text>
           </svg>
 
-          <div class="legend">
-            <div style="font-size:11px; font-weight:600; margin-bottom:4px;">图例 Legend</div>
-            <div class="legend-row"><rect width="12" height="12" fill="#A2124C" style="transform:rotate(45deg)"></rect><svg width="14" height="14"><rect x="1" y="1" width="10" height="10" fill="#A2124C" transform="rotate(45 6,6)"/></svg> 生物安全设备 Biosecurity equipment</div>
+          <div class="legend" style="flex-direction:row; flex-wrap:wrap; gap:20px; padding:10px 4px; border-top:1px solid var(--hair);">
+            <div class="legend-row"><svg width="14" height="14"><rect x="1" y="1" width="10" height="10" fill="#A2124C" transform="rotate(45 6,6)"/></svg> 生物安全设备 Biosecurity equipment</div>
             <div class="legend-row"><svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="#5B6560" stroke-width="1.3"/><line x1="4" y1="4" x2="10" y2="10" stroke="#5B6560" stroke-width="1.3"/><line x1="10" y1="4" x2="4" y2="10" stroke="#5B6560" stroke-width="1.3"/></svg> 排水口 Drain</div>
             <div class="legend-row"><svg width="14" height="14"><polygon points="2,2 12,7 2,12" fill="#1E5FA8"/></svg> 生物安全记录点 Biosecurity record</div>
             <div class="legend-row"><svg width="20" height="10"><line x1="0" y1="3" x2="20" y2="3" stroke="#1A211D" stroke-width="1.5"/><line x1="0" y1="7" x2="20" y2="7" stroke="#1A211D" stroke-width="1.5"/></svg> 过境设施边界 TF boundary</div>
-            <div class="small" style="margin-top:8px; line-height:1.6;">*Entry = 入口门<br>*TF Sign = 过境设施标识<br>*全场堆场均为硬化地面 whole yard is hardstand</div>
+            <div class="small" style="flex-basis:100%; line-height:1.6;">*Entry = 入口门 &nbsp; *TF Sign = 过境设施标识 &nbsp; *全场堆场均为硬化地面 whole yard is hardstand</div>
           </div>
         </div>
       </div>
@@ -577,37 +535,41 @@ label .bi-en{ font-size:1em; }
           <tr><td>关键人员缺席 Loss of TFO/AP</td><td>提名DTFO并报MPI批准；缺席超1个月须通知 Nominate DTFO, notify MPI if absence &gt;1 month</td></tr>
           <tr><td>安保/围栏失效 Security breach</td><td>临时加固+人工看守，恢复前限制未清关货物进出 Temporary guard, restrict access until restored</td></tr>
           <tr><td>未预期未清关货物 Unexpected uncleared goods</td><td>置于持有区，喷洒杀虫剂，联系MPI等待指示 Hold, spray if needed, contact MPI</td></tr>
-          <tr><td>现场人员紧急疏散 Emergency evacuation</td><td>依据"05 出入登记"清点在场访客+员工人数 Use visitor log for headcount</td></tr>
+          <tr><td>现场人员紧急疏散 Emergency evacuation</td><td>依据"04 出入登记"清点在场访客+员工人数 Use visitor log for headcount</td></tr>
         </table>
       </div>
     </section>
 
-    <!-- 09 DOCS -->
-    <section id="docs">
-      <div class="topbar"><div><h1>审计文档库</h1><div class="h1en">Audit-ready document library</div><div class="sub">须保证MPI检查员随时可现场调阅（含离线/纸质打印）/ Must be accessible to MPI Inspector at any reasonable time, incl. offline</div></div></div>
-      <div class="card">
-        <h2>核心文件</h2><div class="h2en">Core documents</div>
-        <ul class="doclist">
-          <li>MPI 过境设施批准通知书 Approval notice (ATF 33359)<span class="pill g">已归档 Filed</span></li>
-          <li>Transitional Facility Operating Manual v1.0<span class="pill g">已归档 Filed</span></li>
-          <li>现场平面图 Site plan<span class="pill g">已归档 Filed</span></li>
-          <li>内部生物安全意识培训大纲 Internal training syllabus<span class="pill g">已归档 Filed</span></li>
-          <li>年度内部审计报告 Annual internal audit（日期待TFO安排 date TBC by TFO）<span class="pill a">待更新 Due</span></li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>手册版本记录</h2><div class="h2en">Manual revision history</div>
-        <table>
-          <tr><th>版本 Ver.</th><th>日期 Date</th><th>修订内容 Amendment</th></tr>
-          <tr><td>1.0</td><td>2026-01-22</td><td>初版，随批准申请一并提交 Initial version submitted with application</td></tr>
-        </table>
-      </div>
-    </section>
 
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+const SUPABASE_URL = 'https://dzzanobburntbpbsmnwo.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_lcz0yE_dbC4VDzMzWNlQLQ_g2XAZMpa';
+let sb;
+try{
+  if(typeof supabase === 'undefined'){ throw new Error('Supabase JS库未加载成功，可能是CDN被拦截 / Supabase JS library failed to load'); }
+  sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+}catch(e){
+  document.addEventListener('DOMContentLoaded', ()=>{ showErr('初始化失败 Init error: '+e.message); });
+}
+
+function showErr(msg){
+  let banner = document.getElementById('err-banner');
+  if(!banner){
+    banner = document.createElement('div');
+    banner.id = 'err-banner';
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#B23A2E;color:#fff;padding:10px 16px;font-size:12px;z-index:200;max-height:160px;overflow:auto;';
+    document.body.prepend(banner);
+  }
+  const line = document.createElement('div');
+  line.style.cssText = 'padding:2px 0;border-bottom:1px solid rgba(255,255,255,.2);';
+  line.textContent = msg;
+  banner.appendChild(line);
+}
+
 const sideEl = document.querySelector('.side');
 const scrimEl = document.getElementById('scrim');
 const hamburgerEl = document.getElementById('hamburger');
@@ -628,118 +590,220 @@ items.forEach(it=>{
   });
 });
 
-function addDailyOps(){
-  const date = document.getElementById('d-date').value || '—';
-  const op = document.getElementById('d-op').value.trim() || '—';
-  const container = document.getElementById('d-container').value.trim().toUpperCase() || '—';
-  const bacc = document.getElementById('d-bacc').value.trim() || '—';
-  const activity = document.getElementById('d-activity').value.split(' ')[0];
-  const clean = document.getElementById('d-clean').value;
-  const issue = document.getElementById('d-issue').value.trim() || '无 None';
-  const action = document.getElementById('d-action').value.trim() || '—';
-  const sig = document.getElementById('d-sig').value.trim() ? '✓' : '待签 pending';
-  if(!op){ return; }
-  const tbl = document.getElementById('d-table');
-  const row = tbl.insertRow(1);
-  row.innerHTML = `<td>${date}</td><td>${op}</td><td class="mono">${container}</td><td class="mono">${bacc}</td><td><span class="pill n">${activity}</span></td><td>${clean}</td><td>${issue}</td><td>${action}</td><td class="small">${sig}</td>`;
+function emptyRow(tableId, msg){
+  const tbl = document.getElementById(tableId);
+  while(tbl.rows.length > 1){ tbl.deleteRow(1); }
+  return tbl;
+}
+
+// ---------- DAILY OPS ----------
+async function loadDailyOps(){
+  const tbl = emptyRow('d-table');
+  const { data, error } = await sb.from('daily_ops').select('*').order('log_date', {ascending:false});
+  if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
+  document.getElementById('d-count').textContent = data.length;
+  data.forEach(r=>{
+    const row = tbl.insertRow(-1);
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.operator||'—'}</td><td class="mono">${r.container_no||'—'}</td><td class="mono">${r.bacc_no||'—'}</td><td><span class="pill n">${r.activity||'—'}</span></td><td>${r.area_clean||'—'}</td><td>${r.issues||'—'}</td><td>${r.action_taken||'—'}</td><td class="small">${r.signature||'—'}</td>`;
+  });
+}
+async function addDailyOps(){
+  const record = {
+    log_date: document.getElementById('d-date').value || null,
+    operator: document.getElementById('d-op').value.trim() || null,
+    container_no: document.getElementById('d-container').value.trim().toUpperCase() || null,
+    bacc_no: document.getElementById('d-bacc').value.trim() || null,
+    activity: document.getElementById('d-activity').value.split(' ')[0],
+    area_clean: document.getElementById('d-clean').value,
+    issues: document.getElementById('d-issue').value.trim() || '无 None',
+    action_taken: document.getElementById('d-action').value.trim() || null,
+    signature: document.getElementById('d-sig').value.trim() || null
+  };
+  if(!record.operator){ return; }
+  const { error } = await sb.from('daily_ops').insert([record]);
+  if(error){ alert('保存失败 Save failed: '+error.message); return; }
   ['d-op','d-container','d-bacc','d-issue','d-action','d-sig'].forEach(id=>document.getElementById(id).value='');
-  const el=document.getElementById('d-count'); el.textContent=parseInt(el.textContent)+1;
+  loadDailyOps();
 }
 
-function addGoods(){
-  const date = document.getElementById('g-date').value || '—';
-  const container = document.getElementById('g-container').value.trim().toUpperCase();
-  const supplier = document.getElementById('g-supplier').value.trim() || '—';
-  const ap = document.getElementById('g-ap').value;
-  const bacc = document.getElementById('g-bacc').value;
-  const ispm = document.getElementById('g-ispm').value;
-  const contam = document.getElementById('g-contam').value;
-  const held = document.getElementById('g-held').value;
-  const damage = document.getElementById('g-damage').value.trim() || '无';
-  const notes = document.getElementById('g-notes').value.trim() || '—';
-  if(!container){ return; }
-  const tbl = document.getElementById('g-table');
-  const row = tbl.insertRow(1);
-  const baccPill = bacc==='Y' ? '<span class="pill g">Y</span>' : '<span class="pill r">N</span>';
-  const contamPill = contam==='Y' ? '<span class="pill a">Y</span>' : '<span class="pill g">N</span>';
-  row.innerHTML = `<td>${date}</td><td class="mono">${container}</td><td>${supplier}</td><td>${baccPill}</td><td>${ispm}</td><td>${damage}</td><td>${contamPill}</td><td>${held}</td><td>${ap}</td><td class="small">${notes}</td>`;
+// ---------- GOODS RECEIPT ----------
+async function loadGoods(){
+  const tbl = emptyRow('g-table');
+  const { data, error } = await sb.from('goods_receipt').select('*').order('receipt_date', {ascending:false});
+  if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
+  data.forEach(r=>{
+    const row = tbl.insertRow(-1);
+    const baccPill = r.bacc_verified==='Y' ? '<span class="pill g">Y</span>' : '<span class="pill r">N</span>';
+    const contamPill = r.contamination==='Y' ? '<span class="pill a">Y</span>' : '<span class="pill g">N</span>';
+    row.innerHTML = `<td>${r.receipt_date||'—'}</td><td class="mono">${r.container_no||'—'}</td><td>${r.supplier_origin||'—'}</td><td>${baccPill}</td><td>${r.ispm15_checked||'—'}</td><td>${r.damage||'—'}</td><td>${contamPill}</td><td>${r.held_in_tf||'—'}</td><td>${r.ap_name||'—'}</td><td class="small">${r.notes||'—'}</td>`;
+  });
+}
+async function addGoods(){
+  const record = {
+    receipt_date: document.getElementById('g-date').value || null,
+    container_no: document.getElementById('g-container').value.trim().toUpperCase() || null,
+    supplier_origin: document.getElementById('g-supplier').value.trim() || null,
+    ap_name: document.getElementById('g-ap').value,
+    bacc_verified: document.getElementById('g-bacc').value,
+    ispm15_checked: document.getElementById('g-ispm').value,
+    contamination: document.getElementById('g-contam').value,
+    held_in_tf: document.getElementById('g-held').value,
+    damage: document.getElementById('g-damage').value.trim() || '无',
+    notes: document.getElementById('g-notes').value.trim() || null
+  };
+  if(!record.container_no){ return; }
+  const { error } = await sb.from('goods_receipt').insert([record]);
+  if(error){ alert('保存失败 Save failed: '+error.message); return; }
   ['g-container','g-supplier','g-damage','g-notes'].forEach(id=>document.getElementById(id).value='');
+  loadGoods();
 }
 
-function addPest(){
-  const date = document.getElementById('p-date').value || '—';
-  const area = document.getElementById('p-area').value.trim() || '—';
-  const type = document.getElementById('p-type').value.split(' ')[0];
-  const treat = document.getElementById('p-treat').value.trim();
-  const provider = document.getElementById('p-provider').value.trim() || '—';
-  const followup = document.getElementById('p-followup').value;
-  const next = document.getElementById('p-next').value || '—';
-  const by = document.getElementById('p-by').value.trim() || '—';
-  if(!treat){ return; }
-  const tbl = document.getElementById('p-table');
-  const row = tbl.insertRow(1);
-  row.innerHTML = `<td>${date}</td><td>${area}</td><td><span class="pill n">${type}</span></td><td>${treat}</td><td>${provider}</td><td>${followup}</td><td>${next}</td><td>${by}</td>`;
+// ---------- PEST / WEED / VERMIN ----------
+async function loadPest(){
+  const tbl = emptyRow('p-table');
+  const { data, error } = await sb.from('pest_control').select('*').order('log_date', {ascending:false});
+  if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
+  data.forEach(r=>{
+    const row = tbl.insertRow(-1);
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.area||'—'}</td><td><span class="pill n">${r.pest_type||'—'}</span></td><td>${r.treatment||'—'}</td><td>${r.provider_method||'—'}</td><td>${r.followup_required||'—'}</td><td>${r.next_due||'—'}</td><td>${r.recorded_by||'—'}</td>`;
+  });
+}
+async function addPest(){
+  const record = {
+    log_date: document.getElementById('p-date').value || null,
+    area: document.getElementById('p-area').value.trim() || null,
+    pest_type: document.getElementById('p-type').value.split(' ')[0],
+    treatment: document.getElementById('p-treat').value.trim() || null,
+    provider_method: document.getElementById('p-provider').value.trim() || null,
+    followup_required: document.getElementById('p-followup').value,
+    next_due: document.getElementById('p-next').value || null,
+    recorded_by: document.getElementById('p-by').value.trim() || null
+  };
+  if(!record.treatment){ return; }
+  const { error } = await sb.from('pest_control').insert([record]);
+  if(error){ alert('保存失败 Save failed: '+error.message); return; }
   ['p-area','p-treat','p-provider','p-next','p-by'].forEach(id=>document.getElementById(id).value='');
+  loadPest();
 }
 
-function addIncident(){
-  const date = document.getElementById('i-date').value || '—';
-  const type = document.getElementById('i-type').value.split(' ')[0];
-  const desc = document.getElementById('i-desc').value.trim();
-  const mpi = document.getElementById('i-mpi').value.trim() || '—';
-  const immediate = document.getElementById('i-immediate').value.trim() || '—';
-  const followup = document.getElementById('i-followup').value.trim() || '—';
-  const closedby = document.getElementById('i-closedby').value.trim() || '—';
-  const closeddate = document.getElementById('i-closeddate').value || '未结案 Open';
-  if(!desc){ return; }
-  const tbl = document.getElementById('i-table');
-  const row = tbl.insertRow(1);
-  row.innerHTML = `<td>${date}</td><td><span class="pill a">${type}</span></td><td>${desc}</td><td>${mpi}</td><td>${immediate}</td><td>${followup}</td><td>${closedby}</td><td>${closeddate}</td>`;
+// ---------- INCIDENTS ----------
+async function loadIncidents(){
+  const tbl = emptyRow('i-table');
+  const { data, error } = await sb.from('incidents').select('*').order('log_date', {ascending:false});
+  if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
+  data.forEach(r=>{
+    const row = tbl.insertRow(-1);
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td><span class="pill a">${r.incident_type||'—'}</span></td><td>${r.description||'—'}</td><td>${r.mpi_notified||'—'}</td><td>${r.immediate_action||'—'}</td><td>${r.followup_action||'—'}</td><td>${r.closed_by||'—'}</td><td>${r.date_closed||'未结案 Open'}</td>`;
+  });
+}
+async function addIncident(){
+  const record = {
+    log_date: document.getElementById('i-date').value || null,
+    incident_type: document.getElementById('i-type').value.split(' ')[0],
+    description: document.getElementById('i-desc').value.trim() || null,
+    mpi_notified: document.getElementById('i-mpi').value.trim() || null,
+    immediate_action: document.getElementById('i-immediate').value.trim() || null,
+    followup_action: document.getElementById('i-followup').value.trim() || null,
+    closed_by: document.getElementById('i-closedby').value.trim() || null,
+    date_closed: document.getElementById('i-closeddate').value || null
+  };
+  if(!record.description){ return; }
+  const { error } = await sb.from('incidents').insert([record]);
+  if(error){ alert('保存失败 Save failed: '+error.message); return; }
   ['i-desc','i-mpi','i-immediate','i-followup','i-closedby','i-closeddate'].forEach(id=>document.getElementById(id).value='');
+  loadIncidents();
 }
 
-function addHygiene(){
-  const date = document.getElementById('h-date').value || '—';
-  const area = document.getElementById('h-area').value;
-  const clean = document.getElementById('h-clean').value;
-  const debris = document.getElementById('h-debris').value;
-  const equip = document.getElementById('h-equip').value;
-  const issue = document.getElementById('h-issue').value.trim() || '无 None';
-  const by = document.getElementById('h-by').value.trim() || '—';
-  const action = document.getElementById('h-action').value.trim() || '—';
-  if(!by){ return; }
-  const tbl = document.getElementById('h-table');
-  const row = tbl.insertRow(1);
-  row.innerHTML = `<td>${date}</td><td>${area}</td><td>${clean}</td><td>${debris}</td><td>${equip}</td><td>${issue}</td><td>${action}</td><td>${by}</td>`;
+// ---------- HYGIENE ----------
+async function loadHygiene(){
+  const tbl = emptyRow('h-table');
+  const { data, error } = await sb.from('hygiene').select('*').order('log_date', {ascending:false});
+  if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
+  data.forEach(r=>{
+    const row = tbl.insertRow(-1);
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.area_checked||'—'}</td><td>${r.cleaning_completed||'—'}</td><td>${r.debris_removed||'—'}</td><td>${r.equipment_cleaned||'—'}</td><td>${r.issues_found||'—'}</td><td>${r.action_taken||'—'}</td><td>${r.checked_by||'—'}</td>`;
+  });
+}
+async function addHygiene(){
+  const record = {
+    log_date: document.getElementById('h-date').value || null,
+    area_checked: document.getElementById('h-area').value,
+    cleaning_completed: document.getElementById('h-clean').value,
+    debris_removed: document.getElementById('h-debris').value,
+    equipment_cleaned: document.getElementById('h-equip').value,
+    issues_found: document.getElementById('h-issue').value.trim() || '无 None',
+    action_taken: document.getElementById('h-action').value.trim() || null,
+    checked_by: document.getElementById('h-by').value.trim() || null
+  };
+  if(!record.checked_by){ return; }
+  const { error } = await sb.from('hygiene').insert([record]);
+  if(error){ alert('保存失败 Save failed: '+error.message); return; }
   ['h-issue','h-by','h-action'].forEach(id=>document.getElementById(id).value='');
+  loadHygiene();
 }
 
-function addTraining(){
-  const date = document.getElementById('t-date').value || '—';
-  const topic = document.getElementById('t-topic').value.trim() || '—';
-  const names = document.getElementById('t-names').value.trim();
-  if(!names){ return; }
+// ---------- TRAINING REGISTER (Appendix A) ----------
+async function loadTraining(){
   const tbl = document.getElementById('t-table');
-  const row = tbl.insertRow(1);
-  row.innerHTML = `<td>${date}</td><td>${topic}</td><td>${names}</td><td class="small">待签名 pending</td>`;
+  while(tbl.rows.length > 1){ tbl.deleteRow(1); }
+  const { data, error } = await sb.from('training_register').select('*').order('log_date', {ascending:false});
+  if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
+  data.forEach(r=>{
+    const row = tbl.insertRow(-1);
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.topic||'—'}</td><td>${r.attendees||'—'}</td><td class="small">待签名 pending</td>`;
+  });
+}
+async function addTraining(){
+  const record = {
+    log_date: document.getElementById('t-date').value || null,
+    topic: document.getElementById('t-topic').value.trim() || null,
+    attendees: document.getElementById('t-names').value.trim() || null
+  };
+  if(!record.attendees){ return; }
+  const { error } = await sb.from('training_register').insert([record]);
+  if(error){ alert('保存失败 Save failed: '+error.message); return; }
   document.getElementById('t-topic').value=''; document.getElementById('t-names').value='';
+  loadTraining();
 }
 
-function addVisitor(){
-  const date = document.getElementById('v-date').value || '—';
-  const name = document.getElementById('v-name').value.trim();
-  const org = document.getElementById('v-org').value.trim() || '—';
-  const purpose = document.getElementById('v-purpose').value.trim() || '—';
-  const tin = document.getElementById('v-in').value || '—';
-  const tout = document.getElementById('v-out').value || '—';
-  const escort = document.getElementById('v-escort').value.trim() || '—';
-  const sig = document.getElementById('v-sig').value.trim() ? '✓' : '待签 pending';
-  if(!name){ return; }
-  const tbl = document.getElementById('v-table');
-  const row = tbl.insertRow(1);
-  row.innerHTML = `<td>${date}</td><td>${name}</td><td>${org}</td><td>${purpose}</td><td>${tin}</td><td>${tout}</td><td>${escort}</td><td class="small">${sig}</td>`;
-  ['v-name','v-org','v-purpose','v-in','v-out','v-escort','v-sig'].forEach(id=>document.getElementById(id).value='');
+// ---------- ACCESS LOG ----------
+async function loadAccess(){
+  const tbl = emptyRow('v-table');
+  const { data, error } = await sb.from('access_log').select('*').order('log_date', {ascending:false});
+  if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
+  data.forEach(r=>{
+    const row = tbl.insertRow(-1);
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.visitor_name||'—'}</td><td>${r.company||'—'}</td><td>${r.purpose||'—'}</td><td>${r.time_in||'—'}</td><td>${r.time_out||'—'}</td><td>${r.escorted_by||'—'}</td><td class="small">${r.signature||'—'}</td>`;
+  });
 }
+async function addVisitor(){
+  const record = {
+    log_date: document.getElementById('v-date').value || null,
+    visitor_name: document.getElementById('v-name').value.trim() || null,
+    company: document.getElementById('v-org').value.trim() || null,
+    purpose: document.getElementById('v-purpose').value.trim() || null,
+    time_in: document.getElementById('v-in').value || null,
+    time_out: document.getElementById('v-out').value || null,
+    escorted_by: document.getElementById('v-escort').value.trim() || null,
+    signature: document.getElementById('v-sig').value.trim() || null
+  };
+  if(!record.visitor_name){ return; }
+  const { error } = await sb.from('access_log').insert([record]);
+  if(error){ alert('保存失败 Save failed: '+error.message); return; }
+  ['v-name','v-org','v-purpose','v-in','v-out','v-escort','v-sig'].forEach(id=>document.getElementById(id).value='');
+  loadAccess();
+}
+
+// ---------- initial load ----------
+window.addEventListener('DOMContentLoaded', ()=>{
+  loadDailyOps();
+  loadGoods();
+  loadPest();
+  loadIncidents();
+  loadHygiene();
+  loadTraining();
+  loadAccess();
+});
 </script>
 </body>
 </html>
