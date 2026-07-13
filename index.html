@@ -134,17 +134,17 @@ label .bi-en{ font-size:1em; }
     position:fixed; top:0; right:0; bottom:0; left:auto; width:250px; z-index:50;
     transform:translateX(100%); transition:transform .22s ease; box-shadow:-2px 0 16px rgba(0,0,0,.25);
     overflow-y:auto;
-    padding-top:calc(20px + env(safe-area-inset-top, 0px));
+    padding-top:60px;
   }
   .side.open{ transform:translateX(0); }
   .main{ padding:16px 16px 90px; max-width:100%; }
   .hamburger{
     display:flex; position:fixed; z-index:30; box-shadow:0 3px 12px rgba(162,18,76,.4);
-    top:calc(env(safe-area-inset-top, 0px) + 16px);
-    right:calc(env(safe-area-inset-right, 0px) + 16px);
+    top:56px;
+    right:16px;
     width:44px; height:44px;
   }
-  .main{ padding-top:calc(env(safe-area-inset-top, 0px) + 76px); }
+  .main{ padding-top:116px; }
   .topbar{ align-items:center; gap:10px; }
   .topbar-left{ display:flex; align-items:center; gap:10px; min-width:0; }
   .topbar-left .titles{ min-width:0; }
@@ -262,13 +262,13 @@ label .bi-en{ font-size:1em; }
 
       <div class="card">
         <h2>TFO / AP 证书台账</h2><div class="h2en">TFO / AP certification register</div>
-        <table>
+        <table id="cert-table">
           <tr><th>姓名 Name</th><th>角色 Role</th><th>证书编号 Cert no.</th><th>到期 Expiry</th><th>状态 Status</th></tr>
-          <tr><td>Xueye Liu</td><td>TF Operator</td><td class="mono">SPS-AS210126-1-5</td><td>2028-01-20</td><td><span class="stamp ok"><span class="ring"></span>有效 Valid</span></td></tr>
-          <tr><td>Xueye Liu</td><td>Accredited Person</td><td class="mono">IVS145811</td><td>2026-10-29</td><td><span class="stamp warn"><span class="ring"></span>即将到期 Expiring</span></td></tr>
-          <tr><td>Fiona</td><td>Accredited Person</td><td class="mono">待补充 TBC</td><td>待补充 TBC</td><td><span class="stamp warn"><span class="ring"></span>待补充证书信息 Cert info needed</span></td></tr>
+          <tr data-expiry="2028-01-20"><td>Xueye Liu</td><td>TF Operator</td><td class="mono">SPS-AS210126-1-5</td><td>2028-01-20</td><td class="cert-status"></td></tr>
+          <tr data-expiry="2026-10-29"><td>Xueye Liu</td><td>Accredited Person</td><td class="mono">IVS145811</td><td>2026-10-29</td><td class="cert-status"></td></tr>
+          <tr data-expiry="2028-02-11"><td>Fiona (Dada Fan)</td><td>Accredited Person</td><td class="mono">AP No. 1005120</td><td>2028-02-11</td><td class="cert-status"></td></tr>
         </table>
-        <div class="small" style="padding:8px 0 0;">Fiona的AP证书编号和到期日待补充 — 请提供后我会更新 · Fiona's AP certificate number and expiry date pending — let me know and I'll fill this in</div>
+        <div class="small" style="padding:8px 0 0;">Fiona · Certificate of Appointment as an Accredited Person（依据Biosecurity Act 1993第103(7)条）· Certificate No. 91976 · 签发日期 Date of issue 2026-02-26 · 授权范围 Scope: Sea Containers (SEACO), Air Containers from All Countries (MPI-AIRCON-ALL) · 签发人 Issued by Andrew Spelman, Central Regional Commissioner</div>
       </div>
     </section>
 
@@ -810,8 +810,28 @@ async function addVisitor(){
   loadAccess();
 }
 
+function renderCertStatuses(){
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  document.querySelectorAll('#cert-table tr[data-expiry]').forEach(row=>{
+    const expiry = new Date(row.dataset.expiry);
+    const daysLeft = Math.round((expiry - today) / 86400000);
+    const cell = row.querySelector('.cert-status');
+    let html;
+    if(daysLeft < 0){
+      html = '<span class="stamp bad"><span class="ring"></span>已过期 Expired</span>';
+    }else if(daysLeft <= 7){
+      html = `<span class="stamp warn"><span class="ring"></span>即将到期 · ${daysLeft}天 Expiring</span>`;
+    }else{
+      html = '<span class="stamp ok"><span class="ring"></span>有效 Valid</span>';
+    }
+    cell.innerHTML = html;
+  });
+}
+
 // ---------- initial load ----------
 window.addEventListener('DOMContentLoaded', ()=>{
+  renderCertStatuses();
   loadDailyOps();
   loadGoods();
   loadPest();
