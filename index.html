@@ -212,12 +212,15 @@ label .bi-en{ font-size:1em; }
           <div style="grid-column:span 2;"><label class="bi"><span class="bi-zh">处理措施</span><span class="bi-en">Action taken</span></label><input id="d-action" placeholder="无需处理 / 具体措施"></div>
           <div style="grid-column:span 2;"><label class="bi"><span class="bi-zh">签名</span><span class="bi-en">Signature</span></label><input id="d-sig" placeholder="现场签名"></div>
         </div>
-        <button class="btn primary" onclick="addDailyOps()">保存条目 Save entry</button>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn primary" id="d-savebtn" onclick="addDailyOps()">保存条目 Save entry</button>
+          <button class="btn" id="d-cancelbtn" style="display:none;" onclick="cancelDailyOpsEdit()">取消编辑 Cancel edit</button>
+        </div>
       </div>
       <div class="card">
         <h2>作业日志台账</h2><div class="h2en">Operations ledger <span class="tag">共 <span id="d-count">0</span> 条 records</span></div>
         <table id="d-table">
-          <tr><th>Date<br><span class="small">日期</span></th><th>TF Operator/AP</th><th>Container No.</th><th>BACC No.</th><th>Activity</th><th>Area Clean</th><th>Issues Observed</th><th>Action Taken</th><th>Signature</th></tr>
+          <tr><th>Date<br><span class="small">日期</span></th><th>TF Operator/AP</th><th>Container No.</th><th>BACC No.</th><th>Activity</th><th>Area Clean</th><th>Issues Observed</th><th>Action Taken</th><th>Signature</th><th>操作 Actions</th></tr>
         </table>
         <div class="small" style="padding:10px 0;">暂无记录 · No records yet — 使用上方表单添加第一条真实记录</div>
       </div>
@@ -244,12 +247,15 @@ label .bi-en{ font-size:1em; }
           <div><label class="bi"><span class="bi-zh">破损情况</span><span class="bi-en">Damage</span></label><input id="g-damage" placeholder="无 None"></div>
           <div style="grid-column:span 3;"><label class="bi"><span class="bi-zh">备注</span><span class="bi-en">Notes</span></label><input id="g-notes" placeholder="其他说明"></div>
         </div>
-        <button class="btn primary" onclick="addGoods()">保存记录 Save</button>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn primary" id="g-savebtn" onclick="addGoods()">保存记录 Save</button>
+          <button class="btn" id="g-cancelbtn" style="display:none;" onclick="cancelGoodsEdit()">取消编辑 Cancel edit</button>
+        </div>
       </div>
       <div class="card">
         <h2>货物接收台账</h2><div class="h2en">Receipt ledger</div>
         <table id="g-table">
-          <tr><th>Date</th><th>Container No.</th><th>Supplier/Origin</th><th>BACC</th><th>ISPM15</th><th>Damage</th><th>Contam.</th><th>Held</th><th>AP</th><th>Notes</th></tr>
+          <tr><th>Date</th><th>Container No.</th><th>Supplier/Origin</th><th>BACC</th><th>ISPM15</th><th>Damage</th><th>Contam.</th><th>Held</th><th>AP</th><th>Notes</th><th>操作 Actions</th></tr>
         </table>
         <div class="small" style="padding:10px 0;">暂无记录 · No records yet</div>
       </div>
@@ -283,13 +289,15 @@ label .bi-en{ font-size:1em; }
           <div><label class="bi"><span class="bi-zh">培训内容/主题</span><span class="bi-en">Content, topics of training</span></label><input id="t-topic" placeholder="例：STOP-CONTAIN-REPORT 流程复训"></div>
           <div><label class="bi"><span class="bi-zh">参加人姓名（逗号分隔）</span><span class="bi-en">Attendee names, comma separated</span></label><input id="t-names" placeholder="例：Carrie, Paul"></div>
         </div>
-        <button class="btn primary" onclick="addTraining()">记录出席 Record attendance</button>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn primary" id="t-savebtn" onclick="addTraining()">记录出席 Record attendance</button>
+          <button class="btn" id="t-cancelbtn" style="display:none;" onclick="cancelTrainingEdit()">取消编辑 Cancel edit</button>
+        </div>
       </div>
       <div class="card">
         <h2>培训台账</h2><div class="h2en">Training ledger</div>
         <table id="t-table">
-          <tr><th>Date of Training<br><span class="small">培训日期</span></th><th>Content, Topics of Training<br><span class="small">培训内容</span></th><th>Attendee Name<br><span class="small">参加人姓名</span></th><th>Attendee Signature<br><span class="small">签名</span></th></tr>
-          <tr><td>30/01/2026</td><td>Introduction for TF（过境设施入职培训）</td><td>Carrie, Paul, Fiona, Stepenie</td><td class="small">—</td></tr>
+          <tr><th>Date of Training<br><span class="small">培训日期</span></th><th>Content, Topics of Training<br><span class="small">培训内容</span></th><th>Attendee Name<br><span class="small">参加人姓名</span></th><th>Attendee Signature<br><span class="small">签名</span></th><th>操作 Actions</th></tr>
         </table>
       </div>
     </section>
@@ -311,12 +319,15 @@ label .bi-en{ font-size:1em; }
           <div><label class="bi"><span class="bi-zh">下次到期日</span><span class="bi-en">Next due date</span></label><input type="date" id="p-next"></div>
           <div><label class="bi"><span class="bi-zh">记录人</span><span class="bi-en">Recorded by</span></label><input id="p-by" placeholder="姓名"></div>
         </div>
-        <button class="btn primary" onclick="addPest()">保存记录 Save</button>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn primary" id="p-savebtn" onclick="addPest()">保存记录 Save</button>
+          <button class="btn" id="p-cancelbtn" style="display:none;" onclick="cancelPestEdit()">取消编辑 Cancel edit</button>
+        </div>
       </div>
       <div class="card">
         <h2>处理台账</h2><div class="h2en">Treatment ledger</div>
         <table id="p-table">
-          <tr><th>Date</th><th>Area</th><th>Type</th><th>Treatment Applied</th><th>Provider/Method</th><th>Follow-up</th><th>Next Due</th><th>By</th></tr>
+          <tr><th>Date</th><th>Area</th><th>Type</th><th>Treatment Applied</th><th>Provider/Method</th><th>Follow-up</th><th>Next Due</th><th>By</th><th>操作 Actions</th></tr>
         </table>
         <div class="small" style="padding:10px 0;">暂无记录 · No records yet</div>
       </div>
@@ -341,12 +352,15 @@ label .bi-en{ font-size:1em; }
           <div><label class="bi"><span class="bi-zh">结案人</span><span class="bi-en">Closed out by</span></label><input id="i-closedby" placeholder="姓名"></div>
           <div><label class="bi"><span class="bi-zh">结案日期</span><span class="bi-en">Date closed</span></label><input type="date" id="i-closeddate"></div>
         </div>
-        <button class="btn primary" onclick="addIncident()">保存记录 Save</button>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn primary" id="i-savebtn" onclick="addIncident()">保存记录 Save</button>
+          <button class="btn" id="i-cancelbtn" style="display:none;" onclick="cancelIncidentEdit()">取消编辑 Cancel edit</button>
+        </div>
       </div>
       <div class="card">
         <h2>事件台账</h2><div class="h2en">Incident ledger</div>
         <table id="i-table">
-          <tr><th>Date</th><th>Type</th><th>Description</th><th>MPI Notified</th><th>Immediate Action</th><th>Follow-up</th><th>Closed By</th><th>Date Closed</th></tr>
+          <tr><th>Date</th><th>Type</th><th>Description</th><th>MPI Notified</th><th>Immediate Action</th><th>Follow-up</th><th>Closed By</th><th>Date Closed</th><th>操作 Actions</th></tr>
         </table>
         <div class="small" style="padding:10px 0;">暂无记录 · No records yet</div>
       </div>
@@ -371,12 +385,15 @@ label .bi-en{ font-size:1em; }
         <div class="formgrid">
           <div style="grid-column:span 4;"><label class="bi"><span class="bi-zh">处理措施</span><span class="bi-en">Action taken</span></label><input id="h-action" placeholder="无需处理 / 具体措施"></div>
         </div>
-        <button class="btn primary" onclick="addHygiene()">保存记录 Save</button>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn primary" id="h-savebtn" onclick="addHygiene()">保存记录 Save</button>
+          <button class="btn" id="h-cancelbtn" style="display:none;" onclick="cancelHygieneEdit()">取消编辑 Cancel edit</button>
+        </div>
       </div>
       <div class="card">
         <h2>卫生检查台账</h2><div class="h2en">Hygiene ledger</div>
         <table id="h-table">
-          <tr><th>Date</th><th>Area Checked</th><th>Cleaning</th><th>Debris Removed</th><th>Equipment Cleaned</th><th>Issues Found</th><th>Action Taken</th><th>Checked By</th></tr>
+          <tr><th>Date</th><th>Area Checked</th><th>Cleaning</th><th>Debris Removed</th><th>Equipment Cleaned</th><th>Issues Found</th><th>Action Taken</th><th>Checked By</th><th>操作 Actions</th></tr>
         </table>
         <div class="small" style="padding:10px 0;">暂无记录 · No records yet</div>
       </div>
@@ -401,14 +418,17 @@ label .bi-en{ font-size:1em; }
           <div><label class="bi"><span class="bi-zh">备注</span><span class="bi-en">Remarks</span></label><input id="v-orderno" placeholder="记录员填写 · 例 派送单号AK8004431 / 其他标记"></div>
         </div>
         <label class="check" style="margin:4px 0 14px;"><input type="checkbox" id="v-confirm"> <span class="bi"><span class="bi-zh">确认</span><span class="bi-en">Confirm</span></span></label>
-        <button class="btn primary" onclick="addVisitor()">保存登记 Save</button>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn primary" id="v-savebtn" onclick="addVisitor()">保存登记 Save</button>
+          <button class="btn" id="v-cancelbtn" style="display:none;" onclick="cancelVisitorEdit()">取消编辑 Cancel edit</button>
+        </div>
         <div class="privacy-note">隐私提示 Privacy note：以上信息仅用于生物安全准入管控及现场安全人员清点目的，访问权限限于设施管理人员，请遵循《2020年隐私法》最小化收集原则。<br>Collected solely for biosecurity access control and H&amp;S headcount purposes under the Privacy Act 2020 — access restricted to facility management.</div>
       </div>
 
       <div class="card">
         <h2>出入台账</h2><div class="h2en">Access ledger</div>
         <table id="v-table">
-          <tr><th>Date</th><th>Name</th><th>Company</th><th>Purpose</th><th>Time In</th><th>Time Out</th><th>Escorted By</th><th>Remarks</th><th>Confirm</th></tr>
+          <tr><th>Date</th><th>Name</th><th>Company</th><th>Purpose</th><th>Time In</th><th>Time Out</th><th>Escorted By</th><th>Remarks</th><th>Confirm</th><th>操作 Actions</th></tr>
         </table>
         <div class="small" style="padding:10px 0;">暂无记录 · No records yet</div>
       </div>
@@ -633,6 +653,7 @@ function emptyRow(tableId, msg){
 }
 
 // ---------- DAILY OPS ----------
+let dEditId = null;
 async function loadDailyOps(){
   const tbl = emptyRow('d-table');
   const { data, error } = await sb.from('daily_ops').select('*').order('log_date', {ascending:false});
@@ -640,8 +661,37 @@ async function loadDailyOps(){
   document.getElementById('d-count').textContent = data.length;
   data.forEach(r=>{
     const row = tbl.insertRow(-1);
-    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.operator||'—'}</td><td class="mono">${r.container_no||'—'}</td><td class="mono">${r.bacc_no||'—'}</td><td><span class="pill n">${r.activity||'—'}</span></td><td>${r.area_clean||'—'}</td><td>${r.issues||'—'}</td><td>${r.action_taken||'—'}</td><td class="small">${r.signature||'—'}</td>`;
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.operator||'—'}</td><td class="mono">${r.container_no||'—'}</td><td class="mono">${r.bacc_no||'—'}</td><td><span class="pill n">${r.activity||'—'}</span></td><td>${r.area_clean||'—'}</td><td>${r.issues||'—'}</td><td>${r.action_taken||'—'}</td><td class="small">${r.signature||'—'}</td><td class="small" style="white-space:nowrap;"><button class="btn" style="padding:4px 8px;font-size:11px;" onclick="editDailyOps(${r.id})">编辑</button> <button class="btn" style="padding:4px 8px;font-size:11px;color:#B23A2E;" onclick="deleteDailyOps(${r.id})">删除</button></td>`;
   });
+}
+async function editDailyOps(id){
+  const { data, error } = await sb.from('daily_ops').select('*').eq('id', id).single();
+  if(error){ alert('读取失败 Load failed: '+error.message); return; }
+  document.getElementById('d-date').value = data.log_date || '';
+  document.getElementById('d-op').value = data.operator || '';
+  document.getElementById('d-container').value = data.container_no || '';
+  document.getElementById('d-bacc').value = data.bacc_no || '';
+  if(data.activity) document.querySelectorAll('#d-activity option').forEach(o=>{ if(o.value.split(' ')[0]===data.activity) document.getElementById('d-activity').value = o.value; });
+  document.getElementById('d-clean').value = data.area_clean || document.getElementById('d-clean').value;
+  document.getElementById('d-issue').value = data.issues || '';
+  document.getElementById('d-action').value = data.action_taken || '';
+  document.getElementById('d-sig').value = data.signature || '';
+  dEditId = id;
+  document.getElementById('d-savebtn').textContent = '保存修改 Save changes';
+  document.getElementById('d-cancelbtn').style.display = 'inline-block';
+  document.getElementById('d-date').scrollIntoView({behavior:'smooth', block:'center'});
+}
+function cancelDailyOpsEdit(){
+  dEditId = null;
+  ['d-op','d-container','d-bacc','d-issue','d-action','d-sig'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('d-savebtn').textContent = '保存条目 Save entry';
+  document.getElementById('d-cancelbtn').style.display = 'none';
+}
+async function deleteDailyOps(id){
+  if(!confirm('确定删除这条记录吗？此操作无法撤销。\nDelete this record? This cannot be undone.')) return;
+  const { error } = await sb.from('daily_ops').delete().eq('id', id);
+  if(error){ alert('删除失败 Delete failed: '+error.message); return; }
+  loadDailyOps();
 }
 async function addDailyOps(){
   const record = {
@@ -656,13 +706,16 @@ async function addDailyOps(){
     signature: document.getElementById('d-sig').value.trim() || null
   };
   if(!record.operator){ return; }
-  const { error } = await sb.from('daily_ops').insert([record]);
+  const { error } = dEditId
+    ? await sb.from('daily_ops').update(record).eq('id', dEditId)
+    : await sb.from('daily_ops').insert([record]);
   if(error){ alert('保存失败 Save failed: '+error.message); return; }
-  ['d-op','d-container','d-bacc','d-issue','d-action','d-sig'].forEach(id=>document.getElementById(id).value='');
+  cancelDailyOpsEdit();
   loadDailyOps();
 }
 
 // ---------- GOODS RECEIPT ----------
+let gEditId = null;
 async function loadGoods(){
   const tbl = emptyRow('g-table');
   const { data, error } = await sb.from('goods_receipt').select('*').order('receipt_date', {ascending:false});
@@ -671,8 +724,38 @@ async function loadGoods(){
     const row = tbl.insertRow(-1);
     const baccPill = r.bacc_verified==='Y' ? '<span class="pill g">Y</span>' : '<span class="pill r">N</span>';
     const contamPill = r.contamination==='Y' ? '<span class="pill a">Y</span>' : '<span class="pill g">N</span>';
-    row.innerHTML = `<td>${r.receipt_date||'—'}</td><td class="mono">${r.container_no||'—'}</td><td>${r.supplier_origin||'—'}</td><td>${baccPill}</td><td>${r.ispm15_checked||'—'}</td><td>${r.damage||'—'}</td><td>${contamPill}</td><td>${r.held_in_tf||'—'}</td><td>${r.ap_name||'—'}</td><td class="small">${r.notes||'—'}</td>`;
+    row.innerHTML = `<td>${r.receipt_date||'—'}</td><td class="mono">${r.container_no||'—'}</td><td>${r.supplier_origin||'—'}</td><td>${baccPill}</td><td>${r.ispm15_checked||'—'}</td><td>${r.damage||'—'}</td><td>${contamPill}</td><td>${r.held_in_tf||'—'}</td><td>${r.ap_name||'—'}</td><td class="small">${r.notes||'—'}</td><td class="small" style="white-space:nowrap;"><button class="btn" style="padding:4px 8px;font-size:11px;" onclick="editGoods(${r.id})">编辑</button> <button class="btn" style="padding:4px 8px;font-size:11px;color:#B23A2E;" onclick="deleteGoods(${r.id})">删除</button></td>`;
   });
+}
+async function editGoods(id){
+  const { data, error } = await sb.from('goods_receipt').select('*').eq('id', id).single();
+  if(error){ alert('读取失败 Load failed: '+error.message); return; }
+  document.getElementById('g-date').value = data.receipt_date || '';
+  document.getElementById('g-container').value = data.container_no || '';
+  document.getElementById('g-supplier').value = data.supplier_origin || '';
+  document.getElementById('g-ap').value = data.ap_name || document.getElementById('g-ap').value;
+  document.getElementById('g-bacc').value = data.bacc_verified || document.getElementById('g-bacc').value;
+  document.getElementById('g-ispm').value = data.ispm15_checked || document.getElementById('g-ispm').value;
+  document.getElementById('g-contam').value = data.contamination || document.getElementById('g-contam').value;
+  document.getElementById('g-held').value = data.held_in_tf || document.getElementById('g-held').value;
+  document.getElementById('g-damage').value = data.damage || '';
+  document.getElementById('g-notes').value = data.notes || '';
+  gEditId = id;
+  document.getElementById('g-savebtn').textContent = '保存修改 Save changes';
+  document.getElementById('g-cancelbtn').style.display = 'inline-block';
+  document.getElementById('g-date').scrollIntoView({behavior:'smooth', block:'center'});
+}
+function cancelGoodsEdit(){
+  gEditId = null;
+  ['g-container','g-supplier','g-damage','g-notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('g-savebtn').textContent = '保存记录 Save';
+  document.getElementById('g-cancelbtn').style.display = 'none';
+}
+async function deleteGoods(id){
+  if(!confirm('确定删除这条记录吗？此操作无法撤销。\nDelete this record? This cannot be undone.')) return;
+  const { error } = await sb.from('goods_receipt').delete().eq('id', id);
+  if(error){ alert('删除失败 Delete failed: '+error.message); return; }
+  loadGoods();
 }
 async function addGoods(){
   const record = {
@@ -688,21 +771,52 @@ async function addGoods(){
     notes: document.getElementById('g-notes').value.trim() || null
   };
   if(!record.container_no){ return; }
-  const { error } = await sb.from('goods_receipt').insert([record]);
+  const { error } = gEditId
+    ? await sb.from('goods_receipt').update(record).eq('id', gEditId)
+    : await sb.from('goods_receipt').insert([record]);
   if(error){ alert('保存失败 Save failed: '+error.message); return; }
-  ['g-container','g-supplier','g-damage','g-notes'].forEach(id=>document.getElementById(id).value='');
+  cancelGoodsEdit();
   loadGoods();
 }
 
 // ---------- PEST / WEED / VERMIN ----------
+let pEditId = null;
 async function loadPest(){
   const tbl = emptyRow('p-table');
   const { data, error } = await sb.from('pest_control').select('*').order('log_date', {ascending:false});
   if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
   data.forEach(r=>{
     const row = tbl.insertRow(-1);
-    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.area||'—'}</td><td><span class="pill n">${r.pest_type||'—'}</span></td><td>${r.treatment||'—'}</td><td>${r.provider_method||'—'}</td><td>${r.followup_required||'—'}</td><td>${r.next_due||'—'}</td><td>${r.recorded_by||'—'}</td>`;
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.area||'—'}</td><td><span class="pill n">${r.pest_type||'—'}</span></td><td>${r.treatment||'—'}</td><td>${r.provider_method||'—'}</td><td>${r.followup_required||'—'}</td><td>${r.next_due||'—'}</td><td>${r.recorded_by||'—'}</td><td class="small" style="white-space:nowrap;"><button class="btn" style="padding:4px 8px;font-size:11px;" onclick="editPest(${r.id})">编辑</button> <button class="btn" style="padding:4px 8px;font-size:11px;color:#B23A2E;" onclick="deletePest(${r.id})">删除</button></td>`;
   });
+}
+async function editPest(id){
+  const { data, error } = await sb.from('pest_control').select('*').eq('id', id).single();
+  if(error){ alert('读取失败 Load failed: '+error.message); return; }
+  document.getElementById('p-date').value = data.log_date || '';
+  document.getElementById('p-area').value = data.area || '';
+  if(data.pest_type) document.querySelectorAll('#p-type option').forEach(o=>{ if(o.value.split(' ')[0]===data.pest_type) document.getElementById('p-type').value = o.value; });
+  document.getElementById('p-treat').value = data.treatment || '';
+  document.getElementById('p-provider').value = data.provider_method || '';
+  document.getElementById('p-followup').value = data.followup_required || document.getElementById('p-followup').value;
+  document.getElementById('p-next').value = data.next_due || '';
+  document.getElementById('p-by').value = data.recorded_by || '';
+  pEditId = id;
+  document.getElementById('p-savebtn').textContent = '保存修改 Save changes';
+  document.getElementById('p-cancelbtn').style.display = 'inline-block';
+  document.getElementById('p-date').scrollIntoView({behavior:'smooth', block:'center'});
+}
+function cancelPestEdit(){
+  pEditId = null;
+  ['p-area','p-treat','p-provider','p-next','p-by'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('p-savebtn').textContent = '保存记录 Save';
+  document.getElementById('p-cancelbtn').style.display = 'none';
+}
+async function deletePest(id){
+  if(!confirm('确定删除这条记录吗？此操作无法撤销。\nDelete this record? This cannot be undone.')) return;
+  const { error } = await sb.from('pest_control').delete().eq('id', id);
+  if(error){ alert('删除失败 Delete failed: '+error.message); return; }
+  loadPest();
 }
 async function addPest(){
   const record = {
@@ -716,21 +830,52 @@ async function addPest(){
     recorded_by: document.getElementById('p-by').value.trim() || null
   };
   if(!record.treatment){ return; }
-  const { error } = await sb.from('pest_control').insert([record]);
+  const { error } = pEditId
+    ? await sb.from('pest_control').update(record).eq('id', pEditId)
+    : await sb.from('pest_control').insert([record]);
   if(error){ alert('保存失败 Save failed: '+error.message); return; }
-  ['p-area','p-treat','p-provider','p-next','p-by'].forEach(id=>document.getElementById(id).value='');
+  cancelPestEdit();
   loadPest();
 }
 
 // ---------- INCIDENTS ----------
+let iEditId = null;
 async function loadIncidents(){
   const tbl = emptyRow('i-table');
   const { data, error } = await sb.from('incidents').select('*').order('log_date', {ascending:false});
   if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
   data.forEach(r=>{
     const row = tbl.insertRow(-1);
-    row.innerHTML = `<td>${r.log_date||'—'}</td><td><span class="pill a">${r.incident_type||'—'}</span></td><td>${r.description||'—'}</td><td>${r.mpi_notified||'—'}</td><td>${r.immediate_action||'—'}</td><td>${r.followup_action||'—'}</td><td>${r.closed_by||'—'}</td><td>${r.date_closed||'未结案 Open'}</td>`;
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td><span class="pill a">${r.incident_type||'—'}</span></td><td>${r.description||'—'}</td><td>${r.mpi_notified||'—'}</td><td>${r.immediate_action||'—'}</td><td>${r.followup_action||'—'}</td><td>${r.closed_by||'—'}</td><td>${r.date_closed||'未结案 Open'}</td><td class="small" style="white-space:nowrap;"><button class="btn" style="padding:4px 8px;font-size:11px;" onclick="editIncident(${r.id})">编辑</button> <button class="btn" style="padding:4px 8px;font-size:11px;color:#B23A2E;" onclick="deleteIncident(${r.id})">删除</button></td>`;
   });
+}
+async function editIncident(id){
+  const { data, error } = await sb.from('incidents').select('*').eq('id', id).single();
+  if(error){ alert('读取失败 Load failed: '+error.message); return; }
+  document.getElementById('i-date').value = data.log_date || '';
+  if(data.incident_type) document.querySelectorAll('#i-type option').forEach(o=>{ if(o.value.split(' ')[0]===data.incident_type) document.getElementById('i-type').value = o.value; });
+  document.getElementById('i-desc').value = data.description || '';
+  document.getElementById('i-mpi').value = data.mpi_notified || '';
+  document.getElementById('i-immediate').value = data.immediate_action || '';
+  document.getElementById('i-followup').value = data.followup_action || '';
+  document.getElementById('i-closedby').value = data.closed_by || '';
+  document.getElementById('i-closeddate').value = data.date_closed || '';
+  iEditId = id;
+  document.getElementById('i-savebtn').textContent = '保存修改 Save changes';
+  document.getElementById('i-cancelbtn').style.display = 'inline-block';
+  document.getElementById('i-date').scrollIntoView({behavior:'smooth', block:'center'});
+}
+function cancelIncidentEdit(){
+  iEditId = null;
+  ['i-desc','i-mpi','i-immediate','i-followup','i-closedby','i-closeddate'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('i-savebtn').textContent = '保存记录 Save';
+  document.getElementById('i-cancelbtn').style.display = 'none';
+}
+async function deleteIncident(id){
+  if(!confirm('确定删除这条记录吗？此操作无法撤销。\nDelete this record? This cannot be undone.')) return;
+  const { error } = await sb.from('incidents').delete().eq('id', id);
+  if(error){ alert('删除失败 Delete failed: '+error.message); return; }
+  loadIncidents();
 }
 async function addIncident(){
   const record = {
@@ -744,21 +889,52 @@ async function addIncident(){
     date_closed: document.getElementById('i-closeddate').value || null
   };
   if(!record.description){ return; }
-  const { error } = await sb.from('incidents').insert([record]);
+  const { error } = iEditId
+    ? await sb.from('incidents').update(record).eq('id', iEditId)
+    : await sb.from('incidents').insert([record]);
   if(error){ alert('保存失败 Save failed: '+error.message); return; }
-  ['i-desc','i-mpi','i-immediate','i-followup','i-closedby','i-closeddate'].forEach(id=>document.getElementById(id).value='');
+  cancelIncidentEdit();
   loadIncidents();
 }
 
 // ---------- HYGIENE ----------
+let hEditId = null;
 async function loadHygiene(){
   const tbl = emptyRow('h-table');
   const { data, error } = await sb.from('hygiene').select('*').order('log_date', {ascending:false});
   if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
   data.forEach(r=>{
     const row = tbl.insertRow(-1);
-    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.area_checked||'—'}</td><td>${r.cleaning_completed||'—'}</td><td>${r.debris_removed||'—'}</td><td>${r.equipment_cleaned||'—'}</td><td>${r.issues_found||'—'}</td><td>${r.action_taken||'—'}</td><td>${r.checked_by||'—'}</td>`;
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.area_checked||'—'}</td><td>${r.cleaning_completed||'—'}</td><td>${r.debris_removed||'—'}</td><td>${r.equipment_cleaned||'—'}</td><td>${r.issues_found||'—'}</td><td>${r.action_taken||'—'}</td><td>${r.checked_by||'—'}</td><td class="small" style="white-space:nowrap;"><button class="btn" style="padding:4px 8px;font-size:11px;" onclick="editHygiene(${r.id})">编辑</button> <button class="btn" style="padding:4px 8px;font-size:11px;color:#B23A2E;" onclick="deleteHygiene(${r.id})">删除</button></td>`;
   });
+}
+async function editHygiene(id){
+  const { data, error } = await sb.from('hygiene').select('*').eq('id', id).single();
+  if(error){ alert('读取失败 Load failed: '+error.message); return; }
+  document.getElementById('h-date').value = data.log_date || '';
+  document.getElementById('h-area').value = data.area_checked || document.getElementById('h-area').value;
+  document.getElementById('h-clean').value = data.cleaning_completed || document.getElementById('h-clean').value;
+  document.getElementById('h-debris').value = data.debris_removed || document.getElementById('h-debris').value;
+  document.getElementById('h-equip').value = data.equipment_cleaned || document.getElementById('h-equip').value;
+  document.getElementById('h-issue').value = data.issues_found || '';
+  document.getElementById('h-action').value = data.action_taken || '';
+  document.getElementById('h-by').value = data.checked_by || '';
+  hEditId = id;
+  document.getElementById('h-savebtn').textContent = '保存修改 Save changes';
+  document.getElementById('h-cancelbtn').style.display = 'inline-block';
+  document.getElementById('h-date').scrollIntoView({behavior:'smooth', block:'center'});
+}
+function cancelHygieneEdit(){
+  hEditId = null;
+  ['h-issue','h-by','h-action'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('h-savebtn').textContent = '保存记录 Save';
+  document.getElementById('h-cancelbtn').style.display = 'none';
+}
+async function deleteHygiene(id){
+  if(!confirm('确定删除这条记录吗？此操作无法撤销。\nDelete this record? This cannot be undone.')) return;
+  const { error } = await sb.from('hygiene').delete().eq('id', id);
+  if(error){ alert('删除失败 Delete failed: '+error.message); return; }
+  loadHygiene();
 }
 async function addHygiene(){
   const record = {
@@ -772,13 +948,16 @@ async function addHygiene(){
     checked_by: document.getElementById('h-by').value.trim() || null
   };
   if(!record.checked_by){ return; }
-  const { error } = await sb.from('hygiene').insert([record]);
+  const { error } = hEditId
+    ? await sb.from('hygiene').update(record).eq('id', hEditId)
+    : await sb.from('hygiene').insert([record]);
   if(error){ alert('保存失败 Save failed: '+error.message); return; }
-  ['h-issue','h-by','h-action'].forEach(id=>document.getElementById(id).value='');
+  cancelHygieneEdit();
   loadHygiene();
 }
 
 // ---------- TRAINING REGISTER (Appendix A) ----------
+let tEditId = null;
 async function loadTraining(){
   const tbl = document.getElementById('t-table');
   while(tbl.rows.length > 1){ tbl.deleteRow(1); }
@@ -786,8 +965,31 @@ async function loadTraining(){
   if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
   data.forEach(r=>{
     const row = tbl.insertRow(-1);
-    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.topic||'—'}</td><td>${r.attendees||'—'}</td><td class="small">待签名 pending</td>`;
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.topic||'—'}</td><td>${r.attendees||'—'}</td><td class="small">待签名 pending</td><td class="small" style="white-space:nowrap;"><button class="btn" style="padding:4px 8px;font-size:11px;" onclick="editTraining(${r.id})">编辑</button> <button class="btn" style="padding:4px 8px;font-size:11px;color:#B23A2E;" onclick="deleteTraining(${r.id})">删除</button></td>`;
   });
+}
+async function editTraining(id){
+  const { data, error } = await sb.from('training_register').select('*').eq('id', id).single();
+  if(error){ alert('读取失败 Load failed: '+error.message); return; }
+  document.getElementById('t-date').value = data.log_date || '';
+  document.getElementById('t-topic').value = data.topic || '';
+  document.getElementById('t-names').value = data.attendees || '';
+  tEditId = id;
+  document.getElementById('t-savebtn').textContent = '保存修改 Save changes';
+  document.getElementById('t-cancelbtn').style.display = 'inline-block';
+  document.getElementById('t-date').scrollIntoView({behavior:'smooth', block:'center'});
+}
+function cancelTrainingEdit(){
+  tEditId = null;
+  document.getElementById('t-topic').value=''; document.getElementById('t-names').value='';
+  document.getElementById('t-savebtn').textContent = '记录出席 Record attendance';
+  document.getElementById('t-cancelbtn').style.display = 'none';
+}
+async function deleteTraining(id){
+  if(!confirm('确定删除这条记录吗？此操作无法撤销。\nDelete this record? This cannot be undone.')) return;
+  const { error } = await sb.from('training_register').delete().eq('id', id);
+  if(error){ alert('删除失败 Delete failed: '+error.message); return; }
+  loadTraining();
 }
 async function addTraining(){
   const record = {
@@ -796,13 +998,16 @@ async function addTraining(){
     attendees: document.getElementById('t-names').value.trim() || null
   };
   if(!record.attendees){ return; }
-  const { error } = await sb.from('training_register').insert([record]);
+  const { error } = tEditId
+    ? await sb.from('training_register').update(record).eq('id', tEditId)
+    : await sb.from('training_register').insert([record]);
   if(error){ alert('保存失败 Save failed: '+error.message); return; }
-  document.getElementById('t-topic').value=''; document.getElementById('t-names').value='';
+  cancelTrainingEdit();
   loadTraining();
 }
 
 // ---------- ACCESS LOG ----------
+let vEditId = null;
 async function loadAccess(){
   const tbl = emptyRow('v-table');
   const { data, error } = await sb.from('access_log').select('*').order('log_date', {ascending:false});
@@ -810,8 +1015,38 @@ async function loadAccess(){
   data.forEach(r=>{
     const row = tbl.insertRow(-1);
     const confirmBadge = r.confirmed==='Y' ? '<span class="pill g">已确认 ✓</span>' : '<span class="pill n">未确认</span>';
-    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.visitor_name||'—'}</td><td>${r.company||'—'}</td><td>${r.purpose||'—'}</td><td>${r.time_in||'—'}</td><td>${r.time_out||'—'}</td><td>${r.escorted_by||'—'}</td><td class="mono">${r.order_no||'—'}</td><td>${confirmBadge}</td>`;
+    row.innerHTML = `<td>${r.log_date||'—'}</td><td>${r.visitor_name||'—'}</td><td>${r.company||'—'}</td><td>${r.purpose||'—'}</td><td>${r.time_in||'—'}</td><td>${r.time_out||'—'}</td><td>${r.escorted_by||'—'}</td><td class="mono">${r.order_no||'—'}</td><td>${confirmBadge}</td><td class="small" style="white-space:nowrap;"><button class="btn" style="padding:4px 8px;font-size:11px;" onclick="editVisitor(${r.id})">编辑</button> <button class="btn" style="padding:4px 8px;font-size:11px;color:#B23A2E;" onclick="deleteVisitor(${r.id})">删除</button></td>`;
   });
+}
+async function editVisitor(id){
+  const { data, error } = await sb.from('access_log').select('*').eq('id', id).single();
+  if(error){ alert('读取失败 Load failed: '+error.message); return; }
+  document.getElementById('v-date').value = data.log_date || '';
+  document.getElementById('v-name').value = data.visitor_name || '';
+  document.getElementById('v-org').value = data.company || '';
+  document.getElementById('v-purpose').value = data.purpose || '';
+  document.getElementById('v-in').value = data.time_in || '';
+  document.getElementById('v-out').value = data.time_out || '';
+  document.getElementById('v-escort').value = data.escorted_by || '';
+  document.getElementById('v-orderno').value = data.order_no || '';
+  document.getElementById('v-confirm').checked = data.confirmed === 'Y';
+  vEditId = id;
+  document.getElementById('v-savebtn').textContent = '保存修改 Save changes';
+  document.getElementById('v-cancelbtn').style.display = 'inline-block';
+  document.getElementById('v-date').scrollIntoView({behavior:'smooth', block:'center'});
+}
+function cancelVisitorEdit(){
+  vEditId = null;
+  ['v-name','v-org','v-purpose','v-in','v-out','v-escort','v-orderno'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('v-confirm').checked = false;
+  document.getElementById('v-savebtn').textContent = '保存登记 Save';
+  document.getElementById('v-cancelbtn').style.display = 'none';
+}
+async function deleteVisitor(id){
+  if(!confirm('确定删除这条记录吗？此操作无法撤销。\nDelete this record? This cannot be undone.')) return;
+  const { error } = await sb.from('access_log').delete().eq('id', id);
+  if(error){ alert('删除失败 Delete failed: '+error.message); return; }
+  loadAccess();
 }
 async function addVisitor(){
   const record = {
@@ -826,10 +1061,11 @@ async function addVisitor(){
     confirmed: document.getElementById('v-confirm').checked ? 'Y' : 'N'
   };
   if(!record.visitor_name){ return; }
-  const { error } = await sb.from('access_log').insert([record]);
+  const { error } = vEditId
+    ? await sb.from('access_log').update(record).eq('id', vEditId)
+    : await sb.from('access_log').insert([record]);
   if(error){ alert('保存失败 Save failed: '+error.message); return; }
-  ['v-name','v-org','v-purpose','v-in','v-out','v-escort','v-orderno'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('v-confirm').checked = false;
+  cancelVisitorEdit();
   loadAccess();
 }
 
