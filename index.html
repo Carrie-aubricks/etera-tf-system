@@ -176,15 +176,14 @@ label .bi-en{ font-size:1em; }
     <div class="nav-item active" data-target="siteplan"><span class="n">01</span><span class="bi"><span class="bi-zh">现场平面图</span><span class="bi-en">Site plan</span></span></div>
     <div class="nav-item" data-target="dailyops"><span class="n">02</span><span class="bi"><span class="bi-zh">日常作业日志</span><span class="bi-en">TF Daily Operations Log</span></span></div>
     <div class="nav-item" data-target="goods"><span class="n">03</span><span class="bi"><span class="bi-zh">货物接收记录</span><span class="bi-en">Goods Receipt Record</span></span></div>
-    <div class="nav-item" data-target="material"><span class="n">04</span><span class="bi"><span class="bi-zh">原料到货记录</span><span class="bi-en">Raw Material Receipt</span></span></div>
-    <div class="nav-item" data-target="access"><span class="n">05</span><span class="bi"><span class="bi-zh">出入登记</span><span class="bi-en">TF Access Log</span></span></div>
+    <div class="nav-item" data-target="access"><span class="n">04</span><span class="bi"><span class="bi-zh">出入登记</span><span class="bi-en">TF Access Log</span></span></div>
+    <div class="nav-item" data-target="certs"><span class="n">05</span><span class="bi"><span class="bi-zh">人员资质证书</span><span class="bi-en">Personnel Certifications</span></span></div>
     <div class="nav-item" data-target="training"><span class="n">06</span><span class="bi"><span class="bi-zh">内部培训登记</span><span class="bi-en">Training register</span></span></div>
     <div class="nav-item" data-target="pest"><span class="n">07</span><span class="bi"><span class="bi-zh">虫害/杂草/鼠患控制</span><span class="bi-en">Pest, Weed &amp; Vermin Control</span></span></div>
     <div class="nav-item" data-target="incident"><span class="n">08</span><span class="bi"><span class="bi-zh">生物安全事件与废弃物</span><span class="bi-en">Biosecurity Incident / Waste</span></span></div>
     <div class="nav-item" data-target="hygiene"><span class="n">09</span><span class="bi"><span class="bi-zh">卫生管理记录</span><span class="bi-en">TF Hygiene Management</span></span></div>
     <div class="nav-item" data-target="providers"><span class="n">10</span><span class="bi"><span class="bi-zh">处理服务商</span><span class="bi-en">Treatment providers</span></span></div>
     <div class="nav-item" data-target="contingency"><span class="n">11</span><span class="bi"><span class="bi-zh">应急预案</span><span class="bi-en">Contingency plans</span></span></div>
-    <div class="nav-item" data-target="download"><span class="n">12</span><span class="bi"><span class="bi-zh">资料下载专区</span><span class="bi-en">Download centre</span></span></div>
     <div class="side-foot">Biosecurity Act 1993 · s.39/s.40<br>TFGEN Standard · Approved 10 Feb 2026</div>
   </div>
 
@@ -256,37 +255,20 @@ label .bi-en{ font-size:1em; }
       </div>
     </section>
 
-    <!-- 04 RAW MATERIAL RECEIPT -->
-    <section id="material">
-      <div class="topbar"><div><h1>原料到货记录</h1><div class="h1en">Raw Material Receipt (Sand / Aggregate / Cement)</div><div class="sub">本地供应商送货单登记 — 非集装箱进口货物，无需BACC/ISPM15检查 / Domestic supplier delivery dockets — not import/container goods, no BACC or ISPM15 checks required</div></div></div>
+    <!-- 03 PEOPLE / APPENDIX A -->
+    <!-- 05 CERTIFICATIONS -->
+    <section id="certs">
+      <div class="topbar"><div><h1>人员资质证书</h1><div class="h1en">Personnel Certifications</div><div class="sub">TFGEN 3.12 · TFO/AP外部资质每两年复训 / External TFO/AP certs renew every 2 years</div></div></div>
+
       <div class="card">
-        <h2>新增到货记录</h2><div class="h2en">New delivery record</div>
-        <div class="formgrid">
-          <div><label class="bi"><span class="bi-zh">日期</span><span class="bi-en">Date</span></label><input type="date" id="m-date"></div>
-          <div><label class="bi"><span class="bi-zh">供应商/承运商</span><span class="bi-en">Supplier / Transport Co.</span></label><input id="m-supplier" placeholder="例：Gleeson &amp; Cox Transport Ltd"></div>
-          <div><label class="bi"><span class="bi-zh">送货单号</span><span class="bi-en">Docket No.</span></label><input id="m-docket" placeholder="例：3050907"></div>
-          <div><label class="bi"><span class="bi-zh">采购订单号</span><span class="bi-en">PO No.</span></label><input id="m-po" placeholder="例：PO-0249"></div>
-        </div>
-        <div class="formgrid">
-          <div><label class="bi"><span class="bi-zh">场地/采石场</span><span class="bi-en">Site or Quarry</span></label><input id="m-site" placeholder="例：Yard / Surf Yard"></div>
-          <div><label class="bi"><span class="bi-zh">材料</span><span class="bi-en">Material</span></label><input id="m-material" placeholder="例：No.3 Sand / 6W General All Passing"></div>
-          <div><label class="bi"><span class="bi-zh">重量或方量</span><span class="bi-en">Weight or Cubic</span></label><input id="m-weight" placeholder="例：10100kg 或 20m³"></div>
-          <div><label class="bi"><span class="bi-zh">净重</span><span class="bi-en">Net Weight (if weighed)</span></label><input id="m-netweight" placeholder="例：11050kg"></div>
-        </div>
-        <div class="formgrid">
-          <div><label class="bi"><span class="bi-zh">车牌/车号</span><span class="bi-en">Truck No. / Rego</span></label><input id="m-truck" placeholder="例：GC115"></div>
-          <div><label class="bi"><span class="bi-zh">司机</span><span class="bi-en">Driver</span></label><input id="m-driver" placeholder="姓名"></div>
-          <div><label class="bi"><span class="bi-zh">签收人</span><span class="bi-en">Received by</span></label><input id="m-receivedby" placeholder="现场签收人姓名"></div>
-          <div><label class="bi"><span class="bi-zh">备注</span><span class="bi-en">Notes</span></label><input id="m-notes" placeholder="其他说明"></div>
-        </div>
-        <button class="btn primary" onclick="addMaterial()">保存记录 Save</button>
-      </div>
-      <div class="card">
-        <h2>原料到货台账</h2><div class="h2en">Material receipt ledger</div>
-        <table id="m-table">
-          <tr><th>Date</th><th>Supplier</th><th>Docket No.</th><th>PO No.</th><th>Site/Quarry</th><th>Material</th><th>Weight/Cubic</th><th>Net Weight</th><th>Truck No.</th><th>Driver</th><th>Received By</th><th>Notes</th></tr>
+        <h2>TFO / AP 证书台账</h2><div class="h2en">TFO / AP certification register</div>
+        <table id="cert-table">
+          <tr><th>姓名 Name</th><th>角色 Role</th><th>证书编号 Cert no.</th><th>到期 Expiry</th><th>状态 Status</th></tr>
+          <tr data-expiry="2028-01-20"><td>Xueye Liu</td><td>TF Operator</td><td class="mono">SPS-AS210126-1-5</td><td>2028-01-20</td><td class="cert-status"></td></tr>
+          <tr data-expiry="2026-10-29"><td>Xueye Liu</td><td>Accredited Person</td><td class="mono">IVS145811</td><td>2026-10-29</td><td class="cert-status"></td></tr>
+          <tr data-expiry="2028-02-11"><td>Fiona (Dada Fan)</td><td>Accredited Person</td><td class="mono">AP No. 1005120</td><td>2028-02-11</td><td class="cert-status"></td></tr>
         </table>
-        <div class="small" style="padding:10px 0;">暂无记录 · No records yet</div>
+        <div class="small" style="padding:8px 0 0;">Fiona · Certificate of Appointment as an Accredited Person（依据Biosecurity Act 1993第103(7)条）· Certificate No. 91976 · 签发日期 Date of issue 2026-02-26 · 授权范围 Scope: Sea Containers (SEACO), Air Containers from All Countries (MPI-AIRCON-ALL) · 签发人 Issued by Andrew Spelman, Central Regional Commissioner</div>
       </div>
     </section>
 
@@ -438,60 +420,72 @@ label .bi-en{ font-size:1em; }
       <div class="card">
         <h2>Etera Group Limited — 8 Norman Spencer Drive</h2><div class="h2en">Facility layout</div>
         <div style="display:flex; flex-direction:column; gap:14px;">
-          <svg viewBox="0 0 640 520" style="width:100%; height:640px; border:1px solid var(--hair); border-radius:8px; background:#FBFBF9;">
+          <img id="siteplanImg" style="display:none; width:100%; border:1px solid var(--hair); border-radius:8px; background:#FBFBF9;">
+          <svg id="siteplanSvg" viewBox="0 0 640 560" style="width:100%; height:680px; border:1px solid var(--hair); border-radius:8px; background:#FBFBF9;">
             <!-- road label -->
-            <text x="14" y="260" font-size="11" fill="#5B6560" transform="rotate(-90 14,260)" text-anchor="middle">Norman Spencer Drive</text>
+            <text x="14" y="300" font-size="11" fill="#5B6560" transform="rotate(-90 14,300)" text-anchor="middle">Norman Spencer Drive</text>
 
-            <!-- building outline (office/cafe/warehouse) -->
-            <rect x="60" y="40" width="230" height="230" fill="none" stroke="#1A211D" stroke-width="2"/>
+            <!-- building outline (office/cafe/warehouse block) -->
+            <rect x="44" y="10" width="250" height="280" fill="none" stroke="#1A211D" stroke-width="2"/>
             <!-- office -->
-            <rect x="150" y="40" width="140" height="70" fill="none" stroke="#B0B4AC" stroke-width="1"/>
-            <text x="220" y="80" font-size="11" text-anchor="middle" fill="#1A211D">Office 办公室</text>
-            <!-- cafe -->
-            <rect x="150" y="110" width="70" height="55" fill="none" stroke="#B0B4AC" stroke-width="1"/>
-            <text x="185" y="140" font-size="10" text-anchor="middle" fill="#1A211D">Cafe</text>
-            <!-- warehouse -->
-            <rect x="60" y="165" width="230" height="105" fill="none" stroke="#B0B4AC" stroke-width="1"/>
-            <text x="245" y="230" font-size="11" text-anchor="middle" fill="#1A211D">Warehouse 仓库</text>
+            <rect x="150" y="10" width="144" height="70" fill="none" stroke="#B0B4AC" stroke-width="1"/>
+            <text x="222" y="48" font-size="11" text-anchor="middle" fill="#1A211D">Office</text>
+            <text x="222" y="62" font-size="9.5" text-anchor="middle" fill="#5B6560">办公室</text>
+            <!-- in-house cafeteria (stacked under office) -->
+            <rect x="150" y="80" width="70" height="55" fill="none" stroke="#B0B4AC" stroke-width="1"/>
+            <text x="185" y="103" font-size="9.5" text-anchor="middle" fill="#1A211D">in-house</text>
+            <text x="185" y="115" font-size="9.5" text-anchor="middle" fill="#1A211D">cafeteria</text>
+            <text x="185" y="127" font-size="8.5" text-anchor="middle" fill="#5B6560">内部食堂</text>
+            <!-- warehouse (wraps left + bottom) -->
+            <text x="230" y="185" font-size="11" text-anchor="middle" fill="#1A211D">Warehouse</text>
+            <text x="230" y="198" font-size="9.5" text-anchor="middle" fill="#5B6560">仓库</text>
             <!-- holding area -->
-            <rect x="80" y="200" width="70" height="45" fill="#FBE7EE" stroke="#A2124C" stroke-width="1"/>
-            <text x="115" y="220" font-size="9.5" text-anchor="middle" fill="#5E0A2C">Holding</text>
-            <text x="115" y="232" font-size="9.5" text-anchor="middle" fill="#5E0A2C">Area 持有区</text>
-            <!-- biosecurity equipment marker (magenta diamond) -->
-            <rect x="165" y="205" width="14" height="14" fill="#A2124C" transform="rotate(45 172,212)"/>
-            <!-- biosecurity record marker (blue triangle) -->
-            <polygon points="175,55 190,63 175,71" fill="#1E5FA8"/>
-            <text x="150" y="30" font-size="9.5" fill="#5B6560">TF Sign</text>
+            <rect x="64" y="225" width="70" height="50" fill="#FBE7EE" stroke="#A2124C" stroke-width="1"/>
+            <text x="99" y="245" font-size="9.5" text-anchor="middle" fill="#5E0A2C">Holding</text>
+            <text x="99" y="257" font-size="9.5" text-anchor="middle" fill="#5E0A2C">Area 持有区</text>
+            <!-- biosecurity equipment marker (magenta diamond) in warehouse -->
+            <rect x="143" y="208" width="14" height="14" fill="#A2124C" transform="rotate(45 150,215)"/>
+            <!-- biosecurity record marker (blue triangle) in office -->
+            <polygon points="168,22 183,30 168,38" fill="#1E5FA8"/>
 
-            <!-- entry doors -->
-            <rect x="52" y="120" width="10" height="30" fill="#1A211D"/>
-            <text x="20" y="138" font-size="9.5" fill="#5B6560">Entry入口</text>
-            <text x="35" y="105" font-size="9" fill="#5B6560">TF Sign</text>
+            <!-- top-left entry door + TF sign -->
+            <rect x="36" y="110" width="10" height="40" fill="#1A211D"/>
+            <text x="8" y="133" font-size="9.5" fill="#5B6560">Entry</text>
+            <text x="8" y="145" font-size="9" fill="#5B6560">入口</text>
+            <ellipse cx="26" cy="72" rx="22" ry="15" fill="none" stroke="#5B6560" stroke-width="1" stroke-dasharray="3,2"/>
+            <text x="26" y="70" font-size="8.5" text-anchor="middle" fill="#5B6560">TF</text>
+            <text x="26" y="80" font-size="8.5" text-anchor="middle" fill="#5B6560">Sign</text>
 
-            <!-- storage yard -->
-            <rect x="300" y="40" width="300" height="400" fill="none" stroke="#1A211D" stroke-width="2"/>
-            <text x="450" y="270" font-size="11" text-anchor="middle" fill="#1A211D">Storage Yard 堆场</text>
+            <!-- storage yard (angled boundary per manual sketch) -->
+            <polygon points="300,10 620,10 620,390 585,425 460,425 460,470 380,470 345,505 300,505" fill="none" stroke="#1A211D" stroke-width="2"/>
+            <text x="470" y="345" font-size="11" text-anchor="middle" fill="#1A211D">Storage Yard</text>
+            <text x="470" y="358" font-size="9.5" text-anchor="middle" fill="#5B6560">堆场（全硬化地面）</text>
 
-            <!-- devan area 1 -->
-            <rect x="360" y="70" width="70" height="150" fill="#E4EEF8" stroke="#1E5FA8" stroke-width="1"/>
-            <text x="395" y="145" font-size="10" text-anchor="middle" fill="#1E5FA8">Devan</text>
-            <text x="395" y="158" font-size="10" text-anchor="middle" fill="#1E5FA8">Area 1</text>
-            <circle cx="450" cy="110" r="6" fill="none" stroke="#5B6560" stroke-width="1.3"/>
-            <line x1="445" y1="105" x2="455" y2="115" stroke="#5B6560" stroke-width="1.3"/>
-            <line x1="455" y1="105" x2="445" y2="115" stroke="#5B6560" stroke-width="1.3"/>
+            <!-- container hardstand / devanning area (red outline, per corrected diagram) -->
+            <rect x="452" y="268" width="112" height="56" fill="#FDF1F4" stroke="#D21F4B" stroke-width="2"/>
+            <text x="508" y="286" font-size="10" text-anchor="middle" fill="#8A1234">Container</text>
+            <text x="508" y="299" font-size="10" text-anchor="middle" fill="#8A1234">Hardstand /</text>
+            <text x="508" y="312" font-size="10" text-anchor="middle" fill="#8A1234">Devanning Area</text>
 
-            <!-- devan area 2 -->
-            <rect x="360" y="290" width="90" height="80" fill="#E4EEF8" stroke="#1E5FA8" stroke-width="1"/>
-            <text x="405" y="325" font-size="10" text-anchor="middle" fill="#1E5FA8">Devan</text>
-            <text x="405" y="338" font-size="10" text-anchor="middle" fill="#1E5FA8">Area 2</text>
-            <circle cx="470" cy="380" r="6" fill="none" stroke="#5B6560" stroke-width="1.3"/>
-            <line x1="465" y1="375" x2="475" y2="385" stroke="#5B6560" stroke-width="1.3"/>
-            <line x1="475" y1="375" x2="465" y2="385" stroke="#5B6560" stroke-width="1.3"/>
+            <!-- drain markers x3, spaced down the yard -->
+            <circle cx="432" cy="245" r="6" fill="none" stroke="#5B6560" stroke-width="1.3"/>
+            <line x1="427" y1="240" x2="437" y2="250" stroke="#5B6560" stroke-width="1.3"/>
+            <line x1="437" y1="240" x2="427" y2="250" stroke="#5B6560" stroke-width="1.3"/>
 
-            <!-- yard entry -->
-            <rect x="560" y="410" width="34" height="10" fill="#1A211D"/>
-            <text x="577" y="440" font-size="9.5" text-anchor="middle" fill="#5B6560">Entry</text>
-            <text x="577" y="452" font-size="9" text-anchor="middle" fill="#5B6560">TF Sign</text>
+            <circle cx="432" cy="345" r="6" fill="none" stroke="#5B6560" stroke-width="1.3"/>
+            <line x1="427" y1="340" x2="437" y2="350" stroke="#5B6560" stroke-width="1.3"/>
+            <line x1="437" y1="340" x2="427" y2="350" stroke="#5B6560" stroke-width="1.3"/>
+
+            <circle cx="443" cy="450" r="6" fill="none" stroke="#5B6560" stroke-width="1.3"/>
+            <line x1="438" y1="445" x2="448" y2="455" stroke="#5B6560" stroke-width="1.3"/>
+            <line x1="448" y1="445" x2="438" y2="455" stroke="#5B6560" stroke-width="1.3"/>
+
+            <!-- bottom entry + TF sign -->
+            <rect x="425" y="460" width="60" height="18" fill="#1A211D"/>
+            <text x="455" y="472" font-size="9.5" text-anchor="middle" fill="#fff">Entry</text>
+            <ellipse cx="345" cy="522" rx="26" ry="14" fill="none" stroke="#5B6560" stroke-width="1" stroke-dasharray="3,2"/>
+            <text x="345" y="520" font-size="8.5" text-anchor="middle" fill="#5B6560">TF Sign</text>
+            <text x="345" y="530" font-size="8" text-anchor="middle" fill="#5B6560">入口标识</text>
           </svg>
 
           <div class="legend" style="flex-direction:row; flex-wrap:wrap; gap:20px; padding:10px 4px; border-top:1px solid var(--hair);">
@@ -502,6 +496,17 @@ label .bi-en{ font-size:1em; }
             <div class="small" style="flex-basis:100%; line-height:1.6;">*Entry = 入口门 &nbsp; *TF Sign = 过境设施标识 &nbsp; *全场堆场均为硬化地面 whole yard is hardstand</div>
           </div>
         </div>
+      </div>
+
+      <div class="card">
+        <h2>更新平面图</h2><div class="h2en">Update site plan image</div>
+        <div class="small" style="margin-bottom:10px; line-height:1.6;">上传新的平面图图片（拍照/截图/PDF导出的图片均可），会直接替换上方显示的图，无需改代码、无需重新上传 GitHub。<br>Upload a photo, screenshot or exported image of the new layout — it replaces the diagram above directly, no code edit or GitHub upload needed.</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <input type="file" id="siteplanFile" accept="image/*" style="flex:1; min-width:200px;">
+          <button class="btn primary" onclick="uploadSitePlan()">上传替换 Upload &amp; replace</button>
+          <button class="btn" onclick="resetSitePlan()">恢复默认图 Restore default diagram</button>
+        </div>
+        <div id="siteplanMsg" class="small" style="margin-top:8px;"></div>
       </div>
     </section>
 
@@ -565,39 +570,11 @@ label .bi-en{ font-size:1em; }
       </div>
     </section>
 
-    <!-- 11 DOWNLOAD CENTRE -->
-    <section id="download">
-      <div class="topbar"><div><h1>资料下载专区</h1><div class="h1en">Download Centre</div><div class="sub">导出所有台账记录，用于存档、审计或线下留存 / Export all logs for archiving, audit or offline record-keeping</div></div></div>
-
-      <div class="card" style="border-color:var(--magenta); background:var(--magenta-bg);">
-        <h2 style="color:var(--magenta-ink)">一键下载全部资料</h2><div class="h2en" style="color:var(--magenta-ink)">Download everything (single Excel workbook)</div>
-        <div class="small" style="margin-bottom:12px;">将本系统内全部台账（作业日志、货物接收[集装箱]、原料到货、出入登记、内部培训、虫害控制、生物安全事件、卫生管理）及处理服务商、应急预案速查资料合并为一个 Excel 文件，每类各占一个工作表 / Combines every ledger plus the providers directory and contingency reference into one workbook, one sheet per category</div>
-        <button class="btn primary" id="btn-download-all" onclick="downloadAllData()">下载全部资料（.xlsx） Download all (.xlsx)</button>
-        <span id="download-all-status" class="small" style="margin-left:10px;"></span>
-      </div>
-
-      <div class="card">
-        <h2>按类别单独下载</h2><div class="h2en">Download individual categories (.csv)</div>
-        <table>
-          <tr><th>资料类别 Category</th><th style="text-align:right">操作 Action</th></tr>
-          <tr><td><span class="bi bi-inline"><span class="bi-zh">日常作业日志</span> <span class="bi-en">TF Daily Operations Log</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('daily_ops','log_date',DAILY_OPS_COLS,'作业日志_Daily_Operations_Log')">下载CSV Download</button></td></tr>
-          <tr><td><span class="bi bi-inline"><span class="bi-zh">货物接收记录（集装箱）</span> <span class="bi-en">Goods Receipt Record</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('goods_receipt','receipt_date',GOODS_COLS,'货物接收_Goods_Receipt')">下载CSV Download</button></td></tr>
-          <tr><td><span class="bi bi-inline"><span class="bi-zh">原料到货记录</span> <span class="bi-en">Raw Material Receipt</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('raw_material_receipt','receipt_date',MATERIAL_COLS,'原料到货_Material_Receipt')">下载CSV Download</button></td></tr>
-          <tr><td><span class="bi bi-inline"><span class="bi-zh">出入登记</span> <span class="bi-en">TF Access Log</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('access_log','log_date',ACCESS_COLS,'出入登记_Access_Log')">下载CSV Download</button></td></tr>
-          <tr><td><span class="bi bi-inline"><span class="bi-zh">内部培训登记</span> <span class="bi-en">Training register</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('training_register','log_date',TRAINING_COLS,'培训登记_Training_Register')">下载CSV Download</button></td></tr>
-          <tr><td><span class="bi bi-inline"><span class="bi-zh">虫害/杂草/鼠患控制</span> <span class="bi-en">Pest, Weed &amp; Vermin Control</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('pest_control','log_date',PEST_COLS,'虫害控制_Pest_Control')">下载CSV Download</button></td></tr>
-          <tr><td><span class="bi bi-inline"><span class="bi-zh">生物安全事件与废弃物</span> <span class="bi-en">Biosecurity Incident / Waste</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('incidents','log_date',INCIDENT_COLS,'生物安全事件_Incidents')">下载CSV Download</button></td></tr>
-          <tr><td><span class="bi bi-inline"><span class="bi-zh">卫生管理记录</span> <span class="bi-en">TF Hygiene Management</span></span></td><td style="text-align:right"><button class="btn" onclick="downloadCSV('hygiene','log_date',HYGIENE_COLS,'卫生管理_Hygiene')">下载CSV Download</button></td></tr>
-        </table>
-        <div class="small" style="padding:10px 0 0;">提示：CSV文件可直接用Excel打开 / Tip: CSV files open directly in Excel</div>
-      </div>
-    </section>
 
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
 const SUPABASE_URL = 'https://dzzanobburntbpbsmnwo.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_lcz0yE_dbC4VDzMzWNlQLQ_g2XAZMpa';
@@ -653,135 +630,6 @@ function emptyRow(tableId, msg){
   const tbl = document.getElementById(tableId);
   while(tbl.rows.length > 1){ tbl.deleteRow(1); }
   return tbl;
-}
-
-// ---------- DOWNLOAD CENTRE ----------
-const DAILY_OPS_COLS = [
-  ['log_date','日期 Date'],['operator','TF Operator/AP'],['container_no','集装箱号 Container No.'],
-  ['bacc_no','BACC编号 BACC No.'],['activity','作业类型 Activity'],['area_clean','场地清洁 Area Clean'],
-  ['issues','发现问题 Issues'],['action_taken','处理措施 Action Taken'],['signature','签名 Signature']
-];
-const GOODS_COLS = [
-  ['receipt_date','日期 Date'],['container_no','集装箱号 Container No.'],['supplier_origin','供应商/产地 Supplier/Origin'],
-  ['bacc_verified','BACC已核验 BACC Verified'],['ispm15_checked','ISPM15已检查 ISPM15 Checked'],['damage','破损情况 Damage'],
-  ['contamination','是否污染 Contamination'],['held_in_tf','留在TF Held in TF'],['ap_name','AP姓名 AP Name'],['notes','备注 Notes']
-];
-const MATERIAL_COLS = [
-  ['receipt_date','日期 Date'],['supplier','供应商/承运商 Supplier'],['docket_no','送货单号 Docket No.'],['po_no','采购订单号 PO No.'],
-  ['site_quarry','场地/采石场 Site or Quarry'],['material','材料 Material'],['weight_cubic','重量或方量 Weight/Cubic'],
-  ['net_weight','净重 Net Weight'],['truck_no','车牌/车号 Truck No.'],['driver','司机 Driver'],
-  ['received_by','签收人 Received By'],['notes','备注 Notes']
-];
-const ACCESS_COLS = [
-  ['log_date','日期 Date'],['visitor_name','姓名 Name'],['company','所属公司 Company'],['purpose','来访目的 Purpose'],
-  ['time_in','进入时间 Time In'],['time_out','离开时间 Time Out'],['escorted_by','陪同人 Escorted By'],
-  ['order_no','备注 Remarks'],['confirmed','确认 Confirmed']
-];
-const TRAINING_COLS = [
-  ['log_date','培训日期 Date of Training'],['topic','培训内容/主题 Topic'],['attendees','参加人姓名 Attendees']
-];
-const PEST_COLS = [
-  ['log_date','日期 Date'],['area','区域 Area'],['pest_type','类型 Type'],['treatment','采取的处理 Treatment'],
-  ['provider_method','服务商/方式 Provider/Method'],['followup_required','是否需跟进 Follow-up'],
-  ['next_due','下次到期日 Next Due'],['recorded_by','记录人 Recorded By']
-];
-const INCIDENT_COLS = [
-  ['log_date','日期 Date'],['incident_type','事件类型 Incident Type'],['description','情况描述 Description'],
-  ['mpi_notified','MPI通报 MPI Notified'],['immediate_action','即时处理措施 Immediate Action'],
-  ['followup_action','后续处理 Follow-up Action'],['closed_by','结案人 Closed By'],['date_closed','结案日期 Date Closed']
-];
-const HYGIENE_COLS = [
-  ['log_date','日期 Date'],['area_checked','检查区域 Area Checked'],['cleaning_completed','清洁已完成 Cleaning Completed'],
-  ['debris_removed','杂物已清除 Debris Removed'],['equipment_cleaned','设备已清洁 Equipment Cleaned'],
-  ['issues_found','发现问题 Issues Found'],['action_taken','处理措施 Action Taken'],['checked_by','检查人 Checked By']
-];
-
-function rowsToAOA(data, cols){
-  const header = cols.map(c=>c[1]);
-  const body = data.map(r=>cols.map(c=>{
-    const v = r[c[0]];
-    return (v===null || v===undefined || v==='') ? '—' : v;
-  }));
-  return [header, ...body];
-}
-
-function triggerDownload(blob, filename){
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-async function downloadCSV(table, orderCol, cols, filenameBase){
-  const { data, error } = await sb.from(table).select('*').order(orderCol, {ascending:false});
-  if(error){ alert('导出失败 Export failed: '+error.message); return; }
-  const aoa = rowsToAOA(data||[], cols);
-  const ws = XLSX.utils.aoa_to_sheet(aoa);
-  const csv = XLSX.utils.sheet_to_csv(ws);
-  const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8;'});
-  const dateStr = new Date().toISOString().slice(0,10);
-  triggerDownload(blob, `${filenameBase}_${dateStr}.csv`);
-}
-
-async function downloadAllData(){
-  const btn = document.getElementById('btn-download-all');
-  const status = document.getElementById('download-all-status');
-  btn.disabled = true;
-  status.textContent = '正在生成 Generating…';
-  try{
-    const tasks = [
-      ['daily_ops','log_date',DAILY_OPS_COLS,'01_作业日志 Daily Ops'],
-      ['goods_receipt','receipt_date',GOODS_COLS,'02_货物接收(集装箱) Goods Receipt'],
-      ['raw_material_receipt','receipt_date',MATERIAL_COLS,'03_原料到货 Material Receipt'],
-      ['access_log','log_date',ACCESS_COLS,'04_出入登记 Access Log'],
-      ['training_register','log_date',TRAINING_COLS,'05_培训登记 Training'],
-      ['pest_control','log_date',PEST_COLS,'06_虫害控制 Pest Control'],
-      ['incidents','log_date',INCIDENT_COLS,'07_生物安全事件 Incidents'],
-      ['hygiene','log_date',HYGIENE_COLS,'08_卫生管理 Hygiene']
-    ];
-    const wb = XLSX.utils.book_new();
-    for(const [table, orderCol, cols, sheetName] of tasks){
-      const { data, error } = await sb.from(table).select('*').order(orderCol, {ascending:false});
-      if(error){ throw new Error(`${table}: ${error.message}`); }
-      const aoa = rowsToAOA(data||[], cols);
-      const ws = XLSX.utils.aoa_to_sheet(aoa);
-      XLSX.utils.book_append_sheet(wb, ws, sheetName.slice(0,31));
-    }
-    // static reference sheets
-    const providersAOA = [
-      ['服务商 Provider','服务 Service','联系方式 Contact'],
-      ['New Zealand Global Biosecurity','集装箱内/场外熏蒸、热处理','021 386 279 / 022 190 5566'],
-      ['Container Co (NZL) Limited','集装箱清洗、去污','09 263 4800'],
-      ['Hi Tech Security Disposals','生物安全废弃物年度清运','09 263 8782'],
-      ['SPS Biosecurity Limited','TFO / AP 外部培训认证机构','MPI Approved Training Provider']
-    ];
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(providersAOA), '09_处理服务商 Providers');
-
-    const contingencyAOA = [
-      ['场景 Scenario','应对措施 Response'],
-      ['发现活体动物/昆虫/污染','1.停止作业封闭集装箱 2.隔离拍照 3.致电0800 80 99 66 4.按MPI指示行动'],
-      ['病虫害热线 Pest & Disease Hotline','0800 80 99 66'],
-      ['货物查验预约 Cargo inspection booking','09 909 3030 (Opt.2)'],
-      ['设施业务咨询 Facility enquiries','0800 222 018 (Opt.5)'],
-      ['货物咨询邮箱 Cargo enquiries','MPIAUCKLAND.CARGO@MPI.GOVT.NZ'],
-      ['关键人员缺席 Loss of TFO/AP','提名DTFO并报MPI批准，缺席超1个月须通知'],
-      ['安保/围栏失效 Security breach','临时加固+人工看守，恢复前限制未清关货物进出'],
-      ['未预期未清关货物 Unexpected uncleared goods','置于持有区，喷洒杀虫剂，联系MPI等待指示'],
-      ['现场人员紧急疏散 Emergency evacuation','依据出入登记清点在场访客+员工人数']
-    ];
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(contingencyAOA), '10_应急预案 Contingency');
-
-    const dateStr = new Date().toISOString().slice(0,10);
-    XLSX.writeFile(wb, `ETERA_TF合规资料_全部导出_${dateStr}.xlsx`);
-    status.textContent = '已下载 Done ✓';
-  }catch(e){
-    status.textContent = '';
-    alert('导出失败 Export failed: '+e.message);
-  }finally{
-    btn.disabled = false;
-    setTimeout(()=>{ status.textContent=''; }, 4000);
-  }
 }
 
 // ---------- DAILY OPS ----------
@@ -844,38 +692,6 @@ async function addGoods(){
   if(error){ alert('保存失败 Save failed: '+error.message); return; }
   ['g-container','g-supplier','g-damage','g-notes'].forEach(id=>document.getElementById(id).value='');
   loadGoods();
-}
-
-// ---------- RAW MATERIAL RECEIPT ----------
-async function loadMaterial(){
-  const tbl = emptyRow('m-table');
-  const { data, error } = await sb.from('raw_material_receipt').select('*').order('receipt_date', {ascending:false});
-  if(error){ const msg = (error && (error.message||error.details)) || String(error); showErr('加载失败 Load error: '+msg); console.error(msg); return; }
-  data.forEach(r=>{
-    const row = tbl.insertRow(-1);
-    row.innerHTML = `<td>${r.receipt_date||'—'}</td><td>${r.supplier||'—'}</td><td class="mono">${r.docket_no||'—'}</td><td class="mono">${r.po_no||'—'}</td><td>${r.site_quarry||'—'}</td><td>${r.material||'—'}</td><td>${r.weight_cubic||'—'}</td><td>${r.net_weight||'—'}</td><td class="mono">${r.truck_no||'—'}</td><td>${r.driver||'—'}</td><td>${r.received_by||'—'}</td><td class="small">${r.notes||'—'}</td>`;
-  });
-}
-async function addMaterial(){
-  const record = {
-    receipt_date: document.getElementById('m-date').value || null,
-    supplier: document.getElementById('m-supplier').value.trim() || null,
-    docket_no: document.getElementById('m-docket').value.trim() || null,
-    po_no: document.getElementById('m-po').value.trim() || null,
-    site_quarry: document.getElementById('m-site').value.trim() || null,
-    material: document.getElementById('m-material').value.trim() || null,
-    weight_cubic: document.getElementById('m-weight').value.trim() || null,
-    net_weight: document.getElementById('m-netweight').value.trim() || null,
-    truck_no: document.getElementById('m-truck').value.trim().toUpperCase() || null,
-    driver: document.getElementById('m-driver').value.trim() || null,
-    received_by: document.getElementById('m-receivedby').value.trim() || null,
-    notes: document.getElementById('m-notes').value.trim() || null
-  };
-  if(!record.supplier || !record.material){ return; }
-  const { error } = await sb.from('raw_material_receipt').insert([record]);
-  if(error){ alert('保存失败 Save failed: '+error.message); return; }
-  ['m-supplier','m-docket','m-po','m-site','m-material','m-weight','m-netweight','m-truck','m-driver','m-receivedby','m-notes'].forEach(id=>document.getElementById(id).value='');
-  loadMaterial();
 }
 
 // ---------- PEST / WEED / VERMIN ----------
@@ -1017,11 +833,92 @@ async function addVisitor(){
   loadAccess();
 }
 
+function renderCertStatuses(){
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  document.querySelectorAll('#cert-table tr[data-expiry]').forEach(row=>{
+    const expiry = new Date(row.dataset.expiry);
+    const daysLeft = Math.round((expiry - today) / 86400000);
+    const cell = row.querySelector('.cert-status');
+    let html;
+    if(daysLeft < 0){
+      html = '<span class="stamp bad"><span class="ring"></span>已过期 Expired</span>';
+    }else if(daysLeft <= 7){
+      html = `<span class="stamp warn"><span class="ring"></span>即将到期 · ${daysLeft}天 Expiring</span>`;
+    }else{
+      html = '<span class="stamp ok"><span class="ring"></span>有效 Valid</span>';
+    }
+    cell.innerHTML = html;
+  });
+}
+
+// ---------- site plan image (Supabase Storage) ----------
+const SITEPLAN_BUCKET = 'siteplan';
+const SITEPLAN_FILE = 'current.png';
+
+function loadSitePlan(){
+  try{
+    const { data } = sb.storage.from(SITEPLAN_BUCKET).getPublicUrl(SITEPLAN_FILE);
+    const url = data.publicUrl + '?t=' + Date.now();
+    const img = document.getElementById('siteplanImg');
+    const svg = document.getElementById('siteplanSvg');
+    const testImg = new Image();
+    testImg.onload = ()=>{
+      img.src = url;
+      img.style.display = 'block';
+      svg.style.display = 'none';
+    };
+    testImg.onerror = ()=>{
+      // no uploaded image yet — keep showing default vector diagram
+      img.style.display = 'none';
+      svg.style.display = 'block';
+    };
+    testImg.src = url;
+  }catch(e){
+    console.error('loadSitePlan error: ' + e.message);
+  }
+}
+
+async function uploadSitePlan(){
+  const fileInput = document.getElementById('siteplanFile');
+  const msg = document.getElementById('siteplanMsg');
+  const file = fileInput.files[0];
+  if(!file){ msg.textContent = '请先选择一张图片 Please choose an image first'; msg.style.color = '#B23A2E'; return; }
+  msg.textContent = '上传中... Uploading...';
+  msg.style.color = 'var(--muted)';
+  try{
+    const { error } = await sb.storage.from(SITEPLAN_BUCKET).upload(SITEPLAN_FILE, file, { upsert: true, contentType: file.type });
+    if(error) throw error;
+    msg.textContent = '已更新 Updated ✓';
+    msg.style.color = '#1E7A4C';
+    fileInput.value = '';
+    loadSitePlan();
+  }catch(e){
+    msg.textContent = '上传失败 Upload failed: ' + e.message;
+    msg.style.color = '#B23A2E';
+    showErr('Site plan upload error: ' + e.message);
+  }
+}
+
+async function resetSitePlan(){
+  const msg = document.getElementById('siteplanMsg');
+  try{
+    await sb.storage.from(SITEPLAN_BUCKET).remove([SITEPLAN_FILE]);
+    msg.textContent = '已恢复默认矢量图 Restored default diagram';
+    msg.style.color = '#1E7A4C';
+    loadSitePlan();
+  }catch(e){
+    msg.textContent = '操作失败 Failed: ' + e.message;
+    msg.style.color = '#B23A2E';
+  }
+}
+
 // ---------- initial load ----------
 window.addEventListener('DOMContentLoaded', ()=>{
+  renderCertStatuses();
+  loadSitePlan();
   loadDailyOps();
   loadGoods();
-  loadMaterial();
   loadPest();
   loadIncidents();
   loadHygiene();
